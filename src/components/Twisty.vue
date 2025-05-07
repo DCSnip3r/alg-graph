@@ -52,8 +52,8 @@ export default defineComponent({
 }
 
 .twisty-c {
-  height: 200px;
-  width: 200px;
+  height: 350px;
+  width: 350px;
   margin: auto;
 }
 </style>

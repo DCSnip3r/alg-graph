@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { BaseEdge, EdgeLabelRenderer, getBezierPath, type EdgeProps } from '@vue-flow/core'
 import { computed, ref, watch, defineEmits } from 'vue' // Added ref, watch, defineEmits
+import { useAlgPresetsStore } from '../stores/algPresetsStore'; // Import the presets store
 
 interface SpecialEdgeData {
   algorithm?: string;
@@ -30,6 +31,27 @@ watch(localAlgorithm, (newValue) => {
   }
 });
 
+const algStore = useAlgPresetsStore(); // Use the store
+
+const getBackgroundColorForAlgorithm = (algorithm: string): string => {
+  const preset = algStore.presets.find(p => p.algorithm === algorithm);
+  return preset?.color || '#ffffff'; // Default to white if no match
+};
+
+const getTextColorForBackground = (hexColor: string): string => {
+  if (!hexColor || hexColor.length < 7) return '#000000'; // Default to black
+  try {
+    const r = parseInt(hexColor.slice(1, 3), 16);
+    const g = parseInt(hexColor.slice(3, 5), 16);
+    const b = parseInt(hexColor.slice(5, 7), 16);
+    // Simple luminance formula
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.5 ? '#000000' : '#ffffff'; // Black for light bg, white for dark
+  } catch (e) {
+    return '#000000'; // Fallback
+  }
+};
+
 </script>
 
 <template>
@@ -41,6 +63,8 @@ watch(localAlgorithm, (newValue) => {
         pointerEvents: 'all',
         position: 'absolute',
         transform: `translate(-50%, -50%) translate(${path[1]}px,${path[2]}px)`,
+        backgroundColor: getBackgroundColorForAlgorithm(localAlgorithm.valueOf()), // Set background color dynamically
+        color: getTextColorForBackground(getBackgroundColorForAlgorithm(localAlgorithm.valueOf())), // Set text color dynamically
       }"
       class="nodrag nopan edge-label-container"
     >
@@ -55,30 +79,37 @@ watch(localAlgorithm, (newValue) => {
   </EdgeLabelRenderer>
 </template>
 
-<style>
+<style scoped>
+.edge-label-foreignobject {
+  overflow: visible;
+}
+
 .edge-label-container {
-  background-color: rgba(220, 220, 220, 0.7); /* Slightly adjusted for visibility */
-  padding: 2px 5px;
-  border-radius: 3px;
-  font-size: 10px;
-  color: #333; /* Darker text for light background */
-  min-width: 10px;
+  background: var(--vf-node-bg, #ffffff); /* Use Vue Flow's node background variable */
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 1.75em; /* Adjusted to a more reasonable size */
+  color: var(--vf-node-text, #000000); /* Use Vue Flow's node text color variable */
   text-align: center;
+  width: 350px; /* Fixed width for simplicity */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal; /* Allow wrapping */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for better visibility */
 }
 
 .edge-algorithm-input {
   background-color: transparent;
   border: none;
   text-align: center;
-  width: auto; /* Adjust width as needed, or make it dynamic */
-  min-width: 50px; /* Minimum width */
-  color: #333;
-  font-size: 10px;
+  width: 100%; /* Match the container's width */
+  color: inherit; /* Inherit the text color from the container */
+  font-size: inherit; /* Match the font size of the container */
   padding: 1px;
 }
 
 .edge-algorithm-input:focus {
-  outline: 1px solid #007bff; /* Highlight on focus */
-  background-color: white;
+  outline: 1px solid var(--vf-connection-path, #007bff); /* Use Vue Flow's connection path color */
+  background-color: var(--vf-node-bg, #f0f0f0); /* Use Vue Flow's node background variable */
 }
 </style>

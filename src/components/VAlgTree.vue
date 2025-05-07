@@ -346,6 +346,16 @@ const handleLoadGraphFromFile = (graphState: SavedGraphState) => {
   // Since we called algPresetsStore.replaceAllPresets above, this should be fine.
 };
 
+const handleDeleteNode = (nodeIdToRemove: string) => {
+  // Find edges connected to the node
+  const edgesToRemove = edges.value.filter(edge => edge.source === nodeIdToRemove || edge.target === nodeIdToRemove).map(edge => edge.id);
+  
+  if (edgesToRemove.length > 0) {
+    removeEdges(edgesToRemove);
+  }
+  removeNodes([nodeIdToRemove]);
+};
+
 </script>
 
 <template>
@@ -372,6 +382,7 @@ const handleLoadGraphFromFile = (graphState: SavedGraphState) => {
         <TwistyNode 
           v-bind="twistyNodeProps" 
           @set-target-handle="handleSetTargetHandle"
+          @delete-node="handleDeleteNode"
         />
       </template>
       <template #edge-special="specialEdgeProps">
