@@ -1,0 +1,7 @@
+In MenuOverlay, I want text input fields (+ to add more lines) that store user-defined algorithms. Often we supply a short-hand name to an algorithm, as well as a color. These would be good menu options to add as well.
+
+Then, I want to be able to click on a drag handle for a TwistyNode to be able to add a new node.
+
+Then, I want the box containing the text with the algorithm that that overlays connecting edges between TwistyNodes. I want to supply an algorithm in line, or supply them from the user-defined ones in the menu.
+
+Last, if you can find a way to do substring detection and re-rendering the algorithms in a colorized way based on the algorithms supplied in the menu, that would be great.

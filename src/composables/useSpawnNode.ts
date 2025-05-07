@@ -1,48 +1,65 @@
 import { Alg } from 'cubing/alg';
-import type { Node, Edge } from '@vue-flow/core';
-
-type Direction = 'u' | 'd' | 'l' | 'r';
+import type { Node, Edge, XYPosition } from '@vue-flow/core';
 
 export function useSpawnNode(
-  algorithm: string,
-  node: Node,
-  source: Direction,
-  target: Direction,
-  nodeArray: Node[],
-  edgeArray: Edge[]
-): { newNode: Node } {
+  edgeAlgorithm: string, 
+  parentNode: Node | null, // Allow parentNode to be potentially null
+  newNodeId: string,
+  sourceHandleId: string, 
+  offset: XYPosition,
+): { newNode: Node; newEdge: Edge } | null { // Return type can now be null
 
-  const baseAlg = new Alg(node.data.alg || '');
-  const newAlg = baseAlg.concat(new Alg(algorithm));
-  const simplifiedNewAlg = newAlg.experimentalSimplify({ cancel: true }).toString();
+  if (!parentNode) {
+    console.error(`useSpawnNode: parentNode is null. Cannot spawn node with id ${newNodeId} from a null parent.`);
+    return null;
+  }
+  
+  // Ensure parentNode.data and parentNode.position exist, though type Node should guarantee this
+  // This is more for runtime defensiveness if somehow a malformed Node object is passed.
+  if (!parentNode.data || !parentNode.position) {
+    console.error(`useSpawnNode: parentNode (id: ${parentNode.id}) is missing 'data' or 'position' properties.`);
+    return null;
+  }
+
+  const baseAlg = new Alg(parentNode.data.alg || '');
+  const currentEdgeAlg = new Alg(edgeAlgorithm); 
+  const newNodeCombinedAlg = baseAlg.concat(currentEdgeAlg);
+  const simplifiedNewNodeAlg = newNodeCombinedAlg.experimentalSimplify({ cancel: true }).toString();
+
+  const defaultNewNodeTargetHandleId = 'handle-b'; // Default target is bottom
 
   const newNode: Node = {
-    ...node,
-    id: simplifiedNewAlg,
-    data: {
-      ...node.data,
-      label: simplifiedNewAlg,
-      alg: simplifiedNewAlg,
-    },
+    id: newNodeId,
+    type: parentNode.type, 
     position: {
-      x: node.position.x + 0, // Adjust position as needed
-      y: node.position.y - 300, // Adjust position as needed
+      x: parentNode.position.x + offset.x,
+      y: parentNode.position.y + offset.y,
+    },
+    data: {
+      label: simplifiedNewNodeAlg || "New Node", 
+      alg: simplifiedNewNodeAlg, 
+      rawAlgorithm: edgeAlgorithm, 
+      targetHandleId: defaultNewNodeTargetHandleId, 
+    },
+    style: { 
+      borderColor: '#ffffff',
+      borderWidth: '8px',
+      borderStyle: 'solid',
+      borderRadius: '4px',
     },
   };
 
   const newEdge: Edge = {
-    id: `e${node.id}-${newNode.id}`,
-    source: node.id,
+    id: `e${parentNode.id}-${newNode.id}`,
+    source: parentNode.id,
     target: newNode.id,
-    sourceHandle: `source-${source}`,
-    targetHandle: `target-${target}`,
-    type: 'default', // Adjust type as needed
-    label: algorithm,
+    sourceHandle: sourceHandleId,
+    targetHandle: defaultNewNodeTargetHandleId, 
+    type: 'special',
+    label: edgeAlgorithm, 
+    data: { algorithm: edgeAlgorithm },
     animated: true,
   };
 
-  nodeArray.push(newNode);
-  edgeArray.push(newEdge);
-
-  return { newNode };
+  return { newNode, newEdge };
 }

@@ -6,7 +6,7 @@ import MenuOverlay from './components/MenuOverlay.vue';
 
 <template>
   <div>
-    <MenuOverlay />
+    <!-- <MenuOverlay /> -->
     <VAlgTree />
   </div>
 </template>
