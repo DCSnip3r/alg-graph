@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BaseEdge, EdgeLabelRenderer, getBezierPath, type EdgeProps } from '@vue-flow/core'
-import { computed, ref, watch, defineEmits } from 'vue' // Added ref, watch, defineEmits
-import { useAlgPresetsStore } from '../stores/algPresetsStore'; // Import the presets store
+import { computed, ref, watch } from 'vue' // Removed defineEmits
+import { useColorUtils } from '../composables/useColorUtils'; // Import the composable
 
 interface SpecialEdgeData {
   algorithm?: string;
@@ -31,26 +31,7 @@ watch(localAlgorithm, (newValue) => {
   }
 });
 
-const algStore = useAlgPresetsStore(); // Use the store
-
-const getBackgroundColorForAlgorithm = (algorithm: string): string => {
-  const preset = algStore.presets.find(p => p.algorithm === algorithm);
-  return preset?.color || '#ffffff'; // Default to white if no match
-};
-
-const getTextColorForBackground = (hexColor: string): string => {
-  if (!hexColor || hexColor.length < 7) return '#000000'; // Default to black
-  try {
-    const r = parseInt(hexColor.slice(1, 3), 16);
-    const g = parseInt(hexColor.slice(3, 5), 16);
-    const b = parseInt(hexColor.slice(5, 7), 16);
-    // Simple luminance formula
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return luminance > 0.5 ? '#000000' : '#ffffff'; // Black for light bg, white for dark
-  } catch (e) {
-    return '#000000'; // Fallback
-  }
-};
+const { getTextColorForBackground, getBackgroundColorForAlgorithm } = useColorUtils(); // Use the composable
 
 </script>
 
@@ -63,8 +44,8 @@ const getTextColorForBackground = (hexColor: string): string => {
         pointerEvents: 'all',
         position: 'absolute',
         transform: `translate(-50%, -50%) translate(${path[1]}px,${path[2]}px)`,
-        backgroundColor: getBackgroundColorForAlgorithm(localAlgorithm.valueOf()), // Set background color dynamically
-        color: getTextColorForBackground(getBackgroundColorForAlgorithm(localAlgorithm.valueOf())), // Set text color dynamically
+        backgroundColor: getBackgroundColorForAlgorithm(String(localAlgorithm.valueOf())), // Ensure string type
+        color: getTextColorForBackground(getBackgroundColorForAlgorithm(String(localAlgorithm.valueOf()))), // Ensure string type
       }"
       class="nodrag nopan edge-label-container"
     >

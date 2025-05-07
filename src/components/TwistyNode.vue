@@ -1,13 +1,27 @@
 <script setup lang="ts">
-import { ref, computed, defineEmits } from 'vue';
+import { ref, computed } from 'vue';
 import { Handle, Position } from '@vue-flow/core';
 import type { NodeProps } from '@vue-flow/core';
-import Twisty from './Twisty.vue';
-import { useAlgPresetsStore } from '../stores/algPresetsStore';
+import type { DefineComponent } from 'vue';
+// import type { NodeData, NodeStyle } from '../types/NodeTypes';
 
-const props = defineProps<NodeProps>();
-const emit = defineEmits(['setTargetHandle', 'delete-node']); // Added 'delete-node'
-const algStore = useAlgPresetsStore();
+// Extend NodeProps to include the style property
+interface ExtendedNodeProps extends NodeProps {
+  style?: {
+    borderColor?: string;
+    borderWidth?: string;
+    borderStyle?: string;
+    borderRadius?: string;
+  };
+}
+
+import Twisty from './Twisty.vue';
+const TwistyComponent = Twisty as DefineComponent<{}, {}, any>; // Explicitly type the Twisty component
+import { useColorUtils } from '../composables/useColorUtils'; // Import the composable
+
+const props = defineProps<ExtendedNodeProps>(); // Use the extended type
+const emit = defineEmits(['setTargetHandle', 'delete-node']); // Ensure 'delete-node' is emitted
+const { colorizeLabel } = useColorUtils(); // Use the composable
 
 const isVisible = ref(true);
 
@@ -16,50 +30,11 @@ const toggleVisibility = () => {
 };
 
 const onDeleteNode = () => {
-  emit('delete-node', props.id);
+  emit('delete-node', props.id); // Emit the delete-node event with the node ID
 };
 
-// Helper function to determine text color for good contrast
-const getTextColorForBackground = (hexColor: string): string => {
-  if (!hexColor || hexColor.length < 7) return '#000000'; // Default to black
-  try {
-    const r = parseInt(hexColor.slice(1, 3), 16);
-    const g = parseInt(hexColor.slice(3, 5), 16);
-    const b = parseInt(hexColor.slice(5, 7), 16);
-    // Simple luminance formula
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return luminance > 0.5 ? '#000000' : '#ffffff'; // Black for light bg, white for dark
-  } catch (e) {
-    return '#000000'; // Fallback
-  }
-};
-
-const colorizeLabel = computed(() => {
-  const label = props.data.label;
-  if (typeof label !== 'string') {
-    return ''; 
-  }
-  // Get sorted presets from the store
-  const presetsToHighlight = algStore.getSortedPresetsForHighlighting;
-  let colorizedLabel = label;
-
-  presetsToHighlight.forEach(presetEntry => {
-    const trimmedPresetAlg = presetEntry.algorithm.trim(); // Already trimmed in store getter logic
-    // const escapedPresetAlg = trimmedPresetAlg.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    // Simpler escape for typical alg notation (apostrophe, numbers, letters, spaces)
-    // More robust escaping might be needed if presets can contain arbitrary regex chars
-    const escapedPresetAlg = trimmedPresetAlg.replace(/[']/g, "\\'"); // Escape apostrophes specifically
-                                          // .replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Full escape if needed
-
-    const regex = new RegExp(escapedPresetAlg + '(?=\\s|$)', 'g');
-    
-    colorizedLabel = colorizedLabel.replace(regex, (match) => {
-      const textColor = getTextColorForBackground(presetEntry.color);
-      return `<span class="highlight" style="background-color: ${presetEntry.color}; color: ${textColor};">${match}</span>`;
-    });
-  });
-
-  return colorizedLabel;
+const computedLabel = computed(() => {
+  return colorizeLabel(props.data.label || ''); // Use the composable function
 });
 
 // Define all potential handles for this node type
@@ -106,9 +81,9 @@ const getHandleStyle = (handleId: string) => {
           X
         </button>
       </div>
-      <div v-if="isVisible" class="node-alg-label" v-html="colorizeLabel"></div>
+      <div v-if="isVisible" class="node-alg-label" v-html="computedLabel"></div>
       <div class="twisty-container" v-if="isVisible">
-        <Twisty :alg="props.data.alg"/>
+        <TwistyComponent :alg="props.data.alg"/>
       </div>
       <!-- Render handles only when the node is visible -->
       <template v-for="handle in potentialHandles" :key="handle.id">
@@ -205,10 +180,6 @@ const getHandleStyle = (handleId: string) => {
 
 .delete-node-button:hover {
   background-color: #c9302c; /* Darker dull red */
-}
-
-.toggle-button {
-  /* Uses .node-action-button base style */
 }
 
 .node-alg-label {

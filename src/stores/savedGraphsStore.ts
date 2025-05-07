@@ -1,24 +1,12 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import type { Node, Edge } from '@vue-flow/core';
-import { useAlgPresetsStore, type AlgPreset } from './algPresetsStore';
+import { useAlgPresetsStore } from './algPresetsStore';
+import type { SavedGraphManifest, SavedGraphState } from '../types/SavedGraphTypes';
 
 const LOCAL_STORAGE_KEY_PREFIX = 'vueFlowGraph_';
 const SAVED_GRAPHS_LIST_KEY = 'vueFlowGraphsList';
 
-export interface SavedGraphManifest {
-  name: string;
-  savedAt: string; // ISO string date
-}
-
-export interface SavedGraphState {
-  name: string;
-  nodes: Node[];
-  edges: Edge[];
-  algPresets: AlgPreset[];
-  // You could add viewport info here too if needed:
-  // viewport: { x: number; y: number; zoom: number };
-}
 
 export const useSavedGraphsStore = defineStore('savedGraphs', () => {
   const algPresetsStore = useAlgPresetsStore();

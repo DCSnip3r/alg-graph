@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import Twisty from './components/Twisty.vue';
 import VAlgTree from './components/VAlgTree.vue';
-import MenuOverlay from './components/MenuOverlay.vue';
 </script>
 
 <template>
   <div>
-    <!-- <MenuOverlay /> -->
     <VAlgTree />
   </div>
 </template>

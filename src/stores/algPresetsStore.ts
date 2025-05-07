@@ -1,12 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-
-export interface AlgPreset {
-  id: string; // Unique ID for v-for keys and potential updates
-  algorithm: string;
-  name: string;
-  color: string;
-}
+import type { AlgPreset } from '../types/AlgPresetTypes';
 
 export const useAlgPresetsStore = defineStore('algPresets', () => {
   const presets = ref<AlgPreset[]>([
