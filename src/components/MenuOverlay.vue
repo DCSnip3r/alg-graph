@@ -53,13 +53,26 @@
 
       <div class="display-settings-section">
         <h4>Display Settings</h4>
-        <label>
-          <input 
-            type="checkbox" 
-            v-model="displaySettingsStore.showColorizedEdgeLabels" 
-          />
-          Show colorized edge labels
-        </label>
+        <div class="setting-item inline-setting">
+          <label for="colorized-edge-labels">
+            <input 
+              id="colorized-edge-labels"
+              type="checkbox" 
+              v-model="displaySettingsStore.showColorizedEdgeLabels" 
+            />
+            Show colorized edge labels
+          </label>
+        </div>
+        <div class="setting-item">
+          <!-- <h5>Cube Visualization</h5> -->
+          <div class="inline-setting">
+            <label for="visualization-mode">Visualization Mode:</label>
+            <select id="visualization-mode" v-model="displaySettingsStore.twistyVisualizationMode">
+              <option value="3D">3D</option>
+              <option value="experimental-2D-LL">Experimental 2D LL</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -298,5 +311,20 @@ const {
   border-top: 1px solid #444;
   padding-top: 10px;
   margin-top: 10px;
+}
+
+.display-settings-section .setting-item {
+  margin-bottom: 10px;
+}
+
+.display-settings-section .inline-setting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.display-settings-section .inline-setting label {
+  margin: 0;
+  white-space: nowrap;
 }
 </style>

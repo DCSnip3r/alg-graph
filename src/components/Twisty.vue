@@ -4,7 +4,7 @@
       class="twisty-c"
       :alg="alg || 'U U\''"
       :experimental-setup-anchor="setupAnchor"
-      :visualization="vis"
+      :visualization="displaySettingsStore.twistyVisualizationMode"
       experimental-setup-alg="x2"
       background="null"
     ></twisty-player>
@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 import { TwistyPlayer } from "cubing/twisty";
-import { Alg } from "cubing/alg";
+import { useDisplaySettingsStore } from "../stores/displaySettingsStore";
 
 export default defineComponent({
   name: "Twisty",
@@ -27,13 +27,17 @@ export default defineComponent({
     vis: {
       type: String,
       required: false,
-      default: "3D", //experimental-2D-LL
+      default: "", // Removed default value as it will now be controlled by the store
     },
     alg: {
       type: String,
       required: false,
       default: "",
     },
+  },
+  setup() {
+    const displaySettingsStore = useDisplaySettingsStore();
+    return { displaySettingsStore };
   },
   mounted() {
     if (!customElements.get("twisty-player")) {
