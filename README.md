@@ -11,7 +11,7 @@ This project allows users to explore 3x3x3 cube algorithms visually using a grap
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/cubeExplore.git
-   cd cubeExplore/alg-tree
+   cd cubeExplore/alg-graph
    ```
 2. Install dependencies:
    ```bash
