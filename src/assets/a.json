@@ -5,8 +5,8 @@
       "id": "n-1",
       "type": "twisty",
       "dimensions": {
-        "width": 228,
-        "height": 252
+        "width": 376,
+        "height": 432
       },
       "computedPosition": {
         "x": 0,
@@ -18,36 +18,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 107,
-            "y": -4,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -4,
-            "y": 119,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 206,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 218,
-            "y": 119,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 206,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 107,
-            "y": 242,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 419,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -78,8 +78,8 @@
       "id": "n-2",
       "type": "twisty",
       "dimensions": {
-        "width": 278,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
         "x": 300,
@@ -91,36 +91,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 131.78482957412834,
-            "y": -3.989217532587423,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -3.9893607617103797,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 267.5784990706892,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 131.78482957412834,
-            "y": 241.99992614748348,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -151,8 +151,8 @@
       "id": "n-3",
       "type": "twisty",
       "dimensions": {
-        "width": 422,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
         "x": 600,
@@ -164,36 +164,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 203.96442994249574,
-            "y": -3.989217532587423,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -3.9893607617103797,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 411.9571789681461,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 203.96442994249574,
-            "y": 241.99992614748348,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -207,8 +207,8 @@
         "y": 0
       },
       "data": {
-        "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
-        "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+        "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+        "alg": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
         "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
         "targetHandleId": "handle-b"
       },
@@ -224,8 +224,8 @@
       "id": "n-4",
       "type": "twisty",
       "dimensions": {
-        "width": 566,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
         "x": 900,
@@ -237,36 +237,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 276.16322301333935,
-            "y": -3.989217532587423,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -3.9895039908333363,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 556.33571563648,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 276.16322301333935,
-            "y": 241.99992614748348,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -280,8 +280,8 @@
         "y": 0
       },
       "data": {
-        "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
-        "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+        "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+        "alg": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
         "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
         "targetHandleId": "handle-b"
       },
@@ -297,8 +297,8 @@
       "id": "n-5",
       "type": "twisty",
       "dimensions": {
-        "width": 279,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
         "x": -300,
@@ -310,36 +310,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 132.23471224933505,
-            "y": -3.989217532587423,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -4.008839922432478,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 268.4977435818247,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 132.23471224933505,
-            "y": 241.99992614748348,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -370,12 +370,12 @@
       "id": "n-6",
       "type": "twisty",
       "dimensions": {
-        "width": 424,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
-        "x": -600,
-        "y": 0,
+        "x": -780.9540740740741,
+        "y": 28.274074074074065,
         "z": 0
       },
       "handleBounds": {
@@ -383,51 +383,51 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 204.76615495824535,
-            "y": -3.989217532587423,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -4.008911536993956,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 413.5215990636396,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 204.76615495824535,
-            "y": 241.99992614748348,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
-      "selected": false,
+      "selected": true,
       "dragging": false,
       "resizing": false,
       "initialized": false,
       "isParent": false,
       "position": {
-        "x": -600,
-        "y": 0
+        "x": -780.9540740740741,
+        "y": 28.274074074074065
       },
       "data": {
-        "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
-        "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+        "label": "R2' U' R U R U R' U2' R U R2' U R2",
+        "alg": "R2' U' R U R U R' U2' R U R2' U R2",
         "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
         "targetHandleId": "handle-b"
       },
@@ -443,12 +443,12 @@
       "id": "n-7",
       "type": "twisty",
       "dimensions": {
-        "width": 569,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
-        "x": -900,
-        "y": 0,
+        "x": -1198.2914814814817,
+        "y": -103.20037037037041,
         "z": 0
       },
       "handleBounds": {
@@ -456,36 +456,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 277.25856773115,
-            "y": -3.989217532587423,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -4.008911536993956,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 558.545669389139,
-            "y": 118.99561472708697,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 277.25856773115,
-            "y": 241.99992614748348,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -495,12 +495,12 @@
       "initialized": false,
       "isParent": false,
       "position": {
-        "x": -900,
-        "y": 0
+        "x": -1198.2914814814817,
+        "y": -103.20037037037041
       },
       "data": {
-        "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
-        "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+        "label": "R2' U' R U R U R' U2' R U R2' U R2",
+        "alg": "R2' U' R U R U R' U2' R U R2' U R2",
         "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
         "targetHandleId": "handle-b"
       },
@@ -516,8 +516,8 @@
       "id": "n-8",
       "type": "twisty",
       "dimensions": {
-        "width": 259,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
         "x": 0,
@@ -529,36 +529,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 122.75007972714852,
-            "y": -3.9893607617103797,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -3.9893607617103797,
-            "y": 119.0150222732476,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 249.47004105528532,
-            "y": 119.0150222732476,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 122.75007972714852,
-            "y": 241.999854532922,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -589,8 +589,8 @@
       "id": "n-9",
       "type": "twisty",
       "dimensions": {
-        "width": 473,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
         "x": 0,
@@ -602,36 +602,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 229.36697427358777,
-            "y": -3.9892891471489014,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -3.9893607617103797,
-            "y": 119.01509388780907,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 462.74293169873096,
-            "y": 119.01509388780907,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 229.36697427358777,
-            "y": 241.99992614748348,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -645,8 +645,8 @@
         "y": -600
       },
       "data": {
-        "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
-        "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+        "label": "R2 U R2 U R U2 R' U R U R U' R2",
+        "alg": "R2 U R2 U R U2 R' U R U R U' R2",
         "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
         "targetHandleId": "handle-b"
       },
@@ -662,8 +662,8 @@
       "id": "n-10",
       "type": "twisty",
       "dimensions": {
-        "width": 686,
-        "height": 252
+        "width": 376,
+        "height": 488
       },
       "computedPosition": {
         "x": 0,
@@ -675,36 +675,36 @@
           {
             "id": "handle-t",
             "position": "top",
-            "x": 336.0033479807491,
-            "y": -3.9892891471489014,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-l",
             "position": "left",
-            "x": -3.9893607617103797,
-            "y": 119.01509388780907,
-            "width": 14,
-            "height": 14
+            "x": -7,
+            "y": 234,
+            "width": 20,
+            "height": 20
           },
           {
             "id": "handle-r",
             "position": "right",
-            "x": 676.0156791130537,
-            "y": 119.01509388780907,
-            "width": 14,
-            "height": 14
+            "x": 363,
+            "y": 234,
+            "width": 20,
+            "height": 20
           }
         ],
         "target": [
           {
             "id": "handle-b",
             "position": "bottom",
-            "x": 336.0033479807491,
-            "y": 241.99992614748348,
-            "width": 14,
-            "height": 14
+            "x": 178,
+            "y": 475,
+            "width": 20,
+            "height": 20
           }
         ]
       },
@@ -718,8 +718,8 @@
         "y": -900
       },
       "data": {
-        "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
-        "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+        "label": "R2 U R2 U R U2 R' U R U R U' R2",
+        "alg": "R2 U R2 U R U2 R' U R U R U' R2",
         "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
         "targetHandleId": "handle-b"
       },
@@ -730,1504 +730,94 @@
         "borderStyle": "solid",
         "borderRadius": "4px"
       }
+    },
+    {
+      "id": "n-11",
+      "type": "twisty",
+      "dimensions": {
+        "width": 364,
+        "height": 420
+      },
+      "computedPosition": {
+        "x": -649.6194444444445,
+        "y": -681.0044444444446,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 172.0005989434227,
+            "y": -13.006066198078544,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -13.00608776947925,
+            "y": 199.9919073542045,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 357.0071993707218,
+            "y": 199.9919073542045,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 172.0005989434227,
+            "y": 412.98985933508686,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -649.6194444444445,
+        "y": -681.0044444444446
+      },
+      "data": {
+        "label": "Sune",
+        "alg": "R U R' U R U2 R'",
+        "rawAlgorithm": "R U R' U R U2 R'",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffcc00",
+        "borderWidth": "2px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
     }
   ],
-  "edges": [
-    {
-      "id": "en-1-n-2",
-      "type": "special",
-      "source": "n-1",
-      "target": "n-2",
-      "sourceHandle": "handle-r",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2"
-      },
-      "events": {},
-      "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-1",
-        "type": "twisty",
-        "dimensions": {
-          "width": 228,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 107,
-              "y": -4,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -4,
-              "y": 119,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 218,
-              "y": 119,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 107,
-              "y": 242,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "data": {
-          "label": "Solved",
-          "alg": "",
-          "targetHandleId": "handle-b",
-          "rawAlgorithm": ""
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-2",
-        "type": "twisty",
-        "dimensions": {
-          "width": 278,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 300,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 131.78482957412834,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 267.5784990706892,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 131.78482957412834,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 300,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "alg": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": 232,
-      "sourceY": 126,
-      "targetX": 438.78482957412837,
-      "targetY": 255.99992614748348
-    },
-    {
-      "id": "en-2-n-3",
-      "type": "special",
-      "source": "n-2",
-      "target": "n-3",
-      "sourceHandle": "handle-r",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2"
-      },
-      "events": {},
-      "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-2",
-        "type": "twisty",
-        "dimensions": {
-          "width": 278,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 300,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 131.78482957412834,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 267.5784990706892,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 131.78482957412834,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 300,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "alg": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-3",
-        "type": "twisty",
-        "dimensions": {
-          "width": 422,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 600,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 203.96442994249574,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 411.9571789681461,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 203.96442994249574,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 600,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
-          "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
-          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": 581.5784990706892,
-      "sourceY": 125.99561472708697,
-      "targetX": 810.9644299424957,
-      "targetY": 255.99992614748348
-    },
-    {
-      "id": "en-3-n-4",
-      "type": "special",
-      "source": "n-3",
-      "target": "n-4",
-      "sourceHandle": "handle-r",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2"
-      },
-      "events": {},
-      "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-3",
-        "type": "twisty",
-        "dimensions": {
-          "width": 422,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 600,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 203.96442994249574,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 411.9571789681461,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 203.96442994249574,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 600,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
-          "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
-          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-4",
-        "type": "twisty",
-        "dimensions": {
-          "width": 566,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 900,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 276.16322301333935,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9895039908333363,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 556.33571563648,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 276.16322301333935,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 900,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
-          "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
-          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": 1025.957178968146,
-      "sourceY": 125.99561472708697,
-      "targetX": 1183.1632230133393,
-      "targetY": 255.99992614748348
-    },
-    {
-      "id": "en-1-n-5",
-      "type": "special",
-      "source": "n-1",
-      "target": "n-5",
-      "sourceHandle": "handle-l",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2' U' R U R U R' U2' R U R2' U R2"
-      },
-      "events": {},
-      "label": "R2' U' R U R U R' U2' R U R2' U R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-1",
-        "type": "twisty",
-        "dimensions": {
-          "width": 228,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 107,
-              "y": -4,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -4,
-              "y": 119,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 218,
-              "y": 119,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 107,
-              "y": 242,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "data": {
-          "label": "Solved",
-          "alg": "",
-          "targetHandleId": "handle-b",
-          "rawAlgorithm": ""
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-5",
-        "type": "twisty",
-        "dimensions": {
-          "width": 279,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": -300,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 132.23471224933505,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -4.008839922432478,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 268.4977435818247,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 132.23471224933505,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": -300,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R U R U R' U2' R U R2' U R2",
-          "alg": "R2' U' R U R U R' U2' R U R2' U R2",
-          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": -4,
-      "sourceY": 126,
-      "targetX": -160.76528775066495,
-      "targetY": 255.99992614748348
-    },
-    {
-      "id": "en-5-n-6",
-      "type": "special",
-      "source": "n-5",
-      "target": "n-6",
-      "sourceHandle": "handle-l",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2' U' R U R U R' U2' R U R2' U R2"
-      },
-      "events": {},
-      "label": "R2' U' R U R U R' U2' R U R2' U R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-5",
-        "type": "twisty",
-        "dimensions": {
-          "width": 279,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": -300,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 132.23471224933505,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -4.008839922432478,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 268.4977435818247,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 132.23471224933505,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": -300,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R U R U R' U2' R U R2' U R2",
-          "alg": "R2' U' R U R U R' U2' R U R2' U R2",
-          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-6",
-        "type": "twisty",
-        "dimensions": {
-          "width": 424,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": -600,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 204.76615495824535,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -4.008911536993956,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 413.5215990636396,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 204.76615495824535,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": -600,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
-          "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
-          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": -304.00883992243246,
-      "sourceY": 125.99561472708697,
-      "targetX": -388.23384504175465,
-      "targetY": 255.99992614748348
-    },
-    {
-      "id": "en-6-n-7",
-      "type": "special",
-      "source": "n-6",
-      "target": "n-7",
-      "sourceHandle": "handle-l",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2' U' R U R U R' U2' R U R2' U R2"
-      },
-      "events": {},
-      "label": "R2' U' R U R U R' U2' R U R2' U R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-6",
-        "type": "twisty",
-        "dimensions": {
-          "width": 424,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": -600,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 204.76615495824535,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -4.008911536993956,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 413.5215990636396,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 204.76615495824535,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": -600,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
-          "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
-          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-7",
-        "type": "twisty",
-        "dimensions": {
-          "width": 569,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": -900,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 277.25856773115,
-              "y": -3.989217532587423,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -4.008911536993956,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 558.545669389139,
-              "y": 118.99561472708697,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 277.25856773115,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": -900,
-          "y": 0
-        },
-        "data": {
-          "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
-          "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
-          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": -604.008911536994,
-      "sourceY": 125.99561472708697,
-      "targetX": -615.7414322688501,
-      "targetY": 255.99992614748348
-    },
-    {
-      "id": "en-1-n-8",
-      "type": "special",
-      "source": "n-1",
-      "target": "n-8",
-      "sourceHandle": "handle-t",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2 U R2 U R U2 R' U R U R U' R2"
-      },
-      "events": {},
-      "label": "R2 U R2 U R U2 R' U R U R U' R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-1",
-        "type": "twisty",
-        "dimensions": {
-          "width": 228,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 107,
-              "y": -4,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -4,
-              "y": 119,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 218,
-              "y": 119,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 107,
-              "y": 242,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "data": {
-          "label": "Solved",
-          "alg": "",
-          "targetHandleId": "handle-b",
-          "rawAlgorithm": ""
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-8",
-        "type": "twisty",
-        "dimensions": {
-          "width": 259,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 0,
-          "y": -300,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 122.75007972714852,
-              "y": -3.9893607617103797,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 119.0150222732476,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 249.47004105528532,
-              "y": 119.0150222732476,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 122.75007972714852,
-              "y": 241.999854532922,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 0,
-          "y": -300
-        },
-        "data": {
-          "label": "R2 U R2 U R U2 R' U R U R U' R2",
-          "alg": "R2 U R2 U R U2 R' U R U R U' R2",
-          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": 114,
-      "sourceY": -4,
-      "targetX": 129.75007972714852,
-      "targetY": -44.000145467078
-    },
-    {
-      "id": "en-8-n-9",
-      "type": "special",
-      "source": "n-8",
-      "target": "n-9",
-      "sourceHandle": "handle-t",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2 U R2 U R U2 R' U R U R U' R2"
-      },
-      "events": {},
-      "label": "R2 U R2 U R U2 R' U R U R U' R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-8",
-        "type": "twisty",
-        "dimensions": {
-          "width": 259,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 0,
-          "y": -300,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 122.75007972714852,
-              "y": -3.9893607617103797,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 119.0150222732476,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 249.47004105528532,
-              "y": 119.0150222732476,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 122.75007972714852,
-              "y": 241.999854532922,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 0,
-          "y": -300
-        },
-        "data": {
-          "label": "R2 U R2 U R U2 R' U R U R U' R2",
-          "alg": "R2 U R2 U R U2 R' U R U R U' R2",
-          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-9",
-        "type": "twisty",
-        "dimensions": {
-          "width": 473,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 0,
-          "y": -600,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 229.36697427358777,
-              "y": -3.9892891471489014,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 119.01509388780907,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 462.74293169873096,
-              "y": 119.01509388780907,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 229.36697427358777,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 0,
-          "y": -600
-        },
-        "data": {
-          "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
-          "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
-          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": 129.75007972714852,
-      "sourceY": -303.9893607617104,
-      "targetX": 236.36697427358777,
-      "targetY": -344.0000738525165
-    },
-    {
-      "id": "en-9-n-10",
-      "type": "special",
-      "source": "n-9",
-      "target": "n-10",
-      "sourceHandle": "handle-t",
-      "targetHandle": "handle-b",
-      "data": {
-        "algorithm": "R2 U R2 U R U2 R' U R U R U' R2"
-      },
-      "events": {},
-      "label": "R2 U R2 U R U2 R' U R U R U' R2",
-      "animated": true,
-      "sourceNode": {
-        "id": "n-9",
-        "type": "twisty",
-        "dimensions": {
-          "width": 473,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 0,
-          "y": -600,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 229.36697427358777,
-              "y": -3.9892891471489014,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 119.01509388780907,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 462.74293169873096,
-              "y": 119.01509388780907,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 229.36697427358777,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 0,
-          "y": -600
-        },
-        "data": {
-          "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
-          "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
-          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "targetNode": {
-        "id": "n-10",
-        "type": "twisty",
-        "dimensions": {
-          "width": 686,
-          "height": 252
-        },
-        "computedPosition": {
-          "x": 0,
-          "y": -900,
-          "z": 0
-        },
-        "handleBounds": {
-          "source": [
-            {
-              "id": "handle-t",
-              "position": "top",
-              "x": 336.0033479807491,
-              "y": -3.9892891471489014,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-l",
-              "position": "left",
-              "x": -3.9893607617103797,
-              "y": 119.01509388780907,
-              "width": 14,
-              "height": 14
-            },
-            {
-              "id": "handle-r",
-              "position": "right",
-              "x": 676.0156791130537,
-              "y": 119.01509388780907,
-              "width": 14,
-              "height": 14
-            }
-          ],
-          "target": [
-            {
-              "id": "handle-b",
-              "position": "bottom",
-              "x": 336.0033479807491,
-              "y": 241.99992614748348,
-              "width": 14,
-              "height": 14
-            }
-          ]
-        },
-        "selected": false,
-        "dragging": false,
-        "resizing": false,
-        "initialized": false,
-        "isParent": false,
-        "position": {
-          "x": 0,
-          "y": -900
-        },
-        "data": {
-          "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
-          "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
-          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
-          "targetHandleId": "handle-b"
-        },
-        "events": {},
-        "style": {
-          "borderColor": "#ffffff",
-          "borderWidth": "8px",
-          "borderStyle": "solid",
-          "borderRadius": "4px"
-        }
-      },
-      "sourceX": 236.36697427358777,
-      "sourceY": -603.989289147149,
-      "targetX": 343.0033479807491,
-      "targetY": -644.0000738525165
-    }
-  ],
+  "edges": [],
   "algPresets": [
     {
-      "id": "default-1746635801506-1",
+      "id": "default-1746648634454-1",
       "algorithm": "R U R' U R U2 R'",
       "name": "Sune",
       "color": "#ffcc00"
     },
     {
-      "id": "default-1746635801506-2",
+      "id": "default-1746648634454-2",
       "algorithm": "R U R' U'",
       "name": "Sexy Move",
       "color": "#3399ff"
-    },
-    {
-      "id": "user-1746635838958-safoo0k",
-      "algorithm": "R U",
-      "name": "Test Alg for saving",
-      "color": "#ffffff"
     }
   ]
 }

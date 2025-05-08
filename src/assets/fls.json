@@ -1,0 +1,2300 @@
+{
+  "name": "fls",
+  "nodes": [
+    {
+      "id": "n-1",
+      "type": "twisty",
+      "dimensions": {
+        "width": 228,
+        "height": 252
+      },
+      "computedPosition": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 107,
+            "y": -4,
+            "width": 14,
+            "height": 14
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -4,
+            "y": 119,
+            "width": 14,
+            "height": 14
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 218,
+            "y": 119,
+            "width": 14,
+            "height": 14
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 107,
+            "y": 242,
+            "width": 14,
+            "height": 14
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "Solved",
+        "alg": "",
+        "targetHandleId": "handle-b",
+        "rawAlgorithm": ""
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-2",
+      "type": "twisty",
+      "dimensions": {
+        "width": 278,
+        "height": 252
+      },
+      "computedPosition": {
+        "x": 300,
+        "y": 0,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 131.7833251953125,
+            "y": -4,
+            "width": 14,
+            "height": 14
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -4,
+            "y": 119,
+            "width": 14,
+            "height": 14
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 267.566650390625,
+            "y": 119,
+            "width": 14,
+            "height": 14
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 131.7833251953125,
+            "y": 242,
+            "width": 14,
+            "height": 14
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 300,
+        "y": 0
+      },
+      "data": {
+        "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+        "alg": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+        "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-3",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 544
+      },
+      "computedPosition": {
+        "x": 600,
+        "y": 0,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 178.00892432440858,
+            "y": -6.9978486740961605,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -6.997762388493343,
+            "y": 262.0064055263232,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 362.99179621093293,
+            "y": 262.0064055263232,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 178.00892432440858,
+            "y": 531.0105734411397,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 600,
+        "y": 0
+      },
+      "data": {
+        "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+        "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+        "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-4",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 600
+      },
+      "computedPosition": {
+        "x": 900,
+        "y": 0,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 177.98545464044224,
+            "y": -6.9978486740961605,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -7.021232072459683,
+            "y": 289.9976276515022,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 362.99214135334415,
+            "y": 289.9976276515022,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 177.98545464044224,
+            "y": 586.9931902627035,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 900,
+        "y": 0
+      },
+      "data": {
+        "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+        "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+        "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-5",
+      "type": "twisty",
+      "dimensions": {
+        "width": 267,
+        "height": 252
+      },
+      "computedPosition": {
+        "x": -300,
+        "y": 0,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 126.25,
+            "y": -4,
+            "width": 14,
+            "height": 14
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -4,
+            "y": 119,
+            "width": 14,
+            "height": 14
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 256.51666259765625,
+            "y": 119,
+            "width": 14,
+            "height": 14
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 126.25,
+            "y": 242,
+            "width": 14,
+            "height": 14
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -300,
+        "y": 0
+      },
+      "data": {
+        "label": "R2' U' R U R U R' U2' R U R2' U R2",
+        "alg": "R2' U' R U R U R' U2' R U R2' U R2",
+        "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-6",
+      "type": "twisty",
+      "dimensions": {
+        "width": 404,
+        "height": 252
+      },
+      "computedPosition": {
+        "x": -763.9896296296297,
+        "y": 56.54814814814813,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 194.76666259765625,
+            "y": -4,
+            "width": 14,
+            "height": 14
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -4,
+            "y": 119,
+            "width": 14,
+            "height": 14
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 393.53334045410156,
+            "y": 119,
+            "width": 14,
+            "height": 14
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 194.76666259765625,
+            "y": 242,
+            "width": 14,
+            "height": 14
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -763.9896296296297,
+        "y": 56.54814814814813
+      },
+      "data": {
+        "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+        "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+        "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-7",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 600
+      },
+      "computedPosition": {
+        "x": -1260.4944444444443,
+        "y": -753.5040740740742,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 178.00892432440858,
+            "y": -6.9978486740961605,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -6.997762388493343,
+            "y": 289.9976276515022,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 363.0154384661049,
+            "y": 289.9976276515022,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 178.00892432440858,
+            "y": 586.9931902627035,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -1260.4944444444443,
+        "y": -753.5040740740742
+      },
+      "data": {
+        "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+        "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+        "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-8",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 488
+      },
+      "computedPosition": {
+        "x": 0,
+        "y": -300,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 178.00892432440858,
+            "y": -6.9978486740961605,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -6.997762388493343,
+            "y": 234.01501082993857,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 362.99196878213854,
+            "y": 234.01501082993857,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 178.00892432440858,
+            "y": 475.00431436440414,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 0,
+        "y": -300
+      },
+      "data": {
+        "label": "R2 U R2 U R U2 R' U R U R U' R2",
+        "alg": "R2 U R2 U R U2 R' U R U R U' R2",
+        "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-9",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 544
+      },
+      "computedPosition": {
+        "x": 0,
+        "y": -600,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 178.00892432440858,
+            "y": -6.997805531294752,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -6.997762388493343,
+            "y": 262.0063192407204,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 362.99196878213854,
+            "y": 262.0063192407204,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 178.00892432440858,
+            "y": 531.0105734411397,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 0,
+        "y": -600
+      },
+      "data": {
+        "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+        "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+        "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-10",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 656
+      },
+      "computedPosition": {
+        "x": -46.65222222222225,
+        "y": -1219.497037037037,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 178.00892432440858,
+            "y": -6.997827102695456,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -6.997762388493343,
+            "y": 318.01255674605534,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 362.99196878213854,
+            "y": 318.01255674605534,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 178.00892432440858,
+            "y": 642.9994277680383,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -46.65222222222225,
+        "y": -1219.497037037037
+      },
+      "data": {
+        "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+        "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+        "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-11",
+      "type": "twisty",
+      "dimensions": {
+        "width": 44,
+        "height": 44
+      },
+      "computedPosition": {
+        "x": -587.4164814814816,
+        "y": -635.765925925926,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "position": "top",
+            "x": 12,
+            "y": -13,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "position": "left",
+            "x": -13,
+            "y": 12,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "position": "right",
+            "x": 37,
+            "y": 12,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "position": "bottom",
+            "x": 12,
+            "y": 37,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": true,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -587.4164814814816,
+        "y": -635.765925925926
+      },
+      "data": {
+        "label": "Fill ",
+        "alg": "F L",
+        "rawAlgorithm": "F L",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#0080ff",
+        "borderWidth": "2px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "en-1-n-2",
+      "type": "special",
+      "source": "n-1",
+      "target": "n-2",
+      "sourceHandle": "handle-r",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2"
+      },
+      "events": {},
+      "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-1",
+        "type": "twisty",
+        "dimensions": {
+          "width": 228,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 107,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 218,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 107,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "data": {
+          "label": "Solved",
+          "alg": "",
+          "targetHandleId": "handle-b",
+          "rawAlgorithm": ""
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-2",
+        "type": "twisty",
+        "dimensions": {
+          "width": 278,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": 300,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 131.7833251953125,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 267.566650390625,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 131.7833251953125,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 300,
+          "y": 0
+        },
+        "data": {
+          "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "alg": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 232,
+      "sourceY": 126,
+      "targetX": 438.7833251953125,
+      "targetY": 256
+    },
+    {
+      "id": "en-2-n-3",
+      "type": "special",
+      "source": "n-2",
+      "target": "n-3",
+      "sourceHandle": "handle-r",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2"
+      },
+      "events": {},
+      "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-2",
+        "type": "twisty",
+        "dimensions": {
+          "width": 278,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": 300,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 131.7833251953125,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 267.566650390625,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 131.7833251953125,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 300,
+          "y": 0
+        },
+        "data": {
+          "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "alg": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-3",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 544
+        },
+        "computedPosition": {
+          "x": 600,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 178.00892432440858,
+              "y": -6.9978486740961605,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -6.997762388493343,
+              "y": 262.0064055263232,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 362.99179621093293,
+              "y": 262.0064055263232,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 178.00892432440858,
+              "y": 531.0105734411397,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 600,
+          "y": 0
+        },
+        "data": {
+          "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+          "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 581.566650390625,
+      "sourceY": 126,
+      "targetX": 788.0089243244086,
+      "targetY": 551.0105734411397
+    },
+    {
+      "id": "en-3-n-4",
+      "type": "special",
+      "source": "n-3",
+      "target": "n-4",
+      "sourceHandle": "handle-r",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2"
+      },
+      "events": {},
+      "label": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-3",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 544
+        },
+        "computedPosition": {
+          "x": 600,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 178.00892432440858,
+              "y": -6.9978486740961605,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -6.997762388493343,
+              "y": 262.0064055263232,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 362.99179621093293,
+              "y": 262.0064055263232,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 178.00892432440858,
+              "y": 531.0105734411397,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 600,
+          "y": 0
+        },
+        "data": {
+          "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+          "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-4",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 600
+        },
+        "computedPosition": {
+          "x": 900,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 177.98545464044224,
+              "y": -6.9978486740961605,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -7.021232072459683,
+              "y": 289.9976276515022,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 362.99214135334415,
+              "y": 289.9976276515022,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 177.98545464044224,
+              "y": 586.9931902627035,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 900,
+          "y": 0
+        },
+        "data": {
+          "label": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+          "alg": "R2' U' R2 U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R U' R' U2 R U' R' U' R' U R2",
+          "rawAlgorithm": "R2' U' R2 U' R' U2 R U' R' U' R' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 982.991796210933,
+      "sourceY": 272.0064055263232,
+      "targetX": 1087.9854546404422,
+      "targetY": 606.9931902627035
+    },
+    {
+      "id": "en-1-n-5",
+      "type": "special",
+      "source": "n-1",
+      "target": "n-5",
+      "sourceHandle": "handle-l",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2' U' R U R U R' U2' R U R2' U R2"
+      },
+      "events": {},
+      "label": "R2' U' R U R U R' U2' R U R2' U R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-1",
+        "type": "twisty",
+        "dimensions": {
+          "width": 228,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 107,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 218,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 107,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "data": {
+          "label": "Solved",
+          "alg": "",
+          "targetHandleId": "handle-b",
+          "rawAlgorithm": ""
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-5",
+        "type": "twisty",
+        "dimensions": {
+          "width": 267,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": -300,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 126.25,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 256.51666259765625,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 126.25,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -300,
+          "y": 0
+        },
+        "data": {
+          "label": "R2' U' R U R U R' U2' R U R2' U R2",
+          "alg": "R2' U' R U R U R' U2' R U R2' U R2",
+          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": -4,
+      "sourceY": 126,
+      "targetX": -166.75,
+      "targetY": 256
+    },
+    {
+      "id": "en-5-n-6",
+      "type": "special",
+      "source": "n-5",
+      "target": "n-6",
+      "sourceHandle": "handle-l",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2' U' R U R U R' U2' R U R2' U R2"
+      },
+      "events": {},
+      "label": "R2' U' R U R U R' U2' R U R2' U R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-5",
+        "type": "twisty",
+        "dimensions": {
+          "width": 267,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": -300,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 126.25,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 256.51666259765625,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 126.25,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -300,
+          "y": 0
+        },
+        "data": {
+          "label": "R2' U' R U R U R' U2' R U R2' U R2",
+          "alg": "R2' U' R U R U R' U2' R U R2' U R2",
+          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-6",
+        "type": "twisty",
+        "dimensions": {
+          "width": 404,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": -763.9896296296297,
+          "y": 56.54814814814813,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 194.76666259765625,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 393.53334045410156,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 194.76666259765625,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -763.9896296296297,
+          "y": 56.54814814814813
+        },
+        "data": {
+          "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+          "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": -304,
+      "sourceY": 126,
+      "targetX": -562.2229670319734,
+      "targetY": 312.54814814814813
+    },
+    {
+      "id": "en-6-n-7",
+      "type": "special",
+      "source": "n-6",
+      "target": "n-7",
+      "sourceHandle": "handle-l",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2' U' R U R U R' U2' R U R2' U R2"
+      },
+      "events": {},
+      "label": "R2' U' R U R U R' U2' R U R2' U R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-6",
+        "type": "twisty",
+        "dimensions": {
+          "width": 404,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": -763.9896296296297,
+          "y": 56.54814814814813,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 194.76666259765625,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 393.53334045410156,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 194.76666259765625,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -763.9896296296297,
+          "y": 56.54814814814813
+        },
+        "data": {
+          "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+          "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-7",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 600
+        },
+        "computedPosition": {
+          "x": -1260.4944444444443,
+          "y": -753.5040740740742,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 178.00892432440858,
+              "y": -6.9978486740961605,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -6.997762388493343,
+              "y": 289.9976276515022,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 363.0154384661049,
+              "y": 289.9976276515022,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 178.00892432440858,
+              "y": 586.9931902627035,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -1260.4944444444443,
+          "y": -753.5040740740742
+        },
+        "data": {
+          "label": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+          "alg": "R2' U' R U R U R' U2' R U R' U R U R' U2' R U R' U R U R' U2' R U R2' U R2",
+          "rawAlgorithm": "R2' U' R U R U R' U2' R U R2' U R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": -767.9896296296297,
+      "sourceY": 182.54814814814813,
+      "targetX": -1072.4855201200357,
+      "targetY": -146.51088381137072
+    },
+    {
+      "id": "en-1-n-8",
+      "type": "special",
+      "source": "n-1",
+      "target": "n-8",
+      "sourceHandle": "handle-t",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2 U R2 U R U2 R' U R U R U' R2"
+      },
+      "events": {},
+      "label": "R2 U R2 U R U2 R' U R U R U' R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-1",
+        "type": "twisty",
+        "dimensions": {
+          "width": 228,
+          "height": 252
+        },
+        "computedPosition": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 107,
+              "y": -4,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -4,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 218,
+              "y": 119,
+              "width": 14,
+              "height": 14
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 107,
+              "y": 242,
+              "width": 14,
+              "height": 14
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "data": {
+          "label": "Solved",
+          "alg": "",
+          "targetHandleId": "handle-b",
+          "rawAlgorithm": ""
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-8",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 488
+        },
+        "computedPosition": {
+          "x": 0,
+          "y": -300,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 178.00892432440858,
+              "y": -6.9978486740961605,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -6.997762388493343,
+              "y": 234.01501082993857,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 362.99196878213854,
+              "y": 234.01501082993857,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 178.00892432440858,
+              "y": 475.00431436440414,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 0,
+          "y": -300
+        },
+        "data": {
+          "label": "R2 U R2 U R U2 R' U R U R U' R2",
+          "alg": "R2 U R2 U R U2 R' U R U R U' R2",
+          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 114,
+      "sourceY": -4,
+      "targetX": 188.00892432440858,
+      "targetY": 195.00431436440414
+    },
+    {
+      "id": "en-8-n-9",
+      "type": "special",
+      "source": "n-8",
+      "target": "n-9",
+      "sourceHandle": "handle-t",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2 U R2 U R U2 R' U R U R U' R2"
+      },
+      "events": {},
+      "label": "R2 U R2 U R U2 R' U R U R U' R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-8",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 488
+        },
+        "computedPosition": {
+          "x": 0,
+          "y": -300,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 178.00892432440858,
+              "y": -6.9978486740961605,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -6.997762388493343,
+              "y": 234.01501082993857,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 362.99196878213854,
+              "y": 234.01501082993857,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 178.00892432440858,
+              "y": 475.00431436440414,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 0,
+          "y": -300
+        },
+        "data": {
+          "label": "R2 U R2 U R U2 R' U R U R U' R2",
+          "alg": "R2 U R2 U R U2 R' U R U R U' R2",
+          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-9",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 544
+        },
+        "computedPosition": {
+          "x": 0,
+          "y": -600,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 178.00892432440858,
+              "y": -6.997805531294752,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -6.997762388493343,
+              "y": 262.0063192407204,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 362.99196878213854,
+              "y": 262.0063192407204,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 178.00892432440858,
+              "y": 531.0105734411397,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 0,
+          "y": -600
+        },
+        "data": {
+          "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+          "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 188.00892432440858,
+      "sourceY": -306.99784867409613,
+      "targetX": 188.00892432440858,
+      "targetY": -48.98942655886026
+    },
+    {
+      "id": "en-9-n-10",
+      "type": "special",
+      "source": "n-9",
+      "target": "n-10",
+      "sourceHandle": "handle-t",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R2 U R2 U R U2 R' U R U R U' R2"
+      },
+      "events": {},
+      "label": "R2 U R2 U R U2 R' U R U R U' R2",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-9",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 544
+        },
+        "computedPosition": {
+          "x": 0,
+          "y": -600,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 178.00892432440858,
+              "y": -6.997805531294752,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -6.997762388493343,
+              "y": 262.0063192407204,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 362.99196878213854,
+              "y": 262.0063192407204,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 178.00892432440858,
+              "y": 531.0105734411397,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 0,
+          "y": -600
+        },
+        "data": {
+          "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+          "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-10",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 656
+        },
+        "computedPosition": {
+          "x": -46.65222222222225,
+          "y": -1219.497037037037,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "position": "top",
+              "x": 178.00892432440858,
+              "y": -6.997827102695456,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "position": "left",
+              "x": -6.997762388493343,
+              "y": 318.01255674605534,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "position": "right",
+              "x": 362.99196878213854,
+              "y": 318.01255674605534,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "position": "bottom",
+              "x": 178.00892432440858,
+              "y": 642.9994277680383,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -46.65222222222225,
+          "y": -1219.497037037037
+        },
+        "data": {
+          "label": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+          "alg": "R2 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R4 U R2 U R U2 R' U R U R U' R2",
+          "rawAlgorithm": "R2 U R2 U R U2 R' U R U R U' R2",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 188.00892432440858,
+      "sourceY": -606.9978055312947,
+      "targetX": 141.35670210218632,
+      "targetY": -556.4976092689986
+    }
+  ],
+  "algPresets": [
+    {
+      "id": "default-1746650188365-1",
+      "algorithm": "R U R' U R U2 R'",
+      "name": "Sune",
+      "color": "#ffcc00"
+    },
+    {
+      "id": "default-1746650188365-2",
+      "algorithm": "R U R' U'",
+      "name": "Sexy Move",
+      "color": "#3399ff"
+    }
+  ]
+}

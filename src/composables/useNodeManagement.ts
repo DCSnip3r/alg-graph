@@ -1,10 +1,11 @@
 import { ref } from 'vue';
-import { useVueFlow } from '@vue-flow/core'; // Import useVueFlow
+import { useVueFlow } from '@vue-flow/core';
 import type { Node, Edge, XYPosition } from '@vue-flow/core';
 import { Alg } from 'cubing/alg';
+import { useDragAndDrop } from './useDragAndDrop'; // Import useDragAndDrop
 
 export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes }: any) {
-  const { screenToFlowCoordinate } = useVueFlow(); // Destructure screenToFlowCoordinate
+  const { screenToFlowCoordinate } = useVueFlow();
   const nodeIdCounter = ref(1);
 
   const getNextNodeId = (): string => {
@@ -28,6 +29,13 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
     addNodes([initialRootNode]);
     return initialRootNode; 
   };
+
+  
+  const handleSetTargetHandle = ({ nodeId, newTargetHandleId }: { nodeId: string, newTargetHandleId: string }) => {
+    updateNodeData(nodeId, { targetHandleId: newTargetHandleId });
+  };
+
+  const { onDrop } = useDragAndDrop(screenToFlowCoordinate, addNodes, getNextNodeId); // Use onDrop from useDragAndDrop
 
   const generateAlgTree = (baseAlgString: string, mirrorAlgString: string) => {
     const rootNode = resetNodes();
@@ -64,26 +72,6 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
     createBranch(rootNode, baseAlgString, { x: 300, y: 0 });
     createBranch(rootNode, new Alg(baseAlgString).invert().toString(), { x: -300, y: 0 });
     createBranch(rootNode, mirrorAlgString, { x: 0, y: -300 });
-  };
-
-  const handleSetTargetHandle = ({ nodeId, newTargetHandleId }: { nodeId: string, newTargetHandleId: string }) => {
-    updateNodeData(nodeId, { targetHandleId: newTargetHandleId });
-  };
-
-  const onDrop = (event: DragEvent) => {
-    const flowPosition = screenToFlowCoordinate({ x: event.clientX, y: event.clientY }); // Use destructured function
-    const dragData = event.dataTransfer?.getData('application/json');
-    if (dragData) {
-      const { algorithm, name, color } = JSON.parse(dragData);
-      const newNodeId = getNextNodeId();
-      addNodes([{
-        id: newNodeId,
-        type: 'twisty',
-        position: flowPosition,
-        data: { label: name, alg: algorithm, rawAlgorithm: algorithm, targetHandleId: 'handle-b' },
-        style: { borderColor: color, borderWidth: '8px', borderStyle: 'solid', borderRadius: '4px' },
-      }]);
-    }
   };
 
   return { nodeIdCounter, getNextNodeId, resetNodes, generateAlgTree, handleSetTargetHandle, onDrop };

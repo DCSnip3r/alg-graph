@@ -6,7 +6,7 @@
     
     <div v-if="menuContentVisible" class="menu-content-wrapper">
       <div class="algorithms-section">
-        <h4>User-Defined Algorithms (Drag to add)</h4>
+        <h4>User-Defined Algorithms (Drag in to add node)</h4>
         <div 
           v-for="(algEntry) in algStore.presets" 
           :key="algEntry.id" 
@@ -50,6 +50,17 @@
           <button @click="triggerFileInput">Select .json File to Load</button>
         </div>
       </div>
+
+      <div class="display-settings-section">
+        <h4>Display Settings</h4>
+        <label>
+          <input 
+            type="checkbox" 
+            v-model="displaySettingsStore.showColorizedEdgeLabels" 
+          />
+          Show colorized edge labels
+        </label>
+      </div>
     </div>
   </div>
 </template>
@@ -59,7 +70,8 @@ import { ref } from 'vue';
 import { useAlgPresetsStore } from '../stores/algPresetsStore';
 import { useSavedGraphsStore } from '../stores/savedGraphsStore';
 import { useGraphManagement } from '../composables/useGraphManagement';
-import { useDragAndDrop } from '../composables/useDragAndDrop'; // Removed defineProps and defineEmits
+import { useDragAndDrop } from '../composables/useDragAndDrop';
+import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
 
 const props = defineProps<{
   saveStatus: { message: string, type: 'success' | 'error' } | null;
@@ -69,6 +81,7 @@ const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-grap
 
 const algStore = useAlgPresetsStore();
 const savedGraphsStore = useSavedGraphsStore();
+const displaySettingsStore = useDisplaySettingsStore();
 
 const menuContentVisible = ref(true);
 
@@ -276,6 +289,12 @@ const {
 }
 
 .upload-graph-section {
+  border-top: 1px solid #444;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.display-settings-section {
   border-top: 1px solid #444;
   padding-top: 10px;
   margin-top: 10px;

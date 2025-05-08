@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import VAlgTree from './components/VAlgTree.vue';
+import AlgGraph from './components/AlgGraph.vue';
 </script>
 
 <template>
   <div>
-    <VAlgTree />
+    <AlgGraph />
   </div>
 </template>
 

@@ -1,5 +1,46 @@
-# Vue 3 + TypeScript + Vite
+# Cube Algorithm Graph Explorer
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This project allows users to explore 3x3x3 cube algorithms visually using a graph-based interface. Itis a Vue 3 application built with TypeScript and Vite.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Getting Started
+
+### Prerequisites
+- Install [pnpm](https://pnpm.io/installation) if you don't already have it.
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/cubeExplore.git
+   cd cubeExplore/alg-tree
+   ```
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+### Development
+To start the development server:
+```bash
+pnpm run dev
+```
+This will launch the application and provide a local development server. The default URL is typically `http://localhost:5173`.
+
+### Build
+To build the project for production:
+```bash
+pnpm run build
+```
+
+### Preview
+To preview the production build:
+```bash
+pnpm run preview
+```
+
+## Features
+- Visualize cube algorithms as a graph.
+- Drag and drop nodes to create and manage algorithms.
+- Save and load graphs locally or from files.
+
+## License
+This project is licensed under the MIT License.

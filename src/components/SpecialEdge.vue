@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { BaseEdge, EdgeLabelRenderer, getBezierPath, type EdgeProps } from '@vue-flow/core'
-import { computed, ref, watch } from 'vue' // Removed defineEmits
-import { useColorUtils } from '../composables/useColorUtils'; // Import the composable
+import { BaseEdge, EdgeLabelRenderer, getBezierPath, type EdgeProps } from '@vue-flow/core';
+import { computed, ref, watch } from 'vue';
+import { useColorUtils } from '../composables/useColorUtils';
+import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
 
 interface SpecialEdgeData {
   algorithm?: string;
 }
 
-const props = defineProps<EdgeProps<SpecialEdgeData>>()
-const emit = defineEmits(['update:algorithm'])
+const props = defineProps<EdgeProps<SpecialEdgeData>>();
+const emit = defineEmits(['update:algorithm']);
 
-const path = computed(() => getBezierPath(props))
+const path = computed(() => getBezierPath(props));
 
 // Local state for the input, initialized from props.data.algorithm or props.label
-const localAlgorithm = ref(props.data?.algorithm ?? props.label ?? '')
+const localAlgorithm = ref(props.data?.algorithm ?? props.label ?? '');
 
 // Watch for prop changes to update localAlgorithm if needed (e.g., if parent updates it)
 watch(() => [props.data?.algorithm, props.label], ([newAlgData, newLabel]) => {
@@ -25,14 +26,22 @@ watch(() => [props.data?.algorithm, props.label], ([newAlgData, newLabel]) => {
 
 // Watch localAlgorithm to emit updates when it changes
 watch(localAlgorithm, (newValue) => {
-  // Avoid emitting if the change came from the prop update
   if (newValue !== (props.data?.algorithm ?? props.label ?? '')) {
     emit('update:algorithm', { edgeId: props.id, newAlgorithm: newValue });
   }
 });
 
-const { getTextColorForBackground, getBackgroundColorForAlgorithm } = useColorUtils(); // Use the composable
+const { getTextColorForBackground, getBackgroundColorForAlgorithm } = useColorUtils();
+const displaySettingsStore = useDisplaySettingsStore();
 
+// Computed properties for background and text colors
+const backgroundColor = computed(() => getBackgroundColorForAlgorithm(String(localAlgorithm.value)));
+const textColor = computed(() => getTextColorForBackground(backgroundColor.value));
+
+// Determine if the label should be hidden
+const shouldHideLabel = computed(() => {
+  return !displaySettingsStore.showColorizedEdgeLabels && backgroundColor.value !== '#ffffff';
+});
 </script>
 
 <template>
@@ -40,16 +49,16 @@ const { getTextColorForBackground, getBackgroundColorForAlgorithm } = useColorUt
 
   <EdgeLabelRenderer>
     <div
+      v-if="!shouldHideLabel"
       :style="{
         pointerEvents: 'all',
         position: 'absolute',
         transform: `translate(-50%, -50%) translate(${path[1]}px,${path[2]}px)`,
-        backgroundColor: getBackgroundColorForAlgorithm(String(localAlgorithm.valueOf())), // Ensure string type
-        color: getTextColorForBackground(getBackgroundColorForAlgorithm(String(localAlgorithm.valueOf()))), // Ensure string type
+        backgroundColor: backgroundColor,
+        color: textColor,
       }"
       class="nodrag nopan edge-label-container"
     >
-      <!-- Display algorithm as text input -->
       <input
         type="text"
         v-model="localAlgorithm"

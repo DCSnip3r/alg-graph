@@ -11,13 +11,13 @@ import MenuOverlay from './MenuOverlay.vue';
 import { Alg } from 'cubing/alg'; // Import the Alg class
 
 const { 
-  onPaneReady, addNodes, addEdges, findNode, getEdges, 
-  updateNodeData, removeNodes, removeEdges, nodes, edges,
+  onPaneReady, addNodes, addEdges, findNode, 
+  updateNodeData, removeNodes, nodes, edges,
   screenToFlowCoordinate, onConnect, setNodes, setEdges,
 } = useVueFlow();
 
 const { 
-  nodeIdCounter, getNextNodeId, resetNodes, generateAlgTree, handleSetTargetHandle 
+  nodeIdCounter, getNextNodeId, generateAlgTree, handleSetTargetHandle, resetNodes 
 } = useNodeManagement({ addNodes, addEdges, updateNodeData, removeNodes, setNodes });
 
 const { handleEdgeAlgorithmUpdate } = useEdgeManagement({ edges, findNode, updateNodeData });
@@ -26,11 +26,24 @@ const {
   handleSaveGraphRequest, handleLoadGraphRequest, handleLoadGraphFromFile 
 } = useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCounter });
 
-const { onDragStart, onDrop, onDragOver } = useDragAndDrop(screenToFlowCoordinate, addNodes, getNextNodeId); // Use the composable
+const { onDrop, onDragOver } = useDragAndDrop(screenToFlowCoordinate, addNodes, getNextNodeId); // Use the composable
 
 const saveStatus = ref<{ message: string; type: 'success' | 'error' } | null>(null);
 
-onPaneReady((flowInstance) => flowInstance.fitView());
+onPaneReady((flowInstance) => {
+  if (nodes.value.length > 0) {
+    const firstNode = nodes.value[0];
+    const bounds = {
+      x: firstNode.position.x,
+      y: firstNode.position.y,
+      width: firstNode.dimensions?.width || 0,
+      height: firstNode.dimensions?.height || 0,
+    };
+    flowInstance.fitBounds(bounds, { padding: 3 });
+  } else {
+    flowInstance.fitView();
+  }
+});
 
 onConnect((connection) => {
   const sourceNode = findNode(connection.source); // Replaced getNode with findNode
@@ -100,9 +113,10 @@ const initializeEdges = () => {
 
 onMounted(() => {
   initializeEdges();
-});
+  resetNodes(); // Start with a single solved node
 
-generateAlgTree('R2\' U\' R2 U\' R\' U2 R U\' R\' U\' R\' U R2', 'R2 U R2 U R U2 R\' U R U R U\' R2');
+
+});
 </script>
 
 <template>

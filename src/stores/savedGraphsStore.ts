@@ -71,7 +71,7 @@ export const useSavedGraphsStore = defineStore('savedGraphs', () => {
         const graphState: SavedGraphState = JSON.parse(graphJSON);
         // Restore presets to the algPresetsStore
         algPresetsStore.replaceAllPresets(graphState.algPresets || []);
-        return graphState; // Return nodes, edges, (and viewport) to be applied by VAlgTree
+        return graphState; // Return nodes, edges, (and viewport) to be applied by AlgGraph
       } catch (e) {
         console.error("Error parsing saved graph data:", e);
         return null;
