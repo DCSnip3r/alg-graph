@@ -1,10 +1,11 @@
 import { ref } from 'vue';
-import { useSavedGraphsStore } from '../stores/savedGraphsStore';
+import { useSavedGraphsStore } from '../stores/savedGraphsStore'; // Import savedGraphsStore
+import { useGraphPersistence } from './useGraphPersistence';
 import type { SavedGraphState } from '../types/SavedGraphTypes';
 
-
 export function useGraphManagement(emit: any) {
-  const savedGraphsStore = useSavedGraphsStore();
+  const savedGraphsStore = useSavedGraphsStore(); // Initialize savedGraphsStore
+  const { loadGraph, getGraphForExport } = useGraphPersistence({});
   const graphNameToSave = ref('');
   const fileInputRef = ref<HTMLInputElement | null>(null);
 
@@ -17,7 +18,7 @@ export function useGraphManagement(emit: any) {
   };
 
   const handleLoadGraph = (name: string) => {
-    const graphState = savedGraphsStore.loadGraph(name);
+    const graphState = loadGraph(name);
     if (graphState) {
       emit('load-graph-request', { nodes: graphState.nodes, edges: graphState.edges });
       graphNameToSave.value = name;
@@ -27,7 +28,7 @@ export function useGraphManagement(emit: any) {
   };
 
   const handleDownloadGraph = (graphName: string) => {
-    const graphState = savedGraphsStore.getGraphForExport(graphName);
+    const graphState = getGraphForExport(graphName);
     if (graphState) {
       const jsonString = JSON.stringify(graphState, null, 2);
       const blob = new Blob([jsonString], { type: 'application/json' });
@@ -46,7 +47,7 @@ export function useGraphManagement(emit: any) {
 
   const handleDeleteGraph = (name: string) => {
     if (confirm(`Are you sure you want to delete the graph "${name}"?`)) {
-      savedGraphsStore.deleteGraph(name);
+      savedGraphsStore.deleteGraph(name); // Use savedGraphsStore to delete the graph
       if (graphNameToSave.value === name) {
         graphNameToSave.value = '';
       }

@@ -3,7 +3,7 @@ import { useAlgPresetsStore } from '../stores/algPresetsStore';
 
 export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCounter }: any) {
   const savedGraphsStore = useSavedGraphsStore();
-  const algPresetsStore = useAlgPresetsStore(); // Add algPresetsStore
+  const algPresetsStore = useAlgPresetsStore();
 
   const handleSaveGraphRequest = (graphName: string) => {
     savedGraphsStore.saveGraph(graphName, nodes.value, edges.value);
@@ -25,9 +25,43 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
   const handleLoadGraphFromFile = (graphState: any) => {
     setNodes(graphState.nodes);
     setEdges(graphState.edges);
-    algPresetsStore.replaceAllPresets(graphState.algPresets || []); // Load algPresets into the store
-    savedGraphsStore.saveGraph(graphState.name, graphState.nodes, graphState.edges); // Save to store
+    algPresetsStore.replaceAllPresets(graphState.algPresets || []);
+    savedGraphsStore.saveGraph(graphState.name, graphState.nodes, graphState.edges);
   };
 
-  return { handleSaveGraphRequest, handleLoadGraphRequest, handleLoadGraphFromFile };
+  const loadGraph = (name: string) => {
+    const graphJSON = localStorage.getItem(`vueFlowGraph_${name}`);
+    if (graphJSON) {
+      try {
+        const graphState = JSON.parse(graphJSON);
+        algPresetsStore.replaceAllPresets(graphState.algPresets || []);
+        return graphState;
+      } catch (e) {
+        console.error("Error parsing saved graph data:", e);
+        return null;
+      }
+    }
+    return null;
+  };
+
+  const getGraphForExport = (name: string) => {
+    const graphJSON = localStorage.getItem(`vueFlowGraph_${name}`);
+    if (graphJSON) {
+      try {
+        return JSON.parse(graphJSON);
+      } catch (e) {
+        console.error("Error parsing saved graph data for export:", e);
+        return null;
+      }
+    }
+    return null;
+  };
+
+  return {
+    handleSaveGraphRequest,
+    handleLoadGraphRequest,
+    handleLoadGraphFromFile,
+    loadGraph,
+    getGraphForExport,
+  };
 }

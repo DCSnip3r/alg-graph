@@ -64,37 +64,6 @@ export const useSavedGraphsStore = defineStore('savedGraphs', () => {
     }
   };
 
-  const loadGraph = (name: string): SavedGraphState | null => {
-    const graphJSON = localStorage.getItem(LOCAL_STORAGE_KEY_PREFIX + name);
-    if (graphJSON) {
-      try {
-        const graphState: SavedGraphState = JSON.parse(graphJSON);
-        // Restore presets to the algPresetsStore
-        algPresetsStore.replaceAllPresets(graphState.algPresets || []);
-        return graphState; // Return nodes, edges, (and viewport) to be applied by AlgGraph
-      } catch (e) {
-        console.error("Error parsing saved graph data:", e);
-        return null;
-      }
-    }
-    return null;
-  };
-
-  const getGraphForExport = (name: string): SavedGraphState | null => {
-    const graphJSON = localStorage.getItem(LOCAL_STORAGE_KEY_PREFIX + name);
-    if (graphJSON) {
-      try {
-        // Just parse and return, don't modify algPresetsStore here
-        const graphState: SavedGraphState = JSON.parse(graphJSON);
-        return graphState;
-      } catch (e) {
-        console.error("Error parsing saved graph data for export:", e);
-        return null;
-      }
-    }
-    return null;
-  };
-
   const deleteGraph = (name: string) => {
     localStorage.removeItem(LOCAL_STORAGE_KEY_PREFIX + name);
     savedGraphsManifest.value = savedGraphsManifest.value.filter(g => g.name !== name);
@@ -107,9 +76,7 @@ export const useSavedGraphsStore = defineStore('savedGraphs', () => {
   return {
     savedGraphsManifest,
     saveGraph,
-    loadGraph,
-    getGraphForExport, // Expose the new method
-    deleteGraph,
+    deleteGraph, // Keep deleteGraph here as it interacts with persistent storage
     loadManifest, // Expose if needed for manual refresh
   };
 });
