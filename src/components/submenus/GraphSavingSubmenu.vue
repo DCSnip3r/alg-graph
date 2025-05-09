@@ -28,6 +28,18 @@
         <input type="file" ref="fileInputRef" @change="handleFileUpload" accept=".json" style="display: none;">
         <button @click="triggerFileInput" class="upload-button">Select .json File to Load</button>
       </div>
+      <!-- Example Graphs Section -->
+      <div class="example-graphs-section">
+        <h5 class="section-header">Example Graphs</h5>
+        <ul v-if="exampleGraphs.length > 0" class="example-graph-list">
+          <li v-for="eg in exampleGraphs" :key="eg.name" class="example-graph-chip">
+            <button @click="handleLoadExampleGraph(eg.graph)" class="example-graph-chip-button">
+              {{ eg.name }}
+            </button>
+          </li>
+        </ul>
+        <p v-else>No example graphs found.</p>
+      </div>
     </div>
   </div>
 </template>
@@ -55,6 +67,8 @@ const {
   handleDeleteGraph,
   triggerFileInput,
   handleFileUpload,
+  exampleGraphs,
+  handleLoadExampleGraph // import from useGraphManagement
 } = useGraphManagement(emit);
 </script>
 
@@ -169,5 +183,49 @@ const {
 
 .delete-button:hover {
   background-color: #c82333;
+}
+
+.example-graphs-section {
+  margin-top: 15px;
+}
+
+.example-graph-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  max-width: 400px; /* Limit the width of the chip container */
+}
+
+.example-graph-chip {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.example-graph-chip-button {
+  display: inline-block;
+  background: #e3f2fd;
+  border: none;
+  color: #1976d2;
+  padding: 2px 10px;
+  border-radius: 16px;
+  font-size: 0.95em;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(25, 118, 210, 0.08);
+  transition: background 0.2s, color 0.2s;
+  min-width: 0;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.example-graph-chip-button:hover {
+  background: #bbdefb;
+  color: #0d47a1;
 }
 </style>

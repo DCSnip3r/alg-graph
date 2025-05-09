@@ -3,17 +3,29 @@ import { useSavedGraphsStore } from '../stores/savedGraphsStore';
 import { useGraphPersistence } from './useGraphPersistence';
 import type { SavedGraphState } from '../types/SavedGraphTypes';
 
+// Consolidate example graph loading here
+const exampleGraphFiles = import.meta.glob('../assets/graphs/*.json', { eager: true });
+
 export function useGraphManagement(emit: any) {
   const savedGraphsStore = useSavedGraphsStore();
   // Only pass empty object if not using node/edge state here
   const {
-    saveGraphToStore,
     getGraphFromStore,
     getGraphForExport,
   } = useGraphPersistence({});
 
   const graphNameToSave = ref('');
   const fileInputRef = ref<HTMLInputElement | null>(null);
+
+  // Example graphs logic
+  const exampleGraphs = ref<{ name: string; graph: SavedGraphState }[]>([]);
+  for (const path in exampleGraphFiles) {
+    const file = exampleGraphFiles[path] as any;
+    const nameMatch = path.match(/\/([^\/]+)\.json$/);
+    const name = nameMatch ? nameMatch[1] : path;
+    const graph = file.default || file;
+    exampleGraphs.value.push({ name, graph });
+  }
 
   // UI handler: Save graph
   const handleSaveGraph = () => {
@@ -111,6 +123,12 @@ export function useGraphManagement(emit: any) {
     }
   };
 
+  // Handler for loading example graphs from the chip UI
+  const handleLoadExampleGraph = (graph: any) => {
+    graph.example = true;
+    emit('load-graph-from-file-request', graph);
+  };
+
   return {
     graphNameToSave,
     fileInputRef,
@@ -120,5 +138,7 @@ export function useGraphManagement(emit: any) {
     handleDeleteGraph,
     triggerFileInput,
     handleFileUpload,
+    exampleGraphs, // <-- now exported from here
+    handleLoadExampleGraph, // export this for use in the submenu
   };
 }

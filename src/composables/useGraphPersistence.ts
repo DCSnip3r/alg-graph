@@ -30,6 +30,7 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
     setNodes(graphState.nodes);
     setEdges(graphState.edges);
     algPresetsStore.replaceAllPresets(graphState.algPresets || []);
+    if (graphState.example){return}
     savedGraphsStore.saveGraph(graphState.name, graphState.nodes, graphState.edges);
   };
 
