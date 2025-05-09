@@ -1,7 +1,9 @@
 import { useSavedGraphsStore } from '../stores/savedGraphsStore';
+import { useAlgPresetsStore } from '../stores/algPresetsStore';
 
 export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCounter }: any) {
   const savedGraphsStore = useSavedGraphsStore();
+  const algPresetsStore = useAlgPresetsStore(); // Add algPresetsStore
 
   const handleSaveGraphRequest = (graphName: string) => {
     savedGraphsStore.saveGraph(graphName, nodes.value, edges.value);
@@ -23,6 +25,7 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
   const handleLoadGraphFromFile = (graphState: any) => {
     setNodes(graphState.nodes);
     setEdges(graphState.edges);
+    algPresetsStore.replaceAllPresets(graphState.algPresets || []); // Load algPresets into the store
     savedGraphsStore.saveGraph(graphState.name, graphState.nodes, graphState.edges); // Save to store
   };
 
