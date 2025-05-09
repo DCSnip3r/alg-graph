@@ -1,20 +1,23 @@
 import { useSavedGraphsStore } from '../stores/savedGraphsStore';
 import { useAlgPresetsStore } from '../stores/algPresetsStore';
 
+// Only handles pure data logic, no UI events or file dialogs
 export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCounter }: any) {
   const savedGraphsStore = useSavedGraphsStore();
   const algPresetsStore = useAlgPresetsStore();
 
-  const handleSaveGraphRequest = (graphName: string) => {
-    savedGraphsStore.saveGraph(graphName, nodes.value, edges.value);
+  // Save current graph state to store
+  const saveGraphToStore = (graphName: string) => {
+    return savedGraphsStore.saveGraph(graphName, nodes.value, edges.value);
   };
 
-  const handleLoadGraphRequest = (loadedData: { nodes: any[], edges: any[] }) => {
-    setNodes(loadedData.nodes);
-    setEdges(loadedData.edges);
+  // Load graph state from store and update local state
+  const applyGraphState = (graphData: { nodes: any[], edges: any[] }) => {
+    setNodes(graphData.nodes);
+    setEdges(graphData.edges);
 
     let maxId = 0;
-    loadedData.nodes.forEach(node => {
+    graphData.nodes.forEach(node => {
       const idParts = node.id.split('-');
       const idNum = parseInt(idParts[1]);
       if (!isNaN(idNum) && idNum > maxId) maxId = idNum;
@@ -22,14 +25,16 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
     nodeIdCounter.value = maxId + 1;
   };
 
-  const handleLoadGraphFromFile = (graphState: any) => {
+  // Import a graph from a file (parsed object)
+  const importGraphFromFile = (graphState: any) => {
     setNodes(graphState.nodes);
     setEdges(graphState.edges);
     algPresetsStore.replaceAllPresets(graphState.algPresets || []);
     savedGraphsStore.saveGraph(graphState.name, graphState.nodes, graphState.edges);
   };
 
-  const loadGraph = (name: string) => {
+  // Get a graph state object from store by name
+  const getGraphFromStore = (name: string) => {
     const graphJSON = localStorage.getItem(`vueFlowGraph_${name}`);
     if (graphJSON) {
       try {
@@ -44,6 +49,7 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
     return null;
   };
 
+  // Get a graph state for export (download)
   const getGraphForExport = (name: string) => {
     const graphJSON = localStorage.getItem(`vueFlowGraph_${name}`);
     if (graphJSON) {
@@ -58,10 +64,10 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
   };
 
   return {
-    handleSaveGraphRequest,
-    handleLoadGraphRequest,
-    handleLoadGraphFromFile,
-    loadGraph,
+    saveGraphToStore,
+    applyGraphState,
+    importGraphFromFile,
+    getGraphFromStore,
     getGraphForExport,
   };
 }

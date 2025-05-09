@@ -23,7 +23,7 @@ const {
 const { handleEdgeAlgorithmUpdate } = useEdgeManagement({ edges, findNode, updateNodeData });
 
 const { 
-  handleSaveGraphRequest, handleLoadGraphRequest, handleLoadGraphFromFile 
+  saveGraphToStore, applyGraphState, importGraphFromFile 
 } = useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCounter });
 
 const { onDrop, onDragOver } = useDragAndDrop(screenToFlowCoordinate, addNodes, getNextNodeId); // Use the composable
@@ -114,9 +114,8 @@ const initializeEdges = () => {
 onMounted(() => {
   initializeEdges();
   resetNodes(); // Start with a single solved node
-
-
 });
+
 </script>
 
 <template>
@@ -128,9 +127,9 @@ onMounted(() => {
   >
     <MenuOverlay 
       :save-status="saveStatus"
-      @save-graph-request="handleSaveGraphRequest"
-      @load-graph-request="handleLoadGraphRequest"
-      @load-graph-from-file-request="handleLoadGraphFromFile"
+      @save-graph-request="saveGraphToStore"
+      @load-graph-request="applyGraphState"
+      @load-graph-from-file-request="importGraphFromFile"
     />
     <VueFlow 
       :nodes="nodes" 
