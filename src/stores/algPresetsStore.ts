@@ -26,6 +26,16 @@ export const useAlgPresetsStore = defineStore('algPresets', () => {
     presets.value = newPresets;
   };
 
+  /**
+   * Deletes a preset by id.
+   */
+  const deletePreset = (id: string) => {
+    const idx = presets.value.findIndex((p) => p.id === id);
+    if (idx !== -1) {
+      presets.value.splice(idx, 1);
+    }
+  };
+
   // If you need to update presets by ID, you can add an updatePreset action
   // For v-model directly on array elements, Pinia's reactivity should handle it.
 
@@ -41,5 +51,6 @@ export const useAlgPresetsStore = defineStore('algPresets', () => {
     addPreset,
     replaceAllPresets,
     getSortedPresetsForHighlighting,
+    deletePreset,
   };
 });

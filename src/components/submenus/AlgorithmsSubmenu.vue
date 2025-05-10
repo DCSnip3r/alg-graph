@@ -11,6 +11,13 @@
         @dragstart="onDragStart($event, algEntry)"
       >
         <button
+          class="delete-btn"
+          @click="algStore.deletePreset(algEntry.id)"
+          title="Delete this algorithm"
+        >
+          ×
+        </button>
+        <button
           class="mirror-btn"
           @click="onMirrorAlg(algEntry)"
           title="Mirror this algorithm"
@@ -78,6 +85,26 @@ function onInvertAlg(algEntry: { algorithm: string, name: string, color: string 
   padding: 5px;
   border: 1px dashed transparent;
   cursor: grab;
+}
+
+.delete-btn {
+  border: none;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  margin-right: 0.5em;
+  cursor: pointer;
+  color: #fff;
+  background: #c00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.2s;
+}
+.delete-btn:hover {
+  filter: brightness(1.2);
 }
 
 .mirror-btn,
