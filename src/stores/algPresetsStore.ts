@@ -9,12 +9,16 @@ export const useAlgPresetsStore = defineStore('algPresets', () => {
     { id: `default-${Date.now()}-2`, algorithm: 'R U R\' U\'', name: 'Sexy Move', color: '#3399ff' },
   ]);
 
-  const addPreset = () => {
+  /**
+   * Adds a new preset. If a preset object is supplied, use its values.
+   * Otherwise, create a blank preset.
+   */
+  const addPreset = (preset?: Partial<AlgPreset>) => {
     presets.value.push({
-      id: `user-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
-      algorithm: '',
-      name: '',
-      color: '#ffffff', // Default color for new presets
+      id: preset?.id ?? `user-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+      algorithm: preset?.algorithm ?? '',
+      name: preset?.name ?? '',
+      color: preset?.color ?? '#ffffff',
     });
   };
 
