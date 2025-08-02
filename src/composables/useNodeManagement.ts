@@ -4,7 +4,7 @@ import type { Node, Edge, XYPosition } from '@vue-flow/core';
 import { Alg } from 'cubing/alg';
 import { useDragAndDrop } from './useDragAndDrop'; // Import useDragAndDrop
 
-export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes }: any) {
+export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes, findNode }: any) {
   const { screenToFlowCoordinate } = useVueFlow();
   const nodeIdCounter = ref(1);
 
@@ -23,7 +23,7 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
       id: rootId,
       type: 'twisty',
       position: { x: 0, y: 0 },
-      data: { label: 'Solved', alg: '', targetHandleId: 'handle-b', rawAlgorithm: '' },
+      data: { label: 'Solved', alg: '', targetHandleId: 'handle-b', rawAlgorithm: '', collapsed: false },
       style: { borderColor: '#ffffff', borderWidth: '8px', borderStyle: 'solid', borderRadius: '4px' },
     };
     addNodes([initialRootNode]);
@@ -33,6 +33,13 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
   
   const handleSetTargetHandle = ({ nodeId, newTargetHandleId }: { nodeId: string, newTargetHandleId: string }) => {
     updateNodeData(nodeId, { targetHandleId: newTargetHandleId });
+  };
+
+  const toggleNodeCollapse = (nodeId: string) => {
+    const node = findNode(nodeId);
+    if (node) {
+      updateNodeData(nodeId, { collapsed: !node.data.collapsed });
+    }
   };
 
   const { onDrop } = useDragAndDrop(screenToFlowCoordinate, addNodes, getNextNodeId); // Use onDrop from useDragAndDrop
@@ -49,7 +56,7 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
           id: newNodeId,
           type: 'twisty',
           position: { x: currentParent.position.x + offset.x, y: currentParent.position.y + offset.y },
-          data: { label: edgeAlg, alg: edgeAlg, rawAlgorithm: edgeAlg, targetHandleId: 'handle-b' },
+          data: { label: edgeAlg, alg: edgeAlg, rawAlgorithm: edgeAlg, targetHandleId: 'handle-b', collapsed: false },
           style: { borderColor: '#ffffff', borderWidth: '8px', borderStyle: 'solid', borderRadius: '4px' },
         };
         addNodes([newNode]);
@@ -74,5 +81,5 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
     createBranch(rootNode, mirrorAlgString, { x: 0, y: -300 });
   };
 
-  return { nodeIdCounter, getNextNodeId, resetNodes, generateAlgTree, handleSetTargetHandle, onDrop };
+  return { nodeIdCounter, getNextNodeId, resetNodes, generateAlgTree, handleSetTargetHandle, onDrop, toggleNodeCollapse };
 }

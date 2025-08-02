@@ -5,6 +5,7 @@ export interface NodeData {
   alg: string;
   rawAlgorithm: string;
   targetHandleId: string;
+  collapsed: boolean; // Indicates if the node is collapsed
 }
 
 export interface NodeStyle {

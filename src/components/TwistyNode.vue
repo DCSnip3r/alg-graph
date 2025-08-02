@@ -20,13 +20,13 @@ const TwistyComponent = Twisty as DefineComponent<{}, {}, any>; // Explicitly ty
 import { useColorUtils } from '../composables/useColorUtils'; // Import the composable
 
 const props = defineProps<ExtendedNodeProps>(); // Use the extended type
-const emit = defineEmits(['setTargetHandle', 'delete-node']); // Ensure 'delete-node' is emitted
+const emit = defineEmits(['setTargetHandle', 'delete-node', 'toggle-collapse']); // Ensure 'delete-node' is emitted
 const { colorizeLabel } = useColorUtils(); // Use the composable
 
-const isVisible = ref(true);
+const isCollapsed = computed(() => props.data?.collapsed || false);
 
-const toggleVisibility = () => {
-  isVisible.value = !isVisible.value;
+const toggleCollapse = () => {
+  emit('toggle-collapse', props.id);
 };
 
 const onDeleteNode = () => {
@@ -46,7 +46,7 @@ const potentialHandles = [
 ];
 
 const handleClicked = (clickedHandleId: string) => {
-  if (!isVisible.value) return; // Disable handle adjustment if the node is minimized
+  if (isCollapsed.value) return; // Disable handle adjustment if the node is minimized
   emit('setTargetHandle', { nodeId: props.id, newTargetHandleId: clickedHandleId });
 };
 
@@ -64,16 +64,16 @@ const getHandleStyle = (handleId: string) => {
 <template>
   <div 
     class="vue-flow__node-default twisty-node-wrapper" 
-    :class="{ minimized: !isVisible }" 
+    :class="{ minimized: isCollapsed }" 
     :style="{ borderColor: props.style?.borderColor || '#ffffff' }"
   >
     <div class="node-content">
       <div class="node-controls">
-        <button class="toggle-button node-action-button" @click="toggleVisibility" :title="isVisible ? 'Collapse Node' : 'Expand Node'">
-          {{ isVisible ? '−' : '+' }}
+        <button class="toggle-button node-action-button" @click="toggleCollapse" :title="!isCollapsed ? 'Collapse Node' : 'Expand Node'">
+          {{ !isCollapsed ? '−' : '+' }}
         </button>
         <button 
-          v-if="isVisible" 
+          v-if="!isCollapsed" 
           class="delete-node-button node-action-button" 
           @click="onDeleteNode" 
           title="Delete Node"
@@ -81,8 +81,8 @@ const getHandleStyle = (handleId: string) => {
           X
         </button>
       </div>
-      <div v-if="isVisible" class="node-alg-label" v-html="computedLabel"></div>
-      <div class="twisty-container" v-if="isVisible">
+      <div v-if="!isCollapsed" class="node-alg-label" v-html="computedLabel"></div>
+      <div class="twisty-container" v-if="!isCollapsed">
         <TwistyComponent :alg="props.data.alg"/>
       </div>
       <!-- Render handles only when the node is visible -->

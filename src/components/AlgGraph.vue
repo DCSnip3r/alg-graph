@@ -17,8 +17,8 @@ const {
 } = useVueFlow();
 
 const { 
-  nodeIdCounter, getNextNodeId, generateAlgTree, handleSetTargetHandle, resetNodes 
-} = useNodeManagement({ addNodes, addEdges, updateNodeData, removeNodes, setNodes });
+  nodeIdCounter, getNextNodeId, generateAlgTree, handleSetTargetHandle, resetNodes, toggleNodeCollapse 
+} = useNodeManagement({ addNodes, addEdges, updateNodeData, removeNodes, setNodes, findNode });
 
 const { handleEdgeAlgorithmUpdate } = useEdgeManagement({ edges, findNode, updateNodeData });
 
@@ -144,6 +144,7 @@ onMounted(() => {
           v-bind="twistyNodeProps" 
           @set-target-handle="handleSetTargetHandle"
           @delete-node="onNodeDelete"
+          @toggle-collapse="toggleNodeCollapse"
         />
       </template>
       <template #edge-special="specialEdgeProps">
