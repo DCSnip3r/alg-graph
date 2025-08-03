@@ -1,13 +1,25 @@
 import { ref } from 'vue';
 import { useVueFlow } from '@vue-flow/core';
-import type { Node, Edge, XYPosition } from '@vue-flow/core';
+import type { Edge, XYPosition } from '@vue-flow/core';
+// Use local NodeWithDimensions type throughout
+
+// Locally extend Node type to include dimensions property
+interface NodeWithDimensions {
+  id: string;
+  type: string;
+  position: { x: number; y: number };
+  data: any;
+  style?: any;
+  dimensions?: { width: number; height: number };
+  [key: string]: any;
+}
 import { Alg } from 'cubing/alg';
 import { useDragAndDrop } from './useDragAndDrop'; // Import useDragAndDrop
 
 export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes, findNode }: any) {
   // Update a node's position using setNodes (VueFlow docs pattern)
   function updateNodePosition(id: string, position: { x: number; y: number }) {
-    setNodes((nodes: Node[]) => nodes.map(node =>
+    setNodes((nodes: NodeWithDimensions[]) => nodes.map(node =>
       node.id === id ? { ...node, position: { ...position } } : node
     ));
   }
@@ -20,12 +32,12 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
     return `n-${id}`; 
   };
 
-  const resetNodes = (): Node | null => {
+  const resetNodes = (): NodeWithDimensions | null => {
     nodeIdCounter.value = 1; 
     const rootId = getNextNodeId(); 
 
     setNodes([]);
-    const initialRootNode: Node = { 
+    const initialRootNode: NodeWithDimensions = { 
       id: rootId,
       type: 'twisty',
       position: { x: 0, y: 0 },
@@ -41,10 +53,52 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
     updateNodeData(nodeId, { targetHandleId: newTargetHandleId });
   };
 
+  // Helper: measure half expanded dimensions, log values, and use fixed width for TwistyNode
+  function getHalfDimensions(node: NodeWithDimensions): { halfHeight: number; halfWidth: number } {
+    // Originally meant to read the actual node size, but it doesn't work well because it can't get the node size for expansion. 
+    // const height = node.dimensions?.height - 26;
+    // const width =  node.dimensions?.width - 26;
+    // Twisty.vue sets width to 350px, so use that directly
+    // 26px becauses of handle width. 
+    return {
+      halfHeight: 188, // height * 0.5,
+      halfWidth: 162 // width * 0.5,
+    };
+  }
+
+  // Collapse logic: measure, collapse, translate
+  function collapseNode(node: NodeWithDimensions) {
+    const { halfHeight, halfWidth } = getHalfDimensions(node);
+    updateNodeData(node.id, { collapsed: true });
+    updateNodePosition(node.id, {
+      x: node.position.x + halfWidth,
+      y: node.position.y + halfHeight,
+    });
+  }
+
+  // Expand logic: expand, measure, translate
+  function expandNode(node: NodeWithDimensions) {
+    updateNodeData(node.id, { collapsed: false });
+    // After expanding, node.dimensions should update, but may require a next tick or delay
+    // For now, measure immediately (may need improvement if dimensions update async)
+    const { halfHeight, halfWidth } = getHalfDimensions(node);
+    updateNodePosition(node.id, {
+      x: node.position.x - halfWidth,
+      y: node.position.y - halfHeight,
+    });
+  }
+
+  // Orchestrator
   const toggleNodeCollapse = (nodeId: string) => {
-    const node = findNode(nodeId);
-    if (node) {
-      updateNodeData(nodeId, { collapsed: !node.data.collapsed });
+    const node = findNode(nodeId) as NodeWithDimensions | undefined;
+    if (!node) return;
+    const isCollapsed = !!node.data.collapsed;
+    if (!isCollapsed) {
+      // Collapsing: measure, collapse, translate
+      collapseNode(node);
+    } else {
+      // Expanding: expand, measure, translate
+      expandNode(node);
     }
   };
 
@@ -54,11 +108,11 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
     const rootNode = resetNodes();
     if (!rootNode) return;
 
-    const createBranch = (parentNode: Node, edgeAlg: string, offset: XYPosition) => {
+    const createBranch = (parentNode: NodeWithDimensions, edgeAlg: string, offset: XYPosition) => {
       let currentParent = parentNode;
       for (let i = 0; i < 3; i++) {
         const newNodeId = getNextNodeId();
-        const newNode: Node = {
+        const newNode: NodeWithDimensions = {
           id: newNodeId,
           type: 'twisty',
           position: { x: currentParent.position.x + offset.x, y: currentParent.position.y + offset.y },
