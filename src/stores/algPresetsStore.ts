@@ -13,12 +13,23 @@ export const useAlgPresetsStore = defineStore('algPresets', () => {
    * Adds a new preset. If a preset object is supplied, use its values.
    * Otherwise, create a blank preset.
    */
+  // Import randomPureRGB from useColorUtils
+  // Lazy import to avoid circular dependency
+  const getRandomPureRGB = () => {
+    // Pick one channel to be high, others to be zero
+    const channels = [0, 0, 0];
+    const idx = Math.floor(Math.random() * 3); // 0=R, 1=G, 2=B
+    channels[idx] = 126 + Math.floor(Math.random() * (256 - 126));
+    const toHex = (x: number) => x.toString(16).padStart(2, '0');
+    return `#${toHex(channels[0])}${toHex(channels[1])}${toHex(channels[2])}`;
+  };
+
   const addPreset = (preset?: Partial<AlgPreset>) => {
     presets.value.push({
       id: preset?.id ?? `user-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       algorithm: preset?.algorithm ?? '',
       name: preset?.name ?? '',
-      color: preset?.color ?? '#ffffff',
+      color: preset?.color ?? getRandomPureRGB(),
     });
   };
 

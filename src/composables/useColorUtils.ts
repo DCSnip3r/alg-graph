@@ -1,6 +1,15 @@
 import { useAlgPresetsStore } from '../stores/algPresetsStore';
 
 export function useColorUtils() {
+  // Generate a random pure shade of Red, Green, or Blue with value above 125
+  const randomPureRGB = (): string => {
+    // Pick one channel to be high, others to be zero
+    const channels = [0, 0, 0];
+    const idx = Math.floor(Math.random() * 3); // 0=R, 1=G, 2=B
+    channels[idx] = 126 + Math.floor(Math.random() * (256 - 126));
+    const toHex = (x: number) => x.toString(16).padStart(2, '0');
+    return `#${toHex(channels[0])}${toHex(channels[1])}${toHex(channels[2])}`;
+  };
   const getTextColorForBackground = (hexColor: string): string => {
     if (!hexColor || hexColor.length < 7) return '#000000'; // Default to black
     try {
@@ -95,7 +104,31 @@ export function useColorUtils() {
   const invertColor = (color: string): string => rotateColor(color, 180);
   const mirrorColor = (color: string): string => rotateColor(color, 90);
 
-  return { getTextColorForBackground, getBackgroundColorForAlgorithm, colorizeLabel, mirrorColor, invertColor };
+  // Utility: max RGB blend of two colors
+  const maxRGBColor = (colorA: string, colorB: string): string => {
+    const parse = (color: string) => {
+      if (color.startsWith('#')) {
+        const hex = color.replace('#', '');
+        return [
+          parseInt(hex.substring(0, 2), 16),
+          parseInt(hex.substring(2, 4), 16),
+          parseInt(hex.substring(4, 6), 16)
+        ];
+      } else if (color.startsWith('rgb')) {
+        return color.match(/\d+/g)!.map(Number);
+      }
+      return [0, 0, 0];
+    };
+    const [r1, g1, b1] = parse(colorA);
+    const [r2, g2, b2] = parse(colorB);
+    const r = Math.max(r1, r2);
+    const g = Math.max(g1, g2);
+    const b = Math.max(b1, b2);
+    const toHex = (x: number) => x.toString(16).padStart(2, '0');
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+  };
+
+  return { getTextColorForBackground, getBackgroundColorForAlgorithm, colorizeLabel, mirrorColor, invertColor, maxRGBColor, randomPureRGB };
 }
 
 
