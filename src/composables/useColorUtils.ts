@@ -41,7 +41,8 @@ export function useColorUtils() {
     return colorizedLabel;
   };
 
-  const invertColor = (color: string): string => {
+  // Rotate color hue by a given degree (0-360)
+  const rotateColor = (color: string, degree: number): string => {
     let r = 0, g = 0, b = 0;
     if (color.startsWith('#')) {
       const hex = color.replace('#', '');
@@ -51,24 +52,7 @@ export function useColorUtils() {
     } else if (color.startsWith('rgb')) {
       [r, g, b] = color.match(/\d+/g)!.map(Number);
     }
-    const toHex = (n: number) => {
-      const h = (255 - n).toString(16).padStart(2, '0');
-      return h.length > 2 ? 'ff' : h;
-    };
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-  }
-  
-
-  const mirrorColor = (color: string): string => {
-    let r = 0, g = 0, b = 0;
-    if (color.startsWith('#')) {
-      const hex = color.replace('#', '');
-      r = parseInt(hex.substring(0, 2), 16);
-      g = parseInt(hex.substring(2, 4), 16);
-      b = parseInt(hex.substring(4, 6), 16);
-    } else if (color.startsWith('rgb')) {
-      [r, g, b] = color.match(/\d+/g)!.map(Number);
-    }
+    // Convert RGB to HSL
     r /= 255; g /= 255; b /= 255;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
     let h = 0, s = 0, l = (max + min) / 2;
@@ -82,7 +66,10 @@ export function useColorUtils() {
       }
       h /= 6;
     }
-    h = (h + 0.25) % 1;
+    // Rotate hue
+    h = (h + degree / 360) % 1;
+    if (h < 0) h += 1;
+    // Convert HSL back to RGB
     let r1, g1, b1;
     if (s === 0) {
       r1 = g1 = b1 = l;
@@ -104,6 +91,9 @@ export function useColorUtils() {
     const toHex = (x: number) => Math.round(x * 255).toString(16).padStart(2, '0');
     return `#${toHex(r1)}${toHex(g1)}${toHex(b1)}`;
   }
+
+  const invertColor = (color: string): string => rotateColor(color, 180);
+  const mirrorColor = (color: string): string => rotateColor(color, 90);
 
   return { getTextColorForBackground, getBackgroundColorForAlgorithm, colorizeLabel, mirrorColor, invertColor };
 }
