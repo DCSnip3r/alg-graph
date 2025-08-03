@@ -5,6 +5,12 @@ import { Alg } from 'cubing/alg';
 import { useDragAndDrop } from './useDragAndDrop'; // Import useDragAndDrop
 
 export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes, findNode }: any) {
+  // Update a node's position using setNodes (VueFlow docs pattern)
+  function updateNodePosition(id: string, position: { x: number; y: number }) {
+    setNodes((nodes: Node[]) => nodes.map(node =>
+      node.id === id ? { ...node, position: { ...position } } : node
+    ));
+  }
   const { screenToFlowCoordinate } = useVueFlow();
   const nodeIdCounter = ref(1);
 
@@ -81,5 +87,5 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
     createBranch(rootNode, mirrorAlgString, { x: 0, y: -300 });
   };
 
-  return { nodeIdCounter, getNextNodeId, resetNodes, generateAlgTree, handleSetTargetHandle, onDrop, toggleNodeCollapse };
+  return { nodeIdCounter, getNextNodeId, resetNodes, generateAlgTree, handleSetTargetHandle, onDrop, toggleNodeCollapse, updateNodePosition };
 }

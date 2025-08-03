@@ -12,6 +12,16 @@
           Show colorized edge labels
         </label>
       </div>
+      <div class="setting-item inline-setting">
+        <label for="reposition-on-confluence">
+          <input
+            id="reposition-on-confluence"
+            type="checkbox"
+            v-model="displaySettingsStore.repositionOnConfluence"
+          />
+          Auto-reposition node on confluent algorithm
+        </label>
+      </div>
       <div class="setting-item">
         <div class="inline-setting">
           <label for="visualization-mode">Visualization Mode:</label>

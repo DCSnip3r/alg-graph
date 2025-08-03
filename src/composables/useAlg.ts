@@ -1,4 +1,5 @@
 import { Alg } from 'cubing/alg';
+import { cube3x3x3 } from "cubing/puzzles";
 
 export function useAlg() {
 
@@ -157,12 +158,31 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
     detectSetupMoves,
     getMoveFace,
     isDoubleTurn,
+    isConfluent,
   }
 
 
 
   function detectInverses(moves: Alg[], i: number, j: number) {
     return moves[i].toString() === moves[j].invert().toString() || (isDoubleTurn(moves[i]) && isDoubleTurn(moves[j]) && isSameFace(moves[i], moves[j]));
+  }
+
+  async function isConfluent(alg1: string | Alg, alg2: string | Alg): Promise<true | string | false> {
+    const kpuzzle = await cube3x3x3.kpuzzle();
+    const kpattern1 = kpuzzle.defaultPattern().applyAlg(alg1);
+
+    // Try alg2, alg2 + U, alg2 + U2, alg2 + U'
+    const adjustments = ["", "U", "U2", "U'"];
+    for (let i = 0; i < adjustments.length; i++) {
+      const variant = adjustments[i]
+        ? mergeAlg([typeof alg2 === "string" ? new Alg(alg2) : alg2, new Alg(adjustments[i])])
+        : typeof alg2 === "string" ? new Alg(alg2) : alg2;
+      const kpattern2 = kpuzzle.defaultPattern().applyAlg(variant);
+      if (kpattern1.isIdentical(kpattern2)) {
+        return adjustments[i] === "" ? true : adjustments[i]; // true if no adjustment, else adjustment string
+      }
+    }
+    return false;
   }
 }
 

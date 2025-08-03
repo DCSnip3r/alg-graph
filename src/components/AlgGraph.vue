@@ -10,17 +10,25 @@ import SpecialEdge from './SpecialEdge.vue';
 import MenuOverlay from './MenuOverlay.vue';
 import { Alg } from 'cubing/alg'; // Import the Alg class
 
+import { useNodeConfluence } from '../composables/useNodeConfluence';
+
 const { 
   onPaneReady, addNodes, addEdges, findNode, 
   updateNodeData, removeNodes, nodes, edges,
   screenToFlowCoordinate, onConnect, setNodes, setEdges,
+  // updateNodePosition,
 } = useVueFlow();
 
+
+// Initialize useNodeManagement composable
 const { 
-  nodeIdCounter, getNextNodeId, generateAlgTree, handleSetTargetHandle, resetNodes, toggleNodeCollapse 
+  nodeIdCounter, getNextNodeId, generateAlgTree, handleSetTargetHandle, resetNodes, toggleNodeCollapse, updateNodePosition 
 } = useNodeManagement({ addNodes, addEdges, updateNodeData, removeNodes, setNodes, findNode });
 
-const { handleEdgeAlgorithmUpdate } = useEdgeManagement({ edges, findNode, updateNodeData });
+// Initialize useNodeConfluence composable
+const { checkAndRepositionNode } = useNodeConfluence({ findNode, updateNodePosition });
+
+const { handleEdgeAlgorithmUpdate } = useEdgeManagement({ edges, nodes, findNode, updateNodeData, updateNodePosition, checkAndRepositionNode });
 
 const { 
   saveGraphToStore, applyGraphState, importGraphFromFile 
@@ -53,11 +61,17 @@ onConnect((connection) => {
     const rawAlgForEdge = targetNode.data.rawAlgorithm || ''; 
     const newCombinedAlg = new Alg(sourceNode.data.alg || '').concat(new Alg(rawAlgForEdge)).experimentalSimplify({ cancel: true }).toString();
 
+    // console.log('[AlgGraph] Updating node', targetNode.id, 'with new algorithm:', newCombinedAlg);
     updateNodeData(targetNode.id, {
       alg: newCombinedAlg,
       label: newCombinedAlg,
     });
-    
+
+    // After updating the node's algorithm, check for confluence and reposition if needed
+    // This is async and may take a while
+    // console.log('[AlgGraph] Checking for confluence and possible reposition for node', targetNode.id);
+    checkAndRepositionNode(targetNode.id, nodes.value);
+
     const newEdge = {
       ...connection,
       id: `e${connection.source}-${connection.target}-${connection.targetHandle || 'target'}`,
@@ -66,6 +80,7 @@ onConnect((connection) => {
       data: { algorithm: rawAlgForEdge },
       animated: true,
     };
+    // console.log('[AlgGraph] Adding new edge:', newEdge);
     addEdges([newEdge]);
   }
 });
