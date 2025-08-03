@@ -168,11 +168,14 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
   }
 
   async function isConfluent(alg1: string | Alg, alg2: string | Alg): Promise<true | string | false> {
+    // Dynamically import the displaySettingsStore to avoid circular deps
+    const { useDisplaySettingsStore } = await import('../stores/displaySettingsStore');
+    const displaySettings = useDisplaySettingsStore();
     const kpuzzle = await cube3x3x3.kpuzzle();
     const kpattern1 = kpuzzle.defaultPattern().applyAlg(alg1);
 
-    // Try alg2, alg2 + U, alg2 + U2, alg2 + U'
-    const adjustments = ["", "U", "U2", "U'"];
+    // Build adjustments array based on matchIfAUF setting
+    const adjustments = displaySettings.matchIfAUF ? ["", "U", "U2", "U'"] : [""];
     for (let i = 0; i < adjustments.length; i++) {
       const variant = adjustments[i]
         ? mergeAlg([typeof alg2 === "string" ? new Alg(alg2) : alg2, new Alg(adjustments[i])])

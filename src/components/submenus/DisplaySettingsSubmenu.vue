@@ -22,6 +22,16 @@
           Auto-reposition node on confluent algorithm
         </label>
       </div>
+      <div class="setting-item inline-setting" style="margin-left: 24px;">
+        <label for="match-if-auf">
+          <input
+            id="match-if-auf"
+            type="checkbox"
+            v-model="displaySettingsStore.matchIfAUF"
+          />
+          Allow AUF confluence (U/U'/U2)
+        </label>
+      </div>
       <div class="setting-item">
         <div class="inline-setting">
           <label for="visualization-mode">Visualization Mode:</label>
