@@ -1,0 +1,1164 @@
+{
+  "name": "T Y Perm",
+  "nodes": [
+    {
+      "id": "n-1",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 432
+      },
+      "computedPosition": {
+        "x": -18.514285714285712,
+        "y": 375.2228571428571,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-1",
+            "position": "top",
+            "x": 178,
+            "y": -7,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-1",
+            "position": "left",
+            "x": -7,
+            "y": 206,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-1",
+            "position": "right",
+            "x": 363,
+            "y": 206,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "type": "target",
+            "nodeId": "n-1",
+            "position": "bottom",
+            "x": 178,
+            "y": 419,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -18.514285714285712,
+        "y": 375.2228571428571
+      },
+      "data": {
+        "label": "Solved",
+        "alg": "",
+        "targetHandleId": "handle-b",
+        "rawAlgorithm": ""
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-4",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 488
+      },
+      "computedPosition": {
+        "x": -576.0228571428572,
+        "y": -778.8342857142858,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-4",
+            "position": "top",
+            "x": 178.0046188200696,
+            "y": -6.994293459648667,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-4",
+            "position": "left",
+            "x": -6.994312293357976,
+            "y": 234.000042817261,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-4",
+            "position": "right",
+            "x": 363.0034745986599,
+            "y": 234.000042817261,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "type": "target",
+            "nodeId": "n-4",
+            "position": "bottom",
+            "x": 178.0046188200696,
+            "y": 474.99436026046135,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": true,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -576.0228571428572,
+        "y": -778.8342857142858
+      },
+      "data": {
+        "label": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+        "alg": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+        "rawAlgorithm": "R U R' U' R' F R F'",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#3399ff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-6",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 432
+      },
+      "computedPosition": {
+        "x": -579.7257142857143,
+        "y": -162.9257142857143,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-6",
+            "position": "top",
+            "x": 178.0046188200696,
+            "y": -6.994312293357976,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-6",
+            "position": "left",
+            "x": -6.994312293357976,
+            "y": 206.00235906922927,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-6",
+            "position": "right",
+            "x": 363.0034745986599,
+            "y": 206.00235906922927,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "type": "target",
+            "nodeId": "n-6",
+            "position": "bottom",
+            "x": 178.0046188200696,
+            "y": 418.9989550969793,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -579.7257142857143,
+        "y": -162.9257142857143
+      },
+      "data": {
+        "label": "F R U' R' U' R U R' F'",
+        "alg": "F R U' R' U' R U R' F'",
+        "rawAlgorithm": "F R U' R' U' R U R' F'",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffcc00",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-7",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 432
+      },
+      "computedPosition": {
+        "x": 527.4285714285713,
+        "y": -99.97714285714287,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-7",
+            "position": "top",
+            "x": 178.0046188200696,
+            "y": -6.994312293357976,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-7",
+            "position": "left",
+            "x": -6.994236958520742,
+            "y": 206.00235906922927,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-7",
+            "position": "right",
+            "x": 363.0034745986599,
+            "y": 206.00235906922927,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "type": "target",
+            "nodeId": "n-7",
+            "position": "bottom",
+            "x": 178.0046188200696,
+            "y": 418.9989550969793,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 527.4285714285713,
+        "y": -99.97714285714287
+      },
+      "data": {
+        "label": "R U R' U' R' F R F'",
+        "alg": "R U R' U' R' F R F'",
+        "rawAlgorithm": "R U R' U' R' F R F'",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#3399ff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-8",
+      "type": "twisty",
+      "dimensions": {
+        "width": 376,
+        "height": 488
+      },
+      "computedPosition": {
+        "x": 523.7257142857142,
+        "y": -756.617142857143,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-8",
+            "position": "top",
+            "x": 178.0046188200696,
+            "y": -6.994293459648667,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-8",
+            "position": "left",
+            "x": -6.994236958520742,
+            "y": 234.000042817261,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-8",
+            "position": "right",
+            "x": 363.0034745986599,
+            "y": 234.000042817261,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "type": "target",
+            "nodeId": "n-8",
+            "position": "bottom",
+            "x": 178.0046188200696,
+            "y": 474.99436026046135,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 523.7257142857142,
+        "y": -756.617142857143
+      },
+      "data": {
+        "label": "R U R' U' R' F R2 U' R' U' R U R' F'",
+        "alg": "R U R' U' R' F R2 U' R' U' R U R' F'",
+        "rawAlgorithm": "F R U' R' U' R U R' F'",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffcc00",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "en-1-n-6-handle-b",
+      "type": "special",
+      "source": "n-1",
+      "target": "n-6",
+      "sourceHandle": "handle-l",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "F R U' R' U' R U R' F'"
+      },
+      "events": {},
+      "label": "F R U' R' U' R U R' F'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-1",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 432
+        },
+        "computedPosition": {
+          "x": -18.514285714285712,
+          "y": 375.2228571428571,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "top",
+              "x": 178,
+              "y": -7,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "left",
+              "x": -7,
+              "y": 206,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "right",
+              "x": 363,
+              "y": 206,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-1",
+              "position": "bottom",
+              "x": 178,
+              "y": 419,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -18.514285714285712,
+          "y": 375.2228571428571
+        },
+        "data": {
+          "label": "Solved",
+          "alg": "",
+          "targetHandleId": "handle-b",
+          "rawAlgorithm": ""
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-6",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 432
+        },
+        "computedPosition": {
+          "x": -579.7257142857143,
+          "y": -162.9257142857143,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-6",
+              "position": "top",
+              "x": 178.0046188200696,
+              "y": -6.994312293357976,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-6",
+              "position": "left",
+              "x": -6.994312293357976,
+              "y": 206.00235906922927,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-6",
+              "position": "right",
+              "x": 363.0034745986599,
+              "y": 206.00235906922927,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-6",
+              "position": "bottom",
+              "x": 178.0046188200696,
+              "y": 418.9989550969793,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -579.7257142857143,
+          "y": -162.9257142857143
+        },
+        "data": {
+          "label": "F R U' R' U' R U R' F'",
+          "alg": "F R U' R' U' R U R' F'",
+          "rawAlgorithm": "F R U' R' U' R U R' F'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": -25.514285714285712,
+      "sourceY": 591.222857142857,
+      "targetX": -391.7210954656447,
+      "targetY": 276.073240811265
+    },
+    {
+      "id": "en-6-n-4-handle-b",
+      "type": "special",
+      "source": "n-6",
+      "target": "n-4",
+      "sourceHandle": "handle-t",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R U R' U' R' F R F'"
+      },
+      "events": {},
+      "label": "R U R' U' R' F R F'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-6",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 432
+        },
+        "computedPosition": {
+          "x": -579.7257142857143,
+          "y": -162.9257142857143,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-6",
+              "position": "top",
+              "x": 178.0046188200696,
+              "y": -6.994312293357976,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-6",
+              "position": "left",
+              "x": -6.994312293357976,
+              "y": 206.00235906922927,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-6",
+              "position": "right",
+              "x": 363.0034745986599,
+              "y": 206.00235906922927,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-6",
+              "position": "bottom",
+              "x": 178.0046188200696,
+              "y": 418.9989550969793,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -579.7257142857143,
+          "y": -162.9257142857143
+        },
+        "data": {
+          "label": "F R U' R' U' R U R' F'",
+          "alg": "F R U' R' U' R U R' F'",
+          "rawAlgorithm": "F R U' R' U' R U R' F'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-4",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 488
+        },
+        "computedPosition": {
+          "x": -576.0228571428572,
+          "y": -778.8342857142858,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-4",
+              "position": "top",
+              "x": 178.0046188200696,
+              "y": -6.994293459648667,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-4",
+              "position": "left",
+              "x": -6.994312293357976,
+              "y": 234.000042817261,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-4",
+              "position": "right",
+              "x": 363.0034745986599,
+              "y": 234.000042817261,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-4",
+              "position": "bottom",
+              "x": 178.0046188200696,
+              "y": 474.99436026046135,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": true,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -576.0228571428572,
+          "y": -778.8342857142858
+        },
+        "data": {
+          "label": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+          "alg": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+          "rawAlgorithm": "R U R' U' R' F R F'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#3399ff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": -391.7210954656447,
+      "sourceY": -169.92002657907227,
+      "targetX": -388.0182383227876,
+      "targetY": -283.83992545382443
+    },
+    {
+      "id": "en-1-n-7-handle-b",
+      "type": "special",
+      "source": "n-1",
+      "target": "n-7",
+      "sourceHandle": "handle-r",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R U R' U' R' F R F'"
+      },
+      "events": {},
+      "label": "R U R' U' R' F R F'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-1",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 432
+        },
+        "computedPosition": {
+          "x": -18.514285714285712,
+          "y": 375.2228571428571,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "top",
+              "x": 178,
+              "y": -7,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "left",
+              "x": -7,
+              "y": 206,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "right",
+              "x": 363,
+              "y": 206,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-1",
+              "position": "bottom",
+              "x": 178,
+              "y": 419,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -18.514285714285712,
+          "y": 375.2228571428571
+        },
+        "data": {
+          "label": "Solved",
+          "alg": "",
+          "targetHandleId": "handle-b",
+          "rawAlgorithm": ""
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-7",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 432
+        },
+        "computedPosition": {
+          "x": 527.4285714285713,
+          "y": -99.97714285714287,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-7",
+              "position": "top",
+              "x": 178.0046188200696,
+              "y": -6.994312293357976,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-7",
+              "position": "left",
+              "x": -6.994236958520742,
+              "y": 206.00235906922927,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-7",
+              "position": "right",
+              "x": 363.0034745986599,
+              "y": 206.00235906922927,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-7",
+              "position": "bottom",
+              "x": 178.0046188200696,
+              "y": 418.9989550969793,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 527.4285714285713,
+          "y": -99.97714285714287
+        },
+        "data": {
+          "label": "R U R' U' R' F R F'",
+          "alg": "R U R' U' R' F R F'",
+          "rawAlgorithm": "R U R' U' R' F R F'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#3399ff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 364.48571428571427,
+      "sourceY": 591.222857142857,
+      "targetX": 715.4331902486409,
+      "targetY": 339.02181223983644
+    },
+    {
+      "id": "en-7-n-8-handle-b",
+      "type": "special",
+      "source": "n-7",
+      "target": "n-8",
+      "sourceHandle": "handle-t",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "F R U' R' U' R U R' F'"
+      },
+      "events": {},
+      "label": "F R U' R' U' R U R' F'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-7",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 432
+        },
+        "computedPosition": {
+          "x": 527.4285714285713,
+          "y": -99.97714285714287,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-7",
+              "position": "top",
+              "x": 178.0046188200696,
+              "y": -6.994312293357976,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-7",
+              "position": "left",
+              "x": -6.994236958520742,
+              "y": 206.00235906922927,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-7",
+              "position": "right",
+              "x": 363.0034745986599,
+              "y": 206.00235906922927,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-7",
+              "position": "bottom",
+              "x": 178.0046188200696,
+              "y": 418.9989550969793,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 527.4285714285713,
+          "y": -99.97714285714287
+        },
+        "data": {
+          "label": "R U R' U' R' F R F'",
+          "alg": "R U R' U' R' F R F'",
+          "rawAlgorithm": "R U R' U' R' F R F'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#3399ff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-8",
+        "type": "twisty",
+        "dimensions": {
+          "width": 376,
+          "height": 488
+        },
+        "computedPosition": {
+          "x": 523.7257142857142,
+          "y": -756.617142857143,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-8",
+              "position": "top",
+              "x": 178.0046188200696,
+              "y": -6.994293459648667,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-8",
+              "position": "left",
+              "x": -6.994236958520742,
+              "y": 234.000042817261,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-8",
+              "position": "right",
+              "x": 363.0034745986599,
+              "y": 234.000042817261,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-8",
+              "position": "bottom",
+              "x": 178.0046188200696,
+              "y": 474.99436026046135,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 523.7257142857142,
+          "y": -756.617142857143
+        },
+        "data": {
+          "label": "R U R' U' R' F R2 U' R' U' R U R' F'",
+          "alg": "R U R' U' R' F R2 U' R' U' R U R' F'",
+          "rawAlgorithm": "F R U' R' U' R U R' F'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 715.4331902486409,
+      "sourceY": -106.97145515050084,
+      "targetX": 711.7303331057838,
+      "targetY": -261.62278259668165
+    }
+  ],
+  "algPresets": [
+    {
+      "id": "default-1746824659937-1",
+      "algorithm": "F R U' R' U' R U R' F'",
+      "name": "setup",
+      "color": "#ffcc00"
+    },
+    {
+      "id": "default-1746824659937-2",
+      "algorithm": "R U R' U' R' F R F'",
+      "name": "Sexy Sledge",
+      "color": "#3399ff"
+    },
+    {
+      "id": "user-1746896676390-l240h22",
+      "algorithm": "B' R' U R U R' U' R B",
+      "name": "Mirror setup",
+      "color": "#00ff4c"
+    },
+    {
+      "id": "user-1746896788122-83dzw9k",
+      "algorithm": "B' R' U R U' R' U' R B",
+      "name": "Inverse Mirror setup",
+      "color": "#ff00b3"
+    },
+    {
+      "id": "user-1746896810782-p4jskjt",
+      "algorithm": "R U R' U'",
+      "name": "Sexy Move",
+      "color": "#26ddcb"
+    }
+  ]
+}
