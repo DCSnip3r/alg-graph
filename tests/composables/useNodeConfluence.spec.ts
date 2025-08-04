@@ -59,11 +59,19 @@ describe('useNodeConfluence', () => {
     const algA = "R U R' U R U2' R' U2 R U R' U R U2' R'";
     const algB = "R U2 R' U' R U' R'";
     const algC = "R U R' U R U2' R' U' R U R' U R U2' R'"
-    const algD = "R U2 R' U' R U' R' U R U2 R' U' R U' R'"
+    const algD = "R U2 R' U' R U' R' U R U2 R' U' R U' R'";
+    const algE = "U R U2 R' U' R U' R'";
+    const algF = "R U2 R' U' R U' R'";
+    const algG = "U R U2 R' U' R U' R' U'";
+    const algH = "R U2 R' U' R U' R'";
     const { isConfluent } = useAlg();
     const result = await isConfluent(algB, algA);
     const result2 = await isConfluent(algC, algD);
+    const result3 = await isConfluent(algE, algF);
+    const result4 = await isConfluent(algG, algH);
     expect(result === true || typeof result === "string").toBe(true); // Accepts true or AUF string
     expect(result2 === true || typeof result2 === "string").toBe(true); // Accepts true or AUF string
+    expect(result3 === true || typeof result3 === "string").toBe(true); // Accepts true or AUF string
+    expect(result4 === true || typeof result4 === "string").toBe(true); // Accepts true or AUF string
   });
 });
