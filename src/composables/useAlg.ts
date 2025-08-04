@@ -180,7 +180,7 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
     // Build adjustments array based on matchIfAUF setting
     const adjustments = displaySettings.matchIfAUF ? ["U", "U2", "U'", ""] : [""];
     for (let i = 0; i < adjustments.length; i++) {
-      const variant2 = adjustments[i] ? mergeAlg([new Alg(adjustments[i]), alg2]) : alg2;
+      const variant2 = adjustments[i] ? mergeAlg([new Alg(adjustments[i]).invert(), alg2]) : alg2;
       const kVariant2 = kpuzzle.defaultPattern().applyAlg(variant2);
       const variant1 = adjustments[i] ? mergeAlg([alg1, new Alg(adjustments[i]) ]) : alg1;
       const kVariant1 = kpuzzle.defaultPattern().applyAlg(variant1);

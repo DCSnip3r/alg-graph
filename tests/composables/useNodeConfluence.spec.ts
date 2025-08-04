@@ -58,8 +58,12 @@ describe('useNodeConfluence', () => {
     // This test checks the confluence logic using the real implementation
     const algA = "R U R' U R U2' R' U2 R U R' U R U2' R'";
     const algB = "R U2 R' U' R U' R'";
+    const algC = "R U R' U R U2' R' U' R U R' U R U2' R'"
+    const algD = "R U2 R' U' R U' R' U R U2 R' U' R U' R'"
     const { isConfluent } = useAlg();
     const result = await isConfluent(algB, algA);
+    const result2 = await isConfluent(algC, algD);
     expect(result === true || typeof result === "string").toBe(true); // Accepts true or AUF string
+    expect(result2 === true || typeof result2 === "string").toBe(true); // Accepts true or AUF string
   });
 });
