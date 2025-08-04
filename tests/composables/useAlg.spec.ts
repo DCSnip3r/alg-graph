@@ -1,4 +1,8 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { createPinia, setActivePinia } from 'pinia';
+beforeEach(() => {
+  setActivePinia(createPinia());
+});
 import { useAlg } from '../../src/composables/useAlg';
 import { Alg } from 'cubing/alg';
 

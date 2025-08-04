@@ -2,17 +2,13 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createPinia, setActivePinia } from 'pinia';
+let displaySettingsMock: any = { repositionOnConfluence: true, matchIfAUF: true };
+vi.mock('../../src/stores/displaySettingsStore', () => ({
+  useDisplaySettingsStore: vi.fn(() => displaySettingsMock)
+}));
 import { useDisplaySettingsStore } from '../../src/stores/displaySettingsStore';
 import { useNodeConfluence } from '../../src/composables/useNodeConfluence';
-
-// Patch useAlg to control confluence logic
-vi.mock('../../src/composables/useAlg', () => {
-  return {
-    useAlg: () => ({
-      isConfluent: vi.fn((a, b) => a === b)
-    })
-  };
-});
+import { useAlg } from '../../src/composables/useAlg';
 
 describe('useNodeConfluence', () => {
   let updateNodePosition: any;
@@ -23,8 +19,8 @@ describe('useNodeConfluence', () => {
 
   beforeEach(() => {
     setActivePinia(createPinia());
+    displaySettingsMock.repositionOnConfluence = true;
     displaySettings = useDisplaySettingsStore();
-    displaySettings.repositionOnConfluence = true;
 
     nodes = [
       { id: 'n-1', data: { alg: "R U R' U'" }, position: { x: 100, y: 200 } },
@@ -56,5 +52,14 @@ describe('useNodeConfluence', () => {
     nodes.push(newNode);
     await checkAndRepositionNode('n-3', nodes);
     expect(updateNodePosition).not.toHaveBeenCalled();
+  });
+  
+  it('should detect AUF confluence between two algorithms', async () => {
+    // This test checks the confluence logic using the real implementation
+    const algA = "R U R' U R U2' R' U2 R U R' U R U2' R'";
+    const algB = "R U2 R' U' R U' R'";
+    const { isConfluent } = useAlg();
+    const result = await isConfluent(algB, algA);
+    expect(result === true || typeof result === "string").toBe(true); // Accepts true or AUF string
   });
 });

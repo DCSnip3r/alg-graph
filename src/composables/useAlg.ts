@@ -172,16 +172,19 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
     const { useDisplaySettingsStore } = await import('../stores/displaySettingsStore');
     const displaySettings = useDisplaySettingsStore();
     const kpuzzle = await cube3x3x3.kpuzzle();
+    alg1 = typeof alg1 === "string" ? new Alg(alg1) : alg1;
+    alg2 =typeof alg2 === "string" ? new Alg(alg2) : alg2
     const kpattern1 = kpuzzle.defaultPattern().applyAlg(alg1);
+    const kpattern2 = kpuzzle.defaultPattern().applyAlg(alg2);
 
     // Build adjustments array based on matchIfAUF setting
-    const adjustments = displaySettings.matchIfAUF ? ["", "U", "U2", "U'"] : [""];
+    const adjustments = displaySettings.matchIfAUF ? ["U", "U2", "U'", ""] : [""];
     for (let i = 0; i < adjustments.length; i++) {
-      const variant = adjustments[i]
-        ? mergeAlg([typeof alg2 === "string" ? new Alg(alg2) : alg2, new Alg(adjustments[i])])
-        : typeof alg2 === "string" ? new Alg(alg2) : alg2;
-      const kpattern2 = kpuzzle.defaultPattern().applyAlg(variant);
-      if (kpattern1.isIdentical(kpattern2)) {
+      const variant2 = adjustments[i] ? mergeAlg([new Alg(adjustments[i]), alg2]) : alg2;
+      const kVariant2 = kpuzzle.defaultPattern().applyAlg(variant2);
+      const variant1 = adjustments[i] ? mergeAlg([alg1, new Alg(adjustments[i]) ]) : alg1;
+      const kVariant1 = kpuzzle.defaultPattern().applyAlg(variant1);
+      if (kpattern1.isIdentical(kVariant2) || kpattern2.isIdentical(kVariant1)  || kVariant1.isIdentical(kVariant2)) {
         return adjustments[i] === "" ? true : adjustments[i]; // true if no adjustment, else adjustment string
       }
     }
