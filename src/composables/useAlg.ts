@@ -111,7 +111,7 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
   const isSameFace = (move1: string | Alg, move2: string | Alg): boolean => {
     const face1 = getMoveFace(move1);
     const face2 = getMoveFace(move2);
-    return face1 && face2 && face1 === face2;
+    return !!face1 && !!face2 && face1 === face2;
   }
 
   function detectHiddenDoubleTurn(moves: Alg[], j: number, i: number) {
@@ -147,6 +147,36 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
     return setup;
   };
 
+  function detectInverses(moves: Alg[], i: number, j: number) {
+    return moves[i].toString() === moves[j].invert().toString() || (isDoubleTurn(moves[i]) && isDoubleTurn(moves[j]) && isSameFace(moves[i], moves[j]));
+  }
+
+  async function isConfluent(alg1: string | Alg, alg2: string | Alg): Promise<true | string | false> {
+    // Dynamically import the displaySettingsStore to avoid circular deps
+    const { useDisplaySettingsStore } = await import('../stores/displaySettingsStore');
+    const displaySettings = useDisplaySettingsStore();
+    const kpuzzle = await cube3x3x3.kpuzzle();
+    alg1 = typeof alg1 === "string" ? new Alg(alg1) : alg1;
+    alg2 =typeof alg2 === "string" ? new Alg(alg2) : alg2
+
+    const kpattern = kpuzzle.defaultPattern().applyAlg(alg2);
+
+    // Build adjustments array based on matchIfAUF setting
+    const adjustments = displaySettings.matchIfAUF ? ["", "U", "U2", "U'"] : [""];
+
+    // Sandwich alg1 with all possible U adjustments and compare against alg2
+    for (let i = 0; i < adjustments.length; i++) {
+      for (let j = 0; j < adjustments.length; j++) {
+        const variant = mergeAlg([new Alg(adjustments[i]), alg1, new Alg(adjustments[j])]);
+        const kVariant = kpuzzle.defaultPattern().applyAlg(variant);
+        if (kVariant.isIdentical(kpattern)) {
+          return adjustments[i] === "" ? true : `${adjustments[i]} ALG ${adjustments[j]}`; // true if no adjustment, else adjustment string
+        }
+      }
+    }
+    return false;
+  }
+
   return {
     Alg,
     algMovesToArray,
@@ -159,36 +189,6 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
     getMoveFace,
     isDoubleTurn,
     isConfluent,
-  }
-
-
-
-  function detectInverses(moves: Alg[], i: number, j: number) {
-    return moves[i].toString() === moves[j].invert().toString() || (isDoubleTurn(moves[i]) && isDoubleTurn(moves[j]) && isSameFace(moves[i], moves[j]));
-  }
-
-  async function isConfluent(alg1: string | Alg, alg2: string | Alg): Promise<true | string | false> {
-    // Dynamically import the displaySettingsStore to avoid circular deps
-    const { useDisplaySettingsStore } = await import('../stores/displaySettingsStore');
-    const displaySettings = useDisplaySettingsStore();
-    const kpuzzle = await cube3x3x3.kpuzzle();
-    alg1 = typeof alg1 === "string" ? new Alg(alg1) : alg1;
-    alg2 =typeof alg2 === "string" ? new Alg(alg2) : alg2
-    const kpattern1 = kpuzzle.defaultPattern().applyAlg(alg1);
-    const kpattern2 = kpuzzle.defaultPattern().applyAlg(alg2);
-
-    // Build adjustments array based on matchIfAUF setting
-    const adjustments = displaySettings.matchIfAUF ? ["U", "U2", "U'", ""] : [""];
-    for (let i = 0; i < adjustments.length; i++) {
-      const variant2 = adjustments[i] ? mergeAlg([new Alg(adjustments[i]).invert(), alg2]) : alg2;
-      const kVariant2 = kpuzzle.defaultPattern().applyAlg(variant2);
-      const variant1 = adjustments[i] ? mergeAlg([alg1, new Alg(adjustments[i]) ]) : alg1;
-      const kVariant1 = kpuzzle.defaultPattern().applyAlg(variant1);
-      if (kpattern1.isIdentical(kVariant2) || kpattern2.isIdentical(kVariant1)  || kVariant1.isIdentical(kVariant2)) {
-        return adjustments[i] === "" ? true : adjustments[i]; // true if no adjustment, else adjustment string
-      }
-    }
-    return false;
   }
 }
 
