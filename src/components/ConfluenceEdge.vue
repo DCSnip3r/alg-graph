@@ -18,8 +18,11 @@ const { getBackgroundColorForAlgorithm, getTextColorForBackground } = useColorUt
 const displaySettings = useDisplaySettingsStore();
 
 const algorithmString = computed(() => props.data?.algorithm || props.label || '');
-const backgroundColor = computed(() => displaySettings.showColorizedEdgeLabels ? getBackgroundColorForAlgorithm(String(algorithmString.value)) : '#ffffff');
+// Always compute the color for the algorithm; the toggle should only hide the label, not remove edge styling.
+const backgroundColor = computed(() => getBackgroundColorForAlgorithm(String(algorithmString.value)));
 const textColor = computed(() => getTextColorForBackground(backgroundColor.value));
+// Mirror SpecialEdge behavior: when colorized labels are disabled, just hide the label container (keep colored stroke)
+const shouldHideLabel = computed(() => !displaySettings.showColorizedEdgeLabels && backgroundColor.value !== '#ffffff');
 
 const tooltip = computed(() => {
   const target = props.target;
@@ -37,6 +40,7 @@ const onDelete = (e: MouseEvent) => {
   <BaseEdge :id="props.id" :style="{ ...(props.style||{}), strokeDasharray: '5 5', stroke: backgroundColor, strokeWidth: 3 }" :path="path[0]" :marker-end="props.markerEnd" />
   <EdgeLabelRenderer>
     <div
+      v-if="!shouldHideLabel"
       class="nodrag nopan confluence-edge-label"
       :style="{ position: 'absolute', transform: `translate(-50%, -50%) translate(${path[1]}px,${path[2]}px)`, backgroundColor: backgroundColor, color: textColor, pointerEvents: 'all',}"
       :title="tooltip"

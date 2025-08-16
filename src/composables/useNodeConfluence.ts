@@ -18,7 +18,7 @@ export function useNodeConfluence({ findNode, updateNodePosition, addEdges, edge
    * Core check for confluence. Optionally repositions the node and/or creates a confluence edge.
    * Returns metadata about the first confluence detected.
    */
-  const checkAndRepositionNode = async (updatedNodeId: string, allNodes: Node[], context?: { parentId?: string; rawSegment?: string }) => {
+  const checkAndRepositionNode = async (updatedNodeId: string, allNodes: Node[], context?: { parentId?: string; rawSegment?: string; sourceHandle?: string }) => {
     const updatedNode = findNode(updatedNodeId);
     if (!updatedNode) return;
 
@@ -34,7 +34,7 @@ export function useNodeConfluence({ findNode, updateNodePosition, addEdges, edge
         }
 
         // Create confluence edge if enabled & we have enough context
-        if (displaySettings.createConfluenceEdges && addEdges && edges && context?.parentId && context?.rawSegment) {
+  if (displaySettings.createConfluenceEdges && addEdges && edges && context?.parentId && context?.rawSegment) {
           const aufVariant = confluenceResult === true ? 'exact' : typeof confluenceResult === 'string' ? confluenceResult : 'exact';
           const sourceId = context.parentId;
           const targetId = existingNode.id; // Confluent existing node
@@ -48,6 +48,7 @@ export function useNodeConfluence({ findNode, updateNodePosition, addEdges, edge
               id,
               source: sourceId,
               target: targetId,
+              sourceHandle: context.sourceHandle, // ensure same originating handle as triggering edge
               targetHandle: existingNode.data?.targetHandleId || 'handle-b',
               label,
               type: 'confluence',

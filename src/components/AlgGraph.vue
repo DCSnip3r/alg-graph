@@ -71,7 +71,8 @@ onConnect((connection) => {
     // After updating the node's algorithm, check for confluence and reposition if needed
     // This is async and may take a while
     // console.log('[AlgGraph] Checking for confluence and possible reposition for node', targetNode.id);
-  checkAndRepositionNode(targetNode.id, nodes.value, { parentId: sourceNode.id, rawSegment: rawAlgForEdge });
+  const srcHandle = (connection.sourceHandle ?? undefined) as string | undefined;
+  checkAndRepositionNode(targetNode.id, nodes.value, { parentId: sourceNode.id, rawSegment: rawAlgForEdge, sourceHandle: srcHandle });
 
     const newEdge = {
       ...connection,

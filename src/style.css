@@ -73,26 +73,7 @@ button:focus-visible {
   text-align: center;
 }
 
-/* Reverse animation direction for all animated edges (special + confluence) */
-/* Tunable reverse animated edge variables */
-:root {
-  --edge-flow-duration: 0.4s; /* adjust between 1.5s (faster) and 3s (slower) */
-  --edge-flow-distance: 400;   /* stroke-dashoffset travel */
-}
-/* Override Vue Flow default animated edge path: reverse & moderate speed */
-.vue-flow__edge.animated .vue-flow__edge-path,
-.vue-flow__connection.animated .vue-flow__edge-path {
-  animation-direction: reverse !important;
-  animation-duration: var(--edge-flow-duration) !important;
-}
-/* Force our own animation if reverse not honored (add .vf-force-reverse on container) */
-.vf-force-reverse .vue-flow__edge.animated .vue-flow__edge-path {
-  animation: vf-dash-reverse var(--edge-flow-duration) linear infinite !important;
-}
-@keyframes vf-dash-reverse {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: var(--edge-flow-distance); }
-}
+/* Removed custom reverse edge animation overrides to use default Vue Flow animations */
 
 @media (prefers-color-scheme: light) {
   :root {

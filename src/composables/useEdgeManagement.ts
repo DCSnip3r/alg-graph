@@ -21,9 +21,9 @@ export function useEdgeManagement({ edges, nodes, findNode, updateNodeData, upda
       const edgeSegmentAlg = new Alg(newAlgorithm);
       const newTargetCombinedAlg = sourceAlg.concat(edgeSegmentAlg).experimentalSimplify({ cancel: true }).toString();
 
-      updateNodeData(targetNode.id, { alg: newTargetCombinedAlg, label: newTargetCombinedAlg, rawAlgorithm: newAlgorithm });
-      
-  await checkAndRepositionNode(targetNode.id, nodes.value, { parentId: sourceNode.id, rawSegment: newAlgorithm });
+  updateNodeData(targetNode.id, { alg: newTargetCombinedAlg, label: newTargetCombinedAlg, rawAlgorithm: newAlgorithm });
+
+	await checkAndRepositionNode(targetNode.id, nodes.value, { parentId: sourceNode.id, rawSegment: newAlgorithm, sourceHandle: edge.sourceHandle });
     }
   };
 
