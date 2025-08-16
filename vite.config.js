@@ -15,6 +15,17 @@ export default defineConfig({
     })
   ],
   build: {
-    sourcemap: true
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          cubing: [
+            'cubing/alg',
+            'cubing/puzzles',
+            'cubing/twisty'
+          ]
+        }
+      }
+    }
   }
 });

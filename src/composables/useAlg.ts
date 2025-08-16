@@ -1,5 +1,5 @@
 import { Alg } from 'cubing/alg';
-import { cube3x3x3 } from "cubing/puzzles";
+import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
 
 export function useAlg() {
 
@@ -151,9 +151,9 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
   }
 
   async function isConfluent(alg1: string | Alg, alg2: string | Alg): Promise<true | string | false> {
-    // Dynamically import the displaySettingsStore to avoid circular deps
-    const { useDisplaySettingsStore } = await import('../stores/displaySettingsStore');
+    // Lazily import only the 3x3 puzzle to avoid bundling other puzzles
     const displaySettings = useDisplaySettingsStore();
+    const { cube3x3x3 } = await import('cubing/puzzles');
     const kpuzzle = await cube3x3x3.kpuzzle();
     alg1 = typeof alg1 === "string" ? new Alg(alg1) : alg1;
     alg2 =typeof alg2 === "string" ? new Alg(alg2) : alg2

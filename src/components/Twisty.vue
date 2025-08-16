@@ -1,6 +1,8 @@
 <template>
   <div class="twisty-container">
+    <div v-if="!isReady" class="twisty-loading">Loading...</div>
     <twisty-player
+      v-else
       class="twisty-c"
       :alg="alg || 'U U\''"
       :experimental-setup-anchor="setupAnchor"
@@ -11,40 +13,37 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from "vue";
-import { TwistyPlayer } from "cubing/twisty";
-import { useDisplaySettingsStore } from "../stores/displaySettingsStore";
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
 
-export default defineComponent({
-  name: "Twisty",
-  props: {
-    setupAnchor: {
-      type: String,
-      required: false,
-      default: "end", //start-end
-    },
-    vis: {
-      type: String,
-      required: false,
-      default: "", // Removed default value as it will now be controlled by the store
-    },
-    alg: {
-      type: String,
-      required: false,
-      default: "",
-    },
-  },
-  setup() {
-    const displaySettingsStore = useDisplaySettingsStore();
-    return { displaySettingsStore };
-  },
-  mounted() {
-    if (!customElements.get("twisty-player")) {
-      customElements.define("twisty-player", TwistyPlayer);
-    }
-  },
+interface Props {
+  setupAnchor?: string;
+  vis?: string;
+  alg?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  setupAnchor: 'end',
+  vis: '',
+  alg: ''
 });
+
+const displaySettingsStore = useDisplaySettingsStore();
+const isReady = ref(false);
+
+onMounted(async () => {
+  try {
+    if (!customElements.get('twisty-player')) {
+      const { TwistyPlayer } = await import('cubing/twisty');
+      customElements.define('twisty-player', TwistyPlayer);
+    }
+  } finally {
+    isReady.value = true; // ensure we always clear loading
+  }
+});
+
+const { alg, setupAnchor } = props;
 </script>
 
 <style scoped>
@@ -59,5 +58,15 @@ export default defineComponent({
   height: 350px;
   width: 350px;
   margin: auto;
+}
+.twisty-loading {
+  height: 350px;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #ccc;
+  border: 1px dashed #555;
 }
 </style>

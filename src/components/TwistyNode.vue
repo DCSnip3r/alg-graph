@@ -15,8 +15,9 @@ interface ExtendedNodeProps extends NodeProps {
   };
 }
 
-import Twisty from './Twisty.vue';
-const TwistyComponent = Twisty as DefineComponent<{}, {}, any>; // Explicitly type the Twisty component
+import { defineAsyncComponent } from 'vue';
+// Lazy load the Twisty component so heavy cubing code is split
+const TwistyComponent = defineAsyncComponent(() => import('./Twisty.vue')) as DefineComponent<{}, {}, any>;
 import { useColorUtils } from '../composables/useColorUtils'; // Import the composable
 
 const props = defineProps<ExtendedNodeProps>(); // Use the extended type
