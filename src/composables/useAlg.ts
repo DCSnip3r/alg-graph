@@ -32,14 +32,14 @@ export function useAlg() {
     const inverted = move.invert();
     const moveStr = inverted.toString();
     const match = moveStr.match(/^([A-Za-z]+)/);
-    if (match) {
-      const face = match[1];
-      if (face === a) {
-        return new Alg(b + moveStr.slice(face.length));
-      } else if (face === b) {
-        return new Alg(a + moveStr.slice(face.length));
+      if (match) {
+        const face = match[1];
+        if (face === a) {
+          return new Alg(b + moveStr.slice(face.length));
+        } else if (face === b) {
+          return new Alg(a + moveStr.slice(face.length));
+        }
       }
-    }
     return inverted;
   });
   return processedMoves
@@ -79,9 +79,8 @@ const mirrorAlg = (algOrString: string | Alg, swapPair: [string, string]): Alg =
       const match = moveStr.match(/^([A-Za-z]+w?)(2)('?)/);
       if (match) {
         const face = match[1];
-        const amount = match[2];
         const prime = match[3];
-        // Expand "X2" -> "X X", "X2'" -> "X' X'"
+        // Expand "X2" -> "X X", "X2'" -> "X' X'" (amount captured but not required)
         const singleMove = new Alg(face + (prime || ""));
         expandedMoves.push(singleMove, singleMove);
       } else {

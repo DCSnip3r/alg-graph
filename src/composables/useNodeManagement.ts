@@ -53,16 +53,16 @@ export function useNodeManagement({ addNodes, addEdges, updateNodeData, setNodes
     updateNodeData(nodeId, { targetHandleId: newTargetHandleId });
   };
 
-  // Helper: measure half expanded dimensions, log values, and use fixed width for TwistyNode
+  // Helper: measure half expanded dimensions, prefer real dimensions when available
   function getHalfDimensions(node: NodeWithDimensions): { halfHeight: number; halfWidth: number } {
-    // Originally meant to read the actual node size, but it doesn't work well because it can't get the node size for expansion. 
-    // const height = node.dimensions?.height - 26;
-    // const width =  node.dimensions?.width - 26;
-    // Twisty.vue sets width to 350px, so use that directly
-    // 26px becauses of handle width. 
+    // Deduct handle width (26px) if dimensions are available, else fallback to empirical constants
+    const rawHeight = node.dimensions?.height;
+    const rawWidth = node.dimensions?.width;
+    const adjustedHeight = rawHeight ? Math.max(rawHeight - 26, 0) : 376; // 188*2 fallback
+    const adjustedWidth = rawWidth ? Math.max(rawWidth - 26, 0) : 324; // 162*2 fallback
     return {
-      halfHeight: 188, // height * 0.5,
-      halfWidth: 162 // width * 0.5,
+      halfHeight: adjustedHeight / 2,
+      halfWidth: adjustedWidth / 2,
     };
   }
 

@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
-import { useSavedGraphsStore } from '../../src/stores/savedGraphsStore';
 import { useGraphPersistence } from '../../src/composables/useGraphPersistence';
 
 describe('useGraphPersistence', () => {
@@ -14,8 +13,8 @@ describe('useGraphPersistence', () => {
     mockSetEdges = vi.fn();
     mockNodeIdCounter = { value: 1 };
 
-    // Mock localStorage
-    global.localStorage = {
+  // Mock localStorage using globalThis for TS compatibility
+  (globalThis as any).localStorage = {
       getItem: vi.fn(),
       setItem: vi.fn(),
       removeItem: vi.fn(),
@@ -24,7 +23,6 @@ describe('useGraphPersistence', () => {
   });
 
   it('should save a graph', () => {
-    const savedGraphsStore = useSavedGraphsStore();
     const { saveGraphToStore } = useGraphPersistence({
       nodes: { value: [] },
       edges: { value: [] },
@@ -34,11 +32,11 @@ describe('useGraphPersistence', () => {
     });
 
     saveGraphToStore('TestGraph');
-    expect(global.localStorage.setItem).toHaveBeenCalled();
+  expect((globalThis as any).localStorage.setItem).toHaveBeenCalled();
   });
 
   it('should load a graph and update nodeIdCounter', () => {
-    global.localStorage.getItem.mockReturnValue(
+  (globalThis as any).localStorage.getItem.mockReturnValue(
       JSON.stringify({ nodes: [{ id: 'n-1' }, { id: 'n-2' }], edges: [] })
     );
 
