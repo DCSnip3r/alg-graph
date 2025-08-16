@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { Handle, Position } from '@vue-flow/core';
 import type { NodeProps } from '@vue-flow/core';
 import type { DefineComponent } from 'vue';
@@ -36,6 +36,7 @@ const onDeleteNode = () => {
 const computedLabel = computed(() => {
   return colorizeLabel(props.data.label || ''); // Use the composable function
 });
+// Confluence badge feature removed
 
 // Define all potential handles for this node type
 const potentialHandles = [
@@ -96,6 +97,7 @@ const getHandleStyle = (handleId: string) => {
         />
       </template>
     </div>
+  <!-- Confluence badge removed -->
   </div>
 </template>
 
@@ -205,6 +207,7 @@ const getHandleStyle = (handleId: string) => {
   box-shadow: 0 0 0 1px purple;
   padding: 8px;
 }
+/* Confluence badge styles removed */
 
 :deep(.highlight) { /* General highlight styles, specific colors are now inline */
   padding: 0 2px; /* Example: add some horizontal padding */

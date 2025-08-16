@@ -41,6 +41,7 @@ pnpm run preview
 - Visualize cube algorithms as a graph.
 - Drag and drop nodes to create and manage algorithms.
 - Save and load graphs locally or from files.
+- Confluence detection (with optional AUF variants) and dashed informational confluence edges (toggleable) plus node badges summarizing inbound confluent variants.
 
 ## License
 This project is licensed under the MIT License.

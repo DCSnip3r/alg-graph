@@ -36,4 +36,12 @@ describe('useEdgeManagement', () => {
     expect(mockEdges.value[0].data.algorithm).toBe('R U R\'');
     expect(mockUpdateNodeData).toHaveBeenCalled();
   });
+
+  it('should not update or propagate for confluence edges', () => {
+    mockEdges.value = [{ id: 'ce-n1-n2-x', type: 'confluence', source: 'n1', target: 'n2', data: { algorithm: 'R U' }, label: 'R U' }];
+    mockFindNode.mockImplementation((id: any) => ({ id, data: { alg: 'R U' } }));
+    handleEdgeAlgorithmUpdate({ edgeId: 'ce-n1-n2-x', newAlgorithm: 'R U R' });
+    expect(mockEdges.value[0].data.algorithm).toBe('R U'); // unchanged
+    expect(mockUpdateNodeData).not.toHaveBeenCalled();
+  });
 });

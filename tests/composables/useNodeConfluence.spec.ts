@@ -2,7 +2,7 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createPinia, setActivePinia } from 'pinia';
-let displaySettingsMock: any = { repositionOnConfluence: true, matchIfAUF: true };
+let displaySettingsMock: any = { repositionOnConfluence: true, matchIfAUF: true, createConfluenceEdges: true };
 vi.mock('../../src/stores/displaySettingsStore', () => ({
   useDisplaySettingsStore: vi.fn(() => displaySettingsMock)
 }));
@@ -16,6 +16,9 @@ describe('useNodeConfluence', () => {
   let nodes: any[];
   let checkAndRepositionNode: any;
   let displaySettings: any;
+  let edges: any;
+  let addEdges: any;
+  let updateNodeData: any;
 
   beforeEach(() => {
     setActivePinia(createPinia());
@@ -28,7 +31,13 @@ describe('useNodeConfluence', () => {
     ];
     updateNodePosition = vi.fn();
     findNode = vi.fn((id) => nodes.find(n => n.id === id));
-    const composable = useNodeConfluence({ findNode, updateNodePosition });
+    edges = { value: [] };
+    addEdges = vi.fn((e: any[]) => { edges.value.push(...e); });
+    updateNodeData = vi.fn((id: string, data: any) => {
+      const n = nodes.find(n => n.id === id);
+      if (n) n.data = { ...n.data, ...data };
+    });
+    const composable = useNodeConfluence({ findNode, updateNodePosition, addEdges, edges, updateNodeData });
     checkAndRepositionNode = composable.checkAndRepositionNode;
   });
 
@@ -52,6 +61,42 @@ describe('useNodeConfluence', () => {
     nodes.push(newNode);
     await checkAndRepositionNode('n-3', nodes);
     expect(updateNodePosition).not.toHaveBeenCalled();
+  });
+  
+  it('creates confluence edge when toggle enabled', async () => {
+    // Arrange confluent nodes
+    const newNode = { id: 'n-3', data: { alg: "F R U' R' U' R U R' F'", rawAlgorithm: "R U" }, position: { x: 0, y: 0 } };
+    nodes.push(newNode);
+    await checkAndRepositionNode('n-3', nodes, { parentId: 'n-1', rawSegment: "R U" });
+    expect(addEdges).toHaveBeenCalled();
+    expect(edges.value.some((e: any) => e.type === 'confluence')).toBe(true);
+  });
+
+  it('does not create confluence edge when toggle disabled', async () => {
+    displaySettings.createConfluenceEdges = false;
+    const newNode = { id: 'n-4', data: { alg: "F R U' R' U' R U R' F'", rawAlgorithm: "R U" }, position: { x: 0, y: 0 } };
+    nodes.push(newNode);
+    await checkAndRepositionNode('n-4', nodes, { parentId: 'n-1', rawSegment: "R U" });
+    expect(edges.value.every((e: any) => e.source !== 'n-1' || e.target !== 'n-2')).toBe(true);
+  });
+
+  it('prevents duplicate confluence edges', async () => {
+  displaySettings.createConfluenceEdges = true; // re-enable after prior test disabled it
+    const newNode = { id: 'n-5', data: { alg: "F R U' R' U' R U R' F'", rawAlgorithm: "R U" }, position: { x: 0, y: 0 } };
+    nodes.push(newNode);
+    await checkAndRepositionNode('n-5', nodes, { parentId: 'n-1', rawSegment: "R U" });
+    await checkAndRepositionNode('n-5', nodes, { parentId: 'n-1', rawSegment: "R U" });
+    const confluenceEdges = edges.value.filter((e: any) => e.type === 'confluence');
+    expect(confluenceEdges.length).toBe(1);
+  });
+
+  it('updates confluenceInbound metadata on existing confluent node', async () => {
+    displaySettings.createConfluenceEdges = true;
+    const newNode = { id: 'n-6', data: { alg: "F R U' R' U' R U R' F'", rawAlgorithm: "R U" }, position: { x: 0, y: 0 } };
+    nodes.push(newNode);
+    await checkAndRepositionNode('n-6', nodes, { parentId: 'n-1', rawSegment: "R U" });
+    const existing = nodes.find(n => n.id === 'n-2');
+    expect(existing?.data.confluenceInbound?.count).toBeGreaterThanOrEqual(1);
   });
   
   it('should detect AUF confluence between two algorithms', async () => {

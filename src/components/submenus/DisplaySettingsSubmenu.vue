@@ -32,6 +32,16 @@
           Allow AUF confluence (U/U'/U2)
         </label>
       </div>
+      <div class="setting-item inline-setting" style="margin-left: 24px;">
+        <label for="create-confluence-edges">
+          <input
+            id="create-confluence-edges"
+            type="checkbox"
+            v-model="displaySettingsStore.createConfluenceEdges"
+          />
+          Create confluence edges
+        </label>
+      </div>
       <div class="setting-item">
         <div class="inline-setting">
           <label for="visualization-mode">Visualization Mode:</label>

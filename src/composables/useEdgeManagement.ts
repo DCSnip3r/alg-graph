@@ -2,12 +2,13 @@ import type { Edge } from '@vue-flow/core';
 import { Alg } from 'cubing/alg';
 import { useNodeConfluence } from './useNodeConfluence';
 
-export function useEdgeManagement({ edges, nodes, findNode, updateNodeData, updateNodePosition }: any) {
-  const { checkAndRepositionNode } = useNodeConfluence({ findNode, updateNodePosition });
+export function useEdgeManagement({ edges, nodes, findNode, updateNodeData, updateNodePosition, addEdges }: any) {
+  const { checkAndRepositionNode } = useNodeConfluence({ findNode, updateNodePosition, addEdges, edges, updateNodeData });
 
   const handleEdgeAlgorithmUpdate = async ({ edgeId, newAlgorithm }: { edgeId: string, newAlgorithm: string }) => {
     const edge = edges.value.find((e: Edge) => e.id === edgeId);
-    if (!edge) return;
+  if (!edge) return;
+  if (edge.type === 'confluence') return; // confluence edges are informational only
 
     edge.data = { algorithm: newAlgorithm };
     edge.label = newAlgorithm;
@@ -22,7 +23,7 @@ export function useEdgeManagement({ edges, nodes, findNode, updateNodeData, upda
 
       updateNodeData(targetNode.id, { alg: newTargetCombinedAlg, label: newTargetCombinedAlg, rawAlgorithm: newAlgorithm });
       
-      await checkAndRepositionNode(targetNode.id, nodes.value);
+  await checkAndRepositionNode(targetNode.id, nodes.value, { parentId: sourceNode.id, rawSegment: newAlgorithm });
     }
   };
 

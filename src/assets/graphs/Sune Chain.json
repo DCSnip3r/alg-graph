@@ -1,0 +1,1606 @@
+{
+  "name": "Sune Chain",
+  "nodes": [
+    {
+      "id": "n-1",
+      "type": "twisty",
+      "dimensions": {
+        "width": 375,
+        "height": 431
+      },
+      "computedPosition": {
+        "x": 113.06407455797489,
+        "y": 86.33296095625582,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-1",
+            "position": "top",
+            "x": 177.5,
+            "y": -7.5,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-1",
+            "position": "left",
+            "x": -7.5,
+            "y": 205.5,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-1",
+            "position": "right",
+            "x": 362.5,
+            "y": 205.5,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "type": "target",
+            "nodeId": "n-1",
+            "position": "bottom",
+            "x": 177.5,
+            "y": 418.5,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 113.06407455797489,
+        "y": 86.33296095625582
+      },
+      "data": {
+        "label": "Solved",
+        "alg": "",
+        "targetHandleId": "handle-r",
+        "rawAlgorithm": "",
+        "collapsed": false,
+        "confluenceInbound": {
+          "count": 3,
+          "variants": [
+            "exact"
+          ]
+        }
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffffff",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-9",
+      "type": "twisty",
+      "dimensions": {
+        "width": 375,
+        "height": 431
+      },
+      "computedPosition": {
+        "x": -415.3938734254061,
+        "y": -463.55365503814977,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-9",
+            "position": "top",
+            "x": 177.50892041615074,
+            "y": -7.499569376906549,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-9",
+            "position": "left",
+            "x": -7.499569376906549,
+            "y": 205.50527027102115,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-9",
+            "position": "right",
+            "x": 362.48764827646045,
+            "y": 205.50527027102115,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "type": "target",
+            "nodeId": "n-9",
+            "position": "bottom",
+            "x": 177.50892041615074,
+            "y": 418.51010991894884,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -415.3938734254061,
+        "y": -463.55365503814977
+      },
+      "data": {
+        "label": "R U R' U R U2' R'",
+        "alg": "R U R' U R U2' R'",
+        "rawAlgorithm": "R U R' U R U2' R'",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffcc00",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-10",
+      "type": "twisty",
+      "dimensions": {
+        "width": 375,
+        "height": 487
+      },
+      "computedPosition": {
+        "x": -411.8084349562909,
+        "y": -1184.2267873303126,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-10",
+            "position": "top",
+            "x": 177.50892041615074,
+            "y": -7.499569376906549,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-10",
+            "position": "left",
+            "x": -7.499569376906549,
+            "y": 233.50162012589155,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-10",
+            "position": "right",
+            "x": 362.48764827646045,
+            "y": 233.50162012589155,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-b",
+            "type": "target",
+            "nodeId": "n-10",
+            "position": "bottom",
+            "x": 177.50892041615074,
+            "y": 474.50280962868965,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": -411.8084349562909,
+        "y": -1184.2267873303126
+      },
+      "data": {
+        "label": "R U R' U R U' R' U R U2' R'",
+        "alg": "R U R' U R U' R' U R U2' R'",
+        "rawAlgorithm": "R U R' U R U2' R'",
+        "targetHandleId": "handle-b"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffcc00",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-11",
+      "type": "twisty",
+      "dimensions": {
+        "width": 375,
+        "height": 487
+      },
+      "computedPosition": {
+        "x": 105.73838918895757,
+        "y": -1726.0481287965126,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-t",
+            "type": "source",
+            "nodeId": "n-11",
+            "position": "top",
+            "x": 177.50892041615074,
+            "y": -7.499569376906549,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-b",
+            "type": "source",
+            "nodeId": "n-11",
+            "position": "bottom",
+            "x": 177.50892041615074,
+            "y": 474.50280962868965,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-11",
+            "position": "right",
+            "x": 362.48764827646045,
+            "y": 233.50162012589155,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-l",
+            "type": "target",
+            "nodeId": "n-11",
+            "position": "left",
+            "x": -7.499569376906549,
+            "y": 233.50162012589155,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 105.73838918895757,
+        "y": -1726.0481287965126
+      },
+      "data": {
+        "label": "R U R' U R U' R' U R U' R' U R U2' R'",
+        "alg": "R U R' U R U' R' U R U' R' U R U2' R'",
+        "rawAlgorithm": "R U R' U R U2' R'",
+        "targetHandleId": "handle-l"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffcc00",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-12",
+      "type": "twisty",
+      "dimensions": {
+        "width": 375,
+        "height": 543
+      },
+      "computedPosition": {
+        "x": 638.0192578666594,
+        "y": -1238.2605992496885,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-b",
+            "type": "source",
+            "nodeId": "n-12",
+            "position": "bottom",
+            "x": 177.50115863395743,
+            "y": 530.4910565905413,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-12",
+            "position": "left",
+            "x": -7.504800527282986,
+            "y": 261.4932276070528,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-12",
+            "position": "right",
+            "x": 362.5067194935034,
+            "y": 261.4932276070528,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-t",
+            "type": "target",
+            "nodeId": "n-12",
+            "position": "top",
+            "x": 177.50115863395743,
+            "y": -7.504601376435748,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": true,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 638.0192578666594,
+        "y": -1238.2605992496885
+      },
+      "data": {
+        "label": "R U R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+        "alg": "R U R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+        "rawAlgorithm": "R U R' U R U2' R'",
+        "targetHandleId": "handle-t"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffcc00",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    },
+    {
+      "id": "n-13",
+      "type": "twisty",
+      "dimensions": {
+        "width": 375,
+        "height": 543
+      },
+      "computedPosition": {
+        "x": 639.6272280802059,
+        "y": -492.01125480274186,
+        "z": 0
+      },
+      "handleBounds": {
+        "source": [
+          {
+            "id": "handle-b",
+            "type": "source",
+            "nodeId": "n-13",
+            "position": "bottom",
+            "x": 177.5,
+            "y": 530.5,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-l",
+            "type": "source",
+            "nodeId": "n-13",
+            "position": "left",
+            "x": -7.5,
+            "y": 261.5,
+            "width": 20,
+            "height": 20
+          },
+          {
+            "id": "handle-r",
+            "type": "source",
+            "nodeId": "n-13",
+            "position": "right",
+            "x": 362.5,
+            "y": 261.5,
+            "width": 20,
+            "height": 20
+          }
+        ],
+        "target": [
+          {
+            "id": "handle-t",
+            "type": "target",
+            "nodeId": "n-13",
+            "position": "top",
+            "x": 177.5,
+            "y": -7.5,
+            "width": 20,
+            "height": 20
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "initialized": false,
+      "isParent": false,
+      "position": {
+        "x": 639.6272280802059,
+        "y": -492.01125480274186
+      },
+      "data": {
+        "label": "R U R' U R U' R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+        "alg": "R U R' U R U' R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+        "rawAlgorithm": "R U R' U R U2' R'",
+        "targetHandleId": "handle-t"
+      },
+      "events": {},
+      "style": {
+        "borderColor": "#ffcc00",
+        "borderWidth": "8px",
+        "borderStyle": "solid",
+        "borderRadius": "4px"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "en-1-n-9-handle-b",
+      "type": "special",
+      "source": "n-1",
+      "target": "n-9",
+      "sourceHandle": "handle-l",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R U R' U R U2' R'"
+      },
+      "events": {},
+      "label": "R U R' U R U2' R'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-1",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 431
+        },
+        "computedPosition": {
+          "x": 113.06407455797489,
+          "y": 86.33296095625582,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "top",
+              "x": 177.5,
+              "y": -7.5,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "left",
+              "x": -7.5,
+              "y": 205.5,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "right",
+              "x": 362.5,
+              "y": 205.5,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-1",
+              "position": "bottom",
+              "x": 177.5,
+              "y": 418.5,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 113.06407455797489,
+          "y": 86.33296095625582
+        },
+        "data": {
+          "label": "Solved",
+          "alg": "",
+          "targetHandleId": "handle-r",
+          "rawAlgorithm": "",
+          "collapsed": false,
+          "confluenceInbound": {
+            "count": 3,
+            "variants": [
+              "exact"
+            ]
+          }
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-9",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 431
+        },
+        "computedPosition": {
+          "x": -415.3938734254061,
+          "y": -463.55365503814977,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-9",
+              "position": "top",
+              "x": 177.50892041615074,
+              "y": -7.499569376906549,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-9",
+              "position": "left",
+              "x": -7.499569376906549,
+              "y": 205.50527027102115,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-9",
+              "position": "right",
+              "x": 362.48764827646045,
+              "y": 205.50527027102115,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-9",
+              "position": "bottom",
+              "x": 177.50892041615074,
+              "y": 418.51010991894884,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -415.3938734254061,
+          "y": -463.55365503814977
+        },
+        "data": {
+          "label": "R U R' U R U2' R'",
+          "alg": "R U R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 105.56407455797489,
+      "sourceY": 301.8329609562558,
+      "targetX": -227.88495300925538,
+      "targetY": -25.043545119200928
+    },
+    {
+      "id": "en-9-n-10-handle-b",
+      "type": "special",
+      "source": "n-9",
+      "target": "n-10",
+      "sourceHandle": "handle-t",
+      "targetHandle": "handle-b",
+      "data": {
+        "algorithm": "R U R' U R U2' R'"
+      },
+      "events": {},
+      "label": "R U R' U R U2' R'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-9",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 431
+        },
+        "computedPosition": {
+          "x": -415.3938734254061,
+          "y": -463.55365503814977,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-9",
+              "position": "top",
+              "x": 177.50892041615074,
+              "y": -7.499569376906549,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-9",
+              "position": "left",
+              "x": -7.499569376906549,
+              "y": 205.50527027102115,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-9",
+              "position": "right",
+              "x": 362.48764827646045,
+              "y": 205.50527027102115,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-9",
+              "position": "bottom",
+              "x": 177.50892041615074,
+              "y": 418.51010991894884,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -415.3938734254061,
+          "y": -463.55365503814977
+        },
+        "data": {
+          "label": "R U R' U R U2' R'",
+          "alg": "R U R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-10",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 487
+        },
+        "computedPosition": {
+          "x": -411.8084349562909,
+          "y": -1184.2267873303126,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-10",
+              "position": "top",
+              "x": 177.50892041615074,
+              "y": -7.499569376906549,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-10",
+              "position": "left",
+              "x": -7.499569376906549,
+              "y": 233.50162012589155,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-10",
+              "position": "right",
+              "x": 362.48764827646045,
+              "y": 233.50162012589155,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-10",
+              "position": "bottom",
+              "x": 177.50892041615074,
+              "y": 474.50280962868965,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -411.8084349562909,
+          "y": -1184.2267873303126
+        },
+        "data": {
+          "label": "R U R' U R U' R' U R U2' R'",
+          "alg": "R U R' U R U' R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": -227.88495300925538,
+      "sourceY": -471.0532244150563,
+      "targetX": -224.29951454014017,
+      "targetY": -689.723977701623
+    },
+    {
+      "id": "en-10-n-11-handle-l",
+      "type": "special",
+      "source": "n-10",
+      "target": "n-11",
+      "sourceHandle": "handle-t",
+      "targetHandle": "handle-l",
+      "data": {
+        "algorithm": "R U R' U R U2' R'"
+      },
+      "events": {},
+      "label": "R U R' U R U2' R'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-10",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 487
+        },
+        "computedPosition": {
+          "x": -411.8084349562909,
+          "y": -1184.2267873303126,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-10",
+              "position": "top",
+              "x": 177.50892041615074,
+              "y": -7.499569376906549,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-10",
+              "position": "left",
+              "x": -7.499569376906549,
+              "y": 233.50162012589155,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-10",
+              "position": "right",
+              "x": 362.48764827646045,
+              "y": 233.50162012589155,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-10",
+              "position": "bottom",
+              "x": 177.50892041615074,
+              "y": 474.50280962868965,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": -411.8084349562909,
+          "y": -1184.2267873303126
+        },
+        "data": {
+          "label": "R U R' U R U' R' U R U2' R'",
+          "alg": "R U R' U R U' R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-b"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-11",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 487
+        },
+        "computedPosition": {
+          "x": 105.73838918895757,
+          "y": -1726.0481287965126,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-11",
+              "position": "top",
+              "x": 177.50892041615074,
+              "y": -7.499569376906549,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-b",
+              "type": "source",
+              "nodeId": "n-11",
+              "position": "bottom",
+              "x": 177.50892041615074,
+              "y": 474.50280962868965,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-11",
+              "position": "right",
+              "x": 362.48764827646045,
+              "y": 233.50162012589155,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-l",
+              "type": "target",
+              "nodeId": "n-11",
+              "position": "left",
+              "x": -7.499569376906549,
+              "y": 233.50162012589155,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 105.73838918895757,
+          "y": -1726.0481287965126
+        },
+        "data": {
+          "label": "R U R' U R U' R' U R U' R' U R U2' R'",
+          "alg": "R U R' U R U' R' U R U' R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-l"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": -224.29951454014017,
+      "sourceY": -1191.726356707219,
+      "targetX": 98.23881981205102,
+      "targetY": -1482.546508670621
+    },
+    {
+      "id": "en-11-n-12-handle-t",
+      "type": "special",
+      "source": "n-11",
+      "target": "n-12",
+      "sourceHandle": "handle-r",
+      "targetHandle": "handle-t",
+      "data": {
+        "algorithm": "R U R' U R U2' R'"
+      },
+      "events": {},
+      "label": "R U R' U R U2' R'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-11",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 487
+        },
+        "computedPosition": {
+          "x": 105.73838918895757,
+          "y": -1726.0481287965126,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-11",
+              "position": "top",
+              "x": 177.50892041615074,
+              "y": -7.499569376906549,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-b",
+              "type": "source",
+              "nodeId": "n-11",
+              "position": "bottom",
+              "x": 177.50892041615074,
+              "y": 474.50280962868965,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-11",
+              "position": "right",
+              "x": 362.48764827646045,
+              "y": 233.50162012589155,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-l",
+              "type": "target",
+              "nodeId": "n-11",
+              "position": "left",
+              "x": -7.499569376906549,
+              "y": 233.50162012589155,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 105.73838918895757,
+          "y": -1726.0481287965126
+        },
+        "data": {
+          "label": "R U R' U R U' R' U R U' R' U R U2' R'",
+          "alg": "R U R' U R U' R' U R U' R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-l"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-12",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 543
+        },
+        "computedPosition": {
+          "x": 638.0192578666594,
+          "y": -1238.2605992496885,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-b",
+              "type": "source",
+              "nodeId": "n-12",
+              "position": "bottom",
+              "x": 177.50115863395743,
+              "y": 530.4910565905413,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-12",
+              "position": "left",
+              "x": -7.504800527282986,
+              "y": 261.4932276070528,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-12",
+              "position": "right",
+              "x": 362.5067194935034,
+              "y": 261.4932276070528,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-t",
+              "type": "target",
+              "nodeId": "n-12",
+              "position": "top",
+              "x": 177.50115863395743,
+              "y": -7.504601376435748,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": true,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 638.0192578666594,
+          "y": -1238.2605992496885
+        },
+        "data": {
+          "label": "R U R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+          "alg": "R U R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-t"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 488.226037465418,
+      "sourceY": -1482.546508670621,
+      "targetX": 825.5204165006168,
+      "targetY": -1245.7652006261244
+    },
+    {
+      "id": "en-12-n-13-handle-t",
+      "type": "special",
+      "source": "n-12",
+      "target": "n-13",
+      "sourceHandle": "handle-b",
+      "targetHandle": "handle-t",
+      "data": {
+        "algorithm": "R U R' U R U2' R'"
+      },
+      "events": {},
+      "label": "R U R' U R U2' R'",
+      "animated": true,
+      "sourceNode": {
+        "id": "n-12",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 543
+        },
+        "computedPosition": {
+          "x": 638.0192578666594,
+          "y": -1238.2605992496885,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-b",
+              "type": "source",
+              "nodeId": "n-12",
+              "position": "bottom",
+              "x": 177.50115863395743,
+              "y": 530.4910565905413,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-12",
+              "position": "left",
+              "x": -7.504800527282986,
+              "y": 261.4932276070528,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-12",
+              "position": "right",
+              "x": 362.5067194935034,
+              "y": 261.4932276070528,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-t",
+              "type": "target",
+              "nodeId": "n-12",
+              "position": "top",
+              "x": 177.50115863395743,
+              "y": -7.504601376435748,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": true,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 638.0192578666594,
+          "y": -1238.2605992496885
+        },
+        "data": {
+          "label": "R U R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+          "alg": "R U R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-t"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-13",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 543
+        },
+        "computedPosition": {
+          "x": 639.6272280802059,
+          "y": -492.01125480274186,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-b",
+              "type": "source",
+              "nodeId": "n-13",
+              "position": "bottom",
+              "x": 177.5,
+              "y": 530.5,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-13",
+              "position": "left",
+              "x": -7.5,
+              "y": 261.5,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-13",
+              "position": "right",
+              "x": 362.5,
+              "y": 261.5,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-t",
+              "type": "target",
+              "nodeId": "n-13",
+              "position": "top",
+              "x": 177.5,
+              "y": -7.5,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 639.6272280802059,
+          "y": -492.01125480274186
+        },
+        "data": {
+          "label": "R U R' U R U' R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+          "alg": "R U R' U R U' R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-t"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 825.5204165006168,
+      "sourceY": -687.7695426591472,
+      "targetX": 827.1272280802059,
+      "targetY": -499.51125480274186
+    },
+    {
+      "id": "ce-n-13-n-1-R-U-R--U-R-U2--R-",
+      "type": "confluence",
+      "source": "n-13",
+      "target": "n-1",
+      "targetHandle": "handle-r",
+      "data": {
+        "algorithm": "R U R' U R U2' R'",
+        "confluence": true,
+        "aufVariant": "exact"
+      },
+      "events": {},
+      "label": "R U R' U R U2' R'",
+      "animated": true,
+      "style": {
+        "strokeDasharray": "4 4"
+      },
+      "sourceNode": {
+        "id": "n-13",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 543
+        },
+        "computedPosition": {
+          "x": 639.6272280802059,
+          "y": -492.01125480274186,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-b",
+              "type": "source",
+              "nodeId": "n-13",
+              "position": "bottom",
+              "x": 177.5,
+              "y": 530.5,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-13",
+              "position": "left",
+              "x": -7.5,
+              "y": 261.5,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-13",
+              "position": "right",
+              "x": 362.5,
+              "y": 261.5,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-t",
+              "type": "target",
+              "nodeId": "n-13",
+              "position": "top",
+              "x": 177.5,
+              "y": -7.5,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 639.6272280802059,
+          "y": -492.01125480274186
+        },
+        "data": {
+          "label": "R U R' U R U' R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+          "alg": "R U R' U R U' R' U R U' R' U R U' R' U R U' R' U R U2' R'",
+          "rawAlgorithm": "R U R' U R U2' R'",
+          "targetHandleId": "handle-t"
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffcc00",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "targetNode": {
+        "id": "n-1",
+        "type": "twisty",
+        "dimensions": {
+          "width": 375,
+          "height": 431
+        },
+        "computedPosition": {
+          "x": 113.06407455797489,
+          "y": 86.33296095625582,
+          "z": 0
+        },
+        "handleBounds": {
+          "source": [
+            {
+              "id": "handle-t",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "top",
+              "x": 177.5,
+              "y": -7.5,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-l",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "left",
+              "x": -7.5,
+              "y": 205.5,
+              "width": 20,
+              "height": 20
+            },
+            {
+              "id": "handle-r",
+              "type": "source",
+              "nodeId": "n-1",
+              "position": "right",
+              "x": 362.5,
+              "y": 205.5,
+              "width": 20,
+              "height": 20
+            }
+          ],
+          "target": [
+            {
+              "id": "handle-b",
+              "type": "target",
+              "nodeId": "n-1",
+              "position": "bottom",
+              "x": 177.5,
+              "y": 418.5,
+              "width": 20,
+              "height": 20
+            }
+          ]
+        },
+        "selected": false,
+        "dragging": false,
+        "resizing": false,
+        "initialized": false,
+        "isParent": false,
+        "position": {
+          "x": 113.06407455797489,
+          "y": 86.33296095625582
+        },
+        "data": {
+          "label": "Solved",
+          "alg": "",
+          "targetHandleId": "handle-r",
+          "rawAlgorithm": "",
+          "collapsed": false,
+          "confluenceInbound": {
+            "count": 3,
+            "variants": [
+              "exact"
+            ]
+          }
+        },
+        "events": {},
+        "style": {
+          "borderColor": "#ffffff",
+          "borderWidth": "8px",
+          "borderStyle": "solid",
+          "borderRadius": "4px"
+        }
+      },
+      "sourceX": 827.1272280802059,
+      "sourceY": 58.48874519725814,
+      "targetX": 495.5640745579749,
+      "targetY": 301.8329609562558
+    }
+  ],
+  "algPresets": [
+    {
+      "id": "default-1755363465474-1",
+      "algorithm": "R U R' U R U2' R'",
+      "name": "Sune",
+      "color": "#ffcc00"
+    }
+  ]
+}

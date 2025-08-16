@@ -45,7 +45,12 @@ const shouldHideLabel = computed(() => {
 </script>
 
 <template>
-  <BaseEdge :id="props.id" :style="props.style" :path="path[0]" :marker-end="props.markerEnd" />
+  <BaseEdge 
+    :id="props.id" 
+    :style="{ ...(props.style||{}), stroke: backgroundColor, strokeWidth: 3 }" 
+    :path="path[0]" 
+    :marker-end="props.markerEnd" 
+  />
 
   <EdgeLabelRenderer>
     <div

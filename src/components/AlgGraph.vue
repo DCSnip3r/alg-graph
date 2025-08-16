@@ -7,6 +7,7 @@ import { useGraphPersistence } from '../composables/useGraphPersistence';
 import { useDragAndDrop } from '../composables/useDragAndDrop'; // Import the new composable
 import TwistyNode from './TwistyNode.vue';
 import SpecialEdge from './SpecialEdge.vue';
+import ConfluenceEdge from './ConfluenceEdge.vue';
 import MenuOverlay from './MenuOverlay.vue';
 import { Alg } from 'cubing/alg'; // Import the Alg class
 
@@ -22,13 +23,13 @@ const {
 
 // Initialize useNodeManagement composable
 const { 
-  nodeIdCounter, getNextNodeId, generateAlgTree, handleSetTargetHandle, resetNodes, toggleNodeCollapse, updateNodePosition 
+  nodeIdCounter, getNextNodeId, handleSetTargetHandle, resetNodes, toggleNodeCollapse, updateNodePosition 
 } = useNodeManagement({ addNodes, addEdges, updateNodeData, removeNodes, setNodes, findNode });
 
-// Initialize useNodeConfluence composable
-const { checkAndRepositionNode } = useNodeConfluence({ findNode, updateNodePosition });
+// Initialize useNodeConfluence composable (inject edges & addEdges so it can create confluence edges)
+const { checkAndRepositionNode } = useNodeConfluence({ findNode, updateNodePosition, addEdges, edges, updateNodeData });
 
-const { handleEdgeAlgorithmUpdate } = useEdgeManagement({ edges, nodes, findNode, updateNodeData, updateNodePosition, checkAndRepositionNode });
+const { handleEdgeAlgorithmUpdate } = useEdgeManagement({ edges, nodes, findNode, updateNodeData, updateNodePosition, addEdges, checkAndRepositionNode });
 
 const { 
   saveGraphToStore, applyGraphState, importGraphFromFile 
@@ -70,7 +71,7 @@ onConnect((connection) => {
     // After updating the node's algorithm, check for confluence and reposition if needed
     // This is async and may take a while
     // console.log('[AlgGraph] Checking for confluence and possible reposition for node', targetNode.id);
-    checkAndRepositionNode(targetNode.id, nodes.value);
+  checkAndRepositionNode(targetNode.id, nodes.value, { parentId: sourceNode.id, rawSegment: rawAlgForEdge });
 
     const newEdge = {
       ...connection,
@@ -93,6 +94,12 @@ const onNodesDelete = (deletedNodes: any[]) => {
     !deletedNodeIds.includes(edge.source) && !deletedNodeIds.includes(edge.target)
   );
   setEdges(remainingEdges);
+};
+
+// Delete a single edge by id
+const deleteEdgeById = (edgeId: string) => {
+  const remaining = edges.value.filter(e => e.id !== edgeId);
+  setEdges(remaining);
 };
 
 // Ensure node deletion works
@@ -167,6 +174,9 @@ onMounted(() => {
           v-bind="specialEdgeProps" 
           @update:algorithm="handleEdgeAlgorithmUpdate"
         />
+      </template>
+      <template #edge-confluence="confluenceEdgeProps">
+  <ConfluenceEdge v-bind="confluenceEdgeProps" @delete-edge="deleteEdgeById" />
       </template>
     </VueFlow>
   </div>
