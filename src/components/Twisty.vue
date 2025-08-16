@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, toRefs } from 'vue';
 import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
 
 interface Props {
@@ -43,7 +43,9 @@ onMounted(async () => {
   }
 });
 
-const { alg, setupAnchor } = props;
+// IMPORTANT: avoid plain destructuring which breaks reactivity for future prop updates
+// Use toRefs so TwistyPlayer updates when parent passes a new alg after connections change
+const { alg, setupAnchor } = toRefs(props);
 </script>
 
 <style scoped>
