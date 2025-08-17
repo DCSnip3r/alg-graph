@@ -3,6 +3,7 @@ import { BaseEdge, EdgeLabelRenderer, getBezierPath, type EdgeProps } from '@vue
 import { computed, ref, watch } from 'vue';
 import { useColorUtils } from '../composables/useColorUtils';
 import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
+import { useSizeScaling } from '../composables/useSizeScaling';
 
 interface SpecialEdgeData {
   algorithm?: string;
@@ -42,6 +43,11 @@ const textColor = computed(() => getTextColorForBackground(backgroundColor.value
 const shouldHideLabel = computed(() => {
   return !displaySettingsStore.showColorizedEdgeLabels && backgroundColor.value !== '#ffffff';
 });
+
+// Dynamic sizing via composable (baseline 350)
+const { scaledEm, scaled } = useSizeScaling(350);
+const dynamicFontSize = computed(() => scaledEm(1.75, { min: 0.8, max: 2.0 }));
+const dynamicWidth = computed(() => scaled(350, { min: 160, max: 430 }));
 </script>
 
 <template>
@@ -61,6 +67,8 @@ const shouldHideLabel = computed(() => {
         transform: `translate(-50%, -50%) translate(${path[1]}px,${path[2]}px)`,
         backgroundColor: backgroundColor,
         color: textColor,
+  fontSize: dynamicFontSize,
+  width: dynamicWidth + 'px'
       }"
       class="nodrag nopan edge-label-container"
     >
@@ -79,19 +87,7 @@ const shouldHideLabel = computed(() => {
   overflow: visible;
 }
 
-.edge-label-container {
-  background: var(--vf-node-bg, #ffffff); /* Use Vue Flow's node background variable */
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 1.75em; /* Adjusted to a more reasonable size */
-  color: var(--vf-node-text, #000000); /* Use Vue Flow's node text color variable */
-  text-align: center;
-  width: 350px; /* Fixed width for simplicity */
-  overflow-wrap: break-word;
-  word-break: break-word;
-  white-space: normal; /* Allow wrapping */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for better visibility */
-}
+.edge-label-container { background: var(--vf-node-bg, #ffffff); padding: 4px 8px; border-radius: 4px; color: var(--vf-node-text, #000000); text-align: center; overflow-wrap: break-word; word-break: break-word; white-space: normal; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
 .edge-algorithm-input {
   background-color: transparent;

@@ -16,6 +16,12 @@
       />
       <hr class="submenu-divider" />
       <DisplaySettingsSubmenu />
+      <hr class="submenu-divider" />
+      <GraphLayoutSubmenu
+        @auto-layout-request="emit('auto-layout-request')"
+        @custom-layout-request="emit('custom-layout-request', $event)"
+        @snap-to-grid-request="emit('snap-to-grid-request', $event)"
+      />
     </div>
   </div>
 </template>
@@ -25,12 +31,13 @@ import { useCollapsible } from '../composables/useCollapsible';
 import AlgorithmsSubmenu from './submenus/AlgorithmsSubmenu.vue';
 import GraphSavingSubmenu from './submenus/GraphSavingSubmenu.vue';
 import DisplaySettingsSubmenu from './submenus/DisplaySettingsSubmenu.vue';
+import GraphLayoutSubmenu from './submenus/GraphLayoutSubmenu.vue';
 
 const props = defineProps<{
   saveStatus: { message: string, type: 'success' | 'error' } | null;
 }>();
 
-const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-graph-from-file-request']);
+const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-graph-from-file-request', 'auto-layout-request', 'custom-layout-request', 'snap-to-grid-request']);
 
 const { isVisible, toggleVisibility } = useCollapsible(true);
 </script>

@@ -4,6 +4,7 @@
     <twisty-player
       v-else
       class="twisty-c"
+      :style="{ width: sizePx, height: sizePx }"
       :alg="alg || 'U U\''"
       :experimental-setup-anchor="setupAnchor"
       :visualization="displaySettingsStore.twistyVisualizationMode"
@@ -14,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, toRefs } from 'vue';
+import { ref, onMounted, toRefs, computed } from 'vue';
 import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
 
 interface Props {
@@ -31,6 +32,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 const displaySettingsStore = useDisplaySettingsStore();
 const isReady = ref(false);
+// computed pixel value string for inline style
+const sizePx = computed(() => displaySettingsStore.twistyNodeSize + 'px');
 
 onMounted(async () => {
   try {
@@ -57,13 +60,12 @@ const { alg, setupAnchor } = toRefs(props);
 }
 
 .twisty-c {
-  height: 350px;
-  width: 350px;
+  /* dynamic size via inline style */
   margin: auto;
 }
 .twisty-loading {
-  height: 350px;
-  width: 350px;
+  height: v-bind(sizePx);
+  width: v-bind(sizePx);
   display: flex;
   align-items: center;
   justify-content: center;

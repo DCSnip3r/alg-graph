@@ -12,11 +12,14 @@ import MenuOverlay from './MenuOverlay.vue';
 import { Alg } from 'cubing/alg'; // Import the Alg class
 
 import { useNodeConfluence } from '../composables/useNodeConfluence';
+import { useAutoLayout } from '../composables/useAutoLayout';
+import { useGridSnap } from '../composables/useGridSnap';
 
 const { 
   onPaneReady, addNodes, addEdges, findNode, 
   updateNodeData, removeNodes, nodes, edges,
   screenToFlowCoordinate, onConnect, setNodes, setEdges,
+  fitView,
   // updateNodePosition,
 } = useVueFlow();
 
@@ -38,6 +41,29 @@ const {
 const { onDrop, onDragOver } = useDragAndDrop(screenToFlowCoordinate, addNodes, getNextNodeId); // Use the composable
 
 const saveStatus = ref<{ message: string; type: 'success' | 'error' } | null>(null);
+
+// Auto layout composable
+const { layout: runAutoLayout } = useAutoLayout(nodes, edges, setNodes, () => fitView({ padding: 0.2 }));
+const { snapAll } = useGridSnap(setNodes);
+
+function handleAutoLayout() {
+  runAutoLayout({ direction: 'TB', nodeSep: 80, rankSep: 160, ranker: 'tight-tree' });
+}
+
+function handleCustomLayout(opts: any) {
+  runAutoLayout({
+    direction: opts.direction,
+    nodeSep: opts.nodeSep,
+    rankSep: opts.rankSep,
+    align: opts.align,
+    ranker: opts.ranker,
+  });
+}
+
+function handleSnapToGrid(gridSize: number) {
+  snapAll(gridSize || 75);
+  fitView({ padding: 0.2 });
+}
 
 onPaneReady((flowInstance) => {
   if (nodes.value.length > 0) {
@@ -153,6 +179,9 @@ onMounted(() => {
       @save-graph-request="saveGraphToStore"
       @load-graph-request="applyGraphState"
       @load-graph-from-file-request="importGraphFromFile"
+      @auto-layout-request="handleAutoLayout"
+      @custom-layout-request="handleCustomLayout"
+  @snap-to-grid-request="handleSnapToGrid"
     />
     <VueFlow 
       :nodes="nodes" 

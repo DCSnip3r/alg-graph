@@ -19,10 +19,14 @@ import { defineAsyncComponent } from 'vue';
 // Lazy load the Twisty component so heavy cubing code is split
 const TwistyComponent = defineAsyncComponent(() => import('./Twisty.vue')) as DefineComponent<{}, {}, any>;
 import { useColorUtils } from '../composables/useColorUtils'; // Import the composable
+import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
+import { useSizeScaling } from '../composables/useSizeScaling';
 
 const props = defineProps<ExtendedNodeProps>(); // Use the extended type
 const emit = defineEmits(['setTargetHandle', 'delete-node', 'toggle-collapse']); // Ensure 'delete-node' is emitted
 const { colorizeLabel } = useColorUtils(); // Use the composable
+const displaySettingsStore = useDisplaySettingsStore();
+const { scaledEm, scaledSquareButton } = useSizeScaling(350);
 
 const isCollapsed = computed(() => props.data?.collapsed || false);
 
@@ -37,6 +41,18 @@ const onDeleteNode = () => {
 const computedLabel = computed(() => {
   return colorizeLabel(props.data.label || ''); // Use the composable function
 });
+// Node sizing derived from configurable twistyNodeSize (cube viewer size). Add some padding & border considerations.
+const baseSize = computed(() => displaySettingsStore.twistyNodeSize);
+// Provide outer node width only; let height grow naturally based on twisty component + label.
+const nodeStyle = computed(() => {
+  if (isCollapsed.value) return {};
+  const width = baseSize.value; // width roughly equals cube size
+  return { width: width + 'px' };
+});
+// Scale label font relative to original 2em at 350 baseline.
+const labelFontSize = computed(() => scaledEm(2, { min: 0.9, max: 2.4 }));
+// Scaled action button style (original 26px square, 16px font)
+const buttonStyle = computed(() => scaledSquareButton(26, 16, { minSize: 18, maxSize: 30, minFont: 12, maxFont: 18 }));
 // Confluence badge feature removed
 
 // Define all potential handles for this node type
@@ -67,23 +83,29 @@ const getHandleStyle = (handleId: string) => {
   <div 
     class="vue-flow__node-default twisty-node-wrapper" 
     :class="{ minimized: isCollapsed }" 
-    :style="{ borderColor: props.style?.borderColor || '#ffffff' }"
+    :style="{ borderColor: props.style?.borderColor || '#ffffff', ...(nodeStyle as any) }"
   >
     <div class="node-content">
       <div class="node-controls">
-        <button class="toggle-button node-action-button" @click="toggleCollapse" :title="!isCollapsed ? 'Collapse Node' : 'Expand Node'">
+        <button class="toggle-button node-action-button" :style="buttonStyle" @click="toggleCollapse" :title="!isCollapsed ? 'Collapse Node' : 'Expand Node'">
           {{ !isCollapsed ? '−' : '+' }}
         </button>
         <button 
           v-if="!isCollapsed" 
           class="delete-node-button node-action-button" 
+          :style="buttonStyle"
           @click="onDeleteNode" 
           title="Delete Node"
         >
           X
         </button>
       </div>
-      <div v-if="!isCollapsed" class="node-alg-label" v-html="computedLabel"></div>
+      <div 
+        v-if="!isCollapsed" 
+        class="node-alg-label" 
+        :style="{ fontSize: labelFontSize, maxWidth: (baseSize) + 'px' }" 
+        v-html="computedLabel"
+      ></div>
       <div class="twisty-container" v-if="!isCollapsed">
         <TwistyComponent :alg="props.data.alg"/>
       </div>
@@ -155,22 +177,7 @@ const getHandleStyle = (handleId: string) => {
   gap: 5px;
 }
 
-.node-action-button { /* Common style for delete and toggle buttons */
-  background-color: #6c757d; /* Grey as a base */
-  color: white;
-  border: 1px solid #5a6268; /* Keep the button border */
-  border-radius: 50%;
-  width: 26px; /* Increased size */
-  height: 26px; /* Increased size */
-  font-size: 16px; /* Slightly larger font size */
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  line-height: 1;
-}
+.node-action-button { background-color: #6c757d; color: white; border: 1px solid #5a6268; border-radius: 50%; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; }
 
 .node-action-button:hover {
   opacity: 0.8;

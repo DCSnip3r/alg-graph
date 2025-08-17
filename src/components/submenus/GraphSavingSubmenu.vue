@@ -1,7 +1,7 @@
 <template>
   <div class="submenu">
     <CollapsibleHeader title="Graph Management" v-model="isVisible" />
-    <div v-if="isVisible" class="submenu-content">
+  <div v-if="isVisible" class="submenu-content">
       <div class="save-graph-controls">
         <input type="text" v-model="graphNameToSave" placeholder="Graph Name">
         <button @click="handleSaveGraph" class="save-graph-button">Save Current Graph</button>
@@ -228,4 +228,5 @@ const {
   background: #bbdefb;
   color: #0d47a1;
 }
+
 </style>
