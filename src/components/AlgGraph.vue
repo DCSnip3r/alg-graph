@@ -14,6 +14,7 @@ import { Alg } from 'cubing/alg'; // Import the Alg class
 import { useNodeConfluence } from '../composables/useNodeConfluence';
 import { useAutoLayout } from '../composables/useAutoLayout';
 import { useGridSnap } from '../composables/useGridSnap';
+import { useGraphScaling } from '../composables/useGraphScaling';
 
 const { 
   onPaneReady, addNodes, addEdges, findNode, 
@@ -45,6 +46,7 @@ const saveStatus = ref<{ message: string; type: 'success' | 'error' } | null>(nu
 // Auto layout composable
 const { layout: runAutoLayout } = useAutoLayout(nodes, edges, setNodes, () => fitView({ padding: 0.2 }));
 const { snapAll } = useGridSnap(setNodes);
+const { scaleAll } = useGraphScaling(setNodes);
 
 function handleAutoLayout() {
   runAutoLayout({ direction: 'TB', nodeSep: 80, rankSep: 160, ranker: 'tight-tree' });
@@ -63,6 +65,11 @@ function handleCustomLayout(opts: any) {
 function handleSnapToGrid(gridSize: number) {
   snapAll(gridSize || 75);
   fitView({ padding: 0.2 });
+}
+
+function handleScaleGraph({ factor }: { factor: number }) {
+  scaleAll(factor);
+  // Do not auto-fit; user intent is incremental spacing change
 }
 
 onPaneReady((flowInstance) => {
@@ -182,6 +189,7 @@ onMounted(() => {
       @auto-layout-request="handleAutoLayout"
       @custom-layout-request="handleCustomLayout"
   @snap-to-grid-request="handleSnapToGrid"
+  @scale-graph-request="handleScaleGraph"
     />
     <VueFlow 
       :nodes="nodes" 

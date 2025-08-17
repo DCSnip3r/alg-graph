@@ -2,51 +2,55 @@
   <div class="submenu">
     <CollapsibleHeader title="Display Settings" v-model="isVisible" />
     <div v-if="isVisible" class="submenu-content">
-      <div class="setting-item inline-setting">
-        <label for="create-confluence-edges">
-          <input
-            id="create-confluence-edges"
-            type="checkbox"
-            v-model="displaySettingsStore.createConfluenceEdges"
-          />
-          Create confluence edges
-        </label>
+      <!-- Confluence Related Settings -->
+      <div class="partition-block">
+        <div class="block-heading">Confluence</div>
+        <div class="setting-item inline-setting">
+          <label for="create-confluence-edges">
+            <input
+              id="create-confluence-edges"
+              type="checkbox"
+              v-model="displaySettingsStore.createConfluenceEdges"
+            />
+            Create confluence edges
+          </label>
+        </div>
+        <div class="setting-item inline-setting">
+          <label for="match-if-auf">
+            <input
+              id="match-if-auf"
+              type="checkbox"
+              v-model="displaySettingsStore.matchIfAUF"
+            />
+            Allow AUF confluence (U/U'/U2)
+          </label>
+        </div>
+        <div class="setting-item inline-setting">
+          <label for="reposition-on-confluence">
+            <input
+              id="reposition-on-confluence"
+              type="checkbox"
+              v-model="displaySettingsStore.repositionOnConfluence"
+            />
+            Auto-reposition node on confluent algorithm
+          </label>
+        </div>
       </div>
-      <div class="setting-item inline-setting">
-        <label for="match-if-auf">
-          <input
-            id="match-if-auf"
-            type="checkbox"
-            v-model="displaySettingsStore.matchIfAUF"
-          />
-          Allow AUF confluence (U/U'/U2)
-        </label>
-      </div>
-      <div class="setting-item inline-setting">
-        <label for="reposition-on-confluence">
-          <input
-            id="reposition-on-confluence"
-            type="checkbox"
-            v-model="displaySettingsStore.repositionOnConfluence"
-          />
-          Auto-reposition node on confluent algorithm
-        </label>
-      </div>
-  <!-- Subtle inline divider between confluence-related and other settings -->
-  <div class="mini-divider" aria-hidden="true"></div>
-  <div class="group-heading">Display</div>
-            <div class="setting-item inline-setting">
-        <label for="colorized-edge-labels">
-          <input 
-            id="colorized-edge-labels"
-            type="checkbox" 
-            v-model="displaySettingsStore.showColorizedEdgeLabels" 
-          />
-          Show colorized edge labels
-        </label>
-      </div>
-      <div class="setting-item">
-        <div class="inline-setting">
+
+      <!-- Display Toggles -->
+      <div class="partition-block">
+        <div class="block-heading">Display</div>
+        <div class="setting-item inline-setting">
+          <label for="colorized-edge-labels">
+            <input 
+              id="colorized-edge-labels"
+              type="checkbox" 
+              v-model="displaySettingsStore.showColorizedEdgeLabels" 
+            />
+            Show colorized edge labels
+          </label>
+        </div>
+        <div class="setting-item inline-setting">
           <label for="visualization-mode">Visualization Mode:</label>
           <select id="visualization-mode" v-model="displaySettingsStore.twistyVisualizationMode">
             <option value="3D">3D</option>
@@ -54,19 +58,24 @@
           </select>
         </div>
       </div>
-      <div class="setting-item">
-        <div class="inline-setting">
-          <label for="twisty-node-size">Twisty Node Size: {{ displaySettingsStore.twistyNodeSize }}px</label>
-          <input
-            id="twisty-node-size"
-            type="range"
-            min="100"
-            max="450"
-            step="10"
-            v-model.number="displaySettingsStore.twistyNodeSize"
-          />
+
+      <!-- Sizing -->
+      <div class="partition-block">
+        <div class="block-heading">Sizing</div>
+        <div class="setting-item">
+          <div class="inline-setting">
+            <label for="twisty-node-size">Twisty Node Size: {{ displaySettingsStore.twistyNodeSize }}px</label>
+            <input
+              id="twisty-node-size"
+              type="range"
+              min="100"
+              max="450"
+              step="10"
+              v-model.number="displaySettingsStore.twistyNodeSize"
+            />
+          </div>
+          <!-- <div class="size-hint">Adjusts cube viewer & node footprint; label font scales automatically.</div> -->
         </div>
-        <div class="size-hint">Adjusts cube viewer & node footprint; label font scales automatically.</div>
       </div>
     </div>
   </div>
@@ -147,4 +156,11 @@ const displaySettingsStore = useDisplaySettingsStore();
 /* Subtle internal divider (not a full submenu separator) */
 .mini-divider { height:1px; width:65%; background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.05)); margin:6px auto 2px; border-radius:1px; }
 .group-heading { font-size:0.55rem; letter-spacing:.5px; text-transform:uppercase; opacity:.75; margin:0 0 4px 6px; }
+
+/* Partition blocks reused styling analogous to layout submenu action rows */
+.partition-block { background:#1f1f1f; padding:8px 10px 10px; border-radius:6px; box-shadow:0 0 0 1px #2e2e2e inset; margin:8px 4px; }
+.partition-block:first-of-type { margin-top:6px; }
+.block-heading { font-size:0.55rem; letter-spacing:.5px; text-transform:uppercase; opacity:.75; margin:0 0 6px; font-weight:600; }
+.partition-block .setting-item { margin:6px 0; padding-left:0; }
+.partition-block .inline-setting { gap:8px; }
 </style>

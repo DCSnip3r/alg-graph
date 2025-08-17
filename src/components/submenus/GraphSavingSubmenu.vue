@@ -2,43 +2,58 @@
   <div class="submenu">
     <CollapsibleHeader title="Graph Management" v-model="isVisible" />
   <div v-if="isVisible" class="submenu-content">
-      <div class="save-graph-controls">
-        <input type="text" v-model="graphNameToSave" placeholder="Graph Name">
-        <button @click="handleSaveGraph" class="save-graph-button">Save Current Graph</button>
+      <!-- Save Current Graph -->
+      <div class="partition-block">
+        <div class="block-heading">Save Current</div>
+        <div class="save-graph-controls">
+          <input type="text" v-model="graphNameToSave" placeholder="Graph Name">
+          <button @click="handleSaveGraph" class="save-graph-button">Save Current Graph</button>
+        </div>
+        <div v-if="props.saveStatus && props.saveStatus.type === 'success'" class="save-feedback success">
+          {{ props.saveStatus.message }}
+        </div>
       </div>
-      <div v-if="props.saveStatus && props.saveStatus.type === 'success'" class="save-feedback success">
-        {{ props.saveStatus.message }}
+
+      <!-- Saved Graphs List -->
+      <div class="partition-block">
+        <div class="block-heading">Saved Graphs</div>
+        <div class="saved-graph-section">
+          <ul v-if="savedGraphsStore.savedGraphsManifest.length > 0">
+            <li v-for="graph in savedGraphsStore.savedGraphsManifest" :key="graph.name" class="saved-graph-entry">
+              <span>{{ graph.name }} ({{ new Date(graph.savedAt).toLocaleDateString() }})</span>
+              <div class="saved-graph-actions">
+                <button @click="handleLoadGraph(graph.name)" class="load-button">Load</button>
+                <button @click="handleDownloadGraph(graph.name)" class="download-button">Download</button>
+                <button @click="handleDeleteGraph(graph.name)" class="delete-button">Delete</button>
+              </div>
+            </li>
+          </ul>
+          <p v-else>No graphs saved yet.</p>
+        </div>
       </div>
-      <div class="saved-graph-section">
-        <h5 class="section-header">Saved Graphs:</h5>
-        <ul v-if="savedGraphsStore.savedGraphsManifest.length > 0">
-          <li v-for="graph in savedGraphsStore.savedGraphsManifest" :key="graph.name" class="saved-graph-entry">
-            <span>{{ graph.name }} ({{ new Date(graph.savedAt).toLocaleDateString() }})</span>
-            <div class="saved-graph-actions">
-              <button @click="handleLoadGraph(graph.name)" class="load-button">Load</button>
-              <button @click="handleDownloadGraph(graph.name)" class="download-button">Download</button>
-              <button @click="handleDeleteGraph(graph.name)" class="delete-button">Delete</button>
-            </div>
-          </li>
-        </ul>
-        <p v-else>No graphs saved yet.</p>
+
+      <!-- Upload Graph File -->
+      <div class="partition-block">
+        <div class="block-heading">Upload</div>
+        <div class="upload-graph-section">
+          <input type="file" ref="fileInputRef" @change="handleFileUpload" accept=".json" style="display: none;">
+          <button @click="triggerFileInput" class="upload-button">Select .json File to Load</button>
+        </div>
       </div>
-      <div class="upload-graph-section">
-        <h5 class="section-header">Upload Graph File</h5>
-        <input type="file" ref="fileInputRef" @change="handleFileUpload" accept=".json" style="display: none;">
-        <button @click="triggerFileInput" class="upload-button">Select .json File to Load</button>
-      </div>
-      <!-- Example Graphs Section -->
-      <div class="example-graphs-section">
-        <h5 class="section-header">Example Graphs</h5>
-        <ul v-if="exampleGraphs.length > 0" class="example-graph-list">
-          <li v-for="eg in exampleGraphs" :key="eg.name" class="example-graph-chip">
-            <button @click="handleLoadExampleGraph(eg.graph)" class="example-graph-chip-button">
-              {{ eg.name }}
-            </button>
-          </li>
-        </ul>
-        <p v-else>No example graphs found.</p>
+
+      <!-- Example Graphs -->
+      <div class="partition-block">
+        <div class="block-heading">Examples</div>
+        <div class="example-graphs-section">
+          <ul v-if="exampleGraphs.length > 0" class="example-graph-list">
+            <li v-for="eg in exampleGraphs" :key="eg.name" class="example-graph-chip">
+              <button @click="handleLoadExampleGraph(eg.graph)" class="example-graph-chip-button">
+                {{ eg.name }}
+              </button>
+            </li>
+          </ul>
+          <p v-else>No example graphs found.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -228,5 +243,13 @@ const {
   background: #bbdefb;
   color: #0d47a1;
 }
+
+/* Partition styling to match Layout submenu */
+.partition-block { background:#1f1f1f; padding:8px 10px 10px; border-radius:6px; box-shadow:0 0 0 1px #2e2e2e inset; margin:8px 4px; }
+.partition-block:first-of-type { margin-top:6px; }
+.block-heading { font-size:0.55rem; letter-spacing:.5px; text-transform:uppercase; opacity:.75; margin:0 0 6px; font-weight:600; }
+.partition-block .save-graph-controls { margin:4px 0 6px; }
+.partition-block .saved-graph-entry { padding:4px 0; }
+.partition-block .example-graph-list { max-width:100%; }
 
 </style>
