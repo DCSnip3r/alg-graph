@@ -73,7 +73,7 @@ import { useDisplaySettingsStore } from '../../stores/displaySettingsStore';
 
 const emit = defineEmits(['custom-layout-request', 'snap-to-grid-request']);
 
-const isVisible = ref(true);
+const isVisible = ref(false);
 // Layout controls state
 const direction = ref<'TB' | 'BT' | 'LR' | 'RL'>('TB');
 const ranker = ref<'tight-tree' | 'network-simplex' | 'longest-path'>('tight-tree');

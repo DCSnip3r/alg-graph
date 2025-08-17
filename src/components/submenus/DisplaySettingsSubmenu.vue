@@ -77,7 +77,7 @@ import { ref } from 'vue';
 import CollapsibleHeader from '../shared/CollapsibleHeader.vue';
 import { useDisplaySettingsStore } from '../../stores/displaySettingsStore';
 
-const isVisible = ref(true);
+const isVisible = ref(false);
 const displaySettingsStore = useDisplaySettingsStore();
 </script>
 
