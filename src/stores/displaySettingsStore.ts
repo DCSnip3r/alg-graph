@@ -7,8 +7,8 @@ export const useDisplaySettingsStore = defineStore('displaySettings', () => {
   const repositionOnConfluence = ref(false);
   const matchIfAUF = ref(true); // New option: match if AUF (U/U'/U2)
   const createConfluenceEdges = ref(true); // New option: create visual confluence edges
-  // Configurable size for twisty nodes (width & height of the twisty-player square). Default matches previous hard-coded 350px.
-  const twistyNodeSize = ref(350);
+  // Configurable size for twisty nodes (width & height of the twisty-player square). Default changed from 350px to 200px.
+  const twistyNodeSize = ref(200);
 
   return {
     showColorizedEdgeLabels,
