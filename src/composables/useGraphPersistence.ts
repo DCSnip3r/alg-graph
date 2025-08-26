@@ -30,12 +30,13 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
   // Helper function to apply display settings from saved graph
   const applyDisplaySettings = (graphState: any) => {
     if (graphState.displaySettings) {
-      if (graphState.displaySettings.twistyNodeSize !== undefined) {
-        displaySettingsStore.twistyNodeSize = graphState.displaySettings.twistyNodeSize;
-      }
-      if (graphState.displaySettings.showColorizedEdgeLabels !== undefined) {
-        displaySettingsStore.showColorizedEdgeLabels = graphState.displaySettings.showColorizedEdgeLabels;
-      }
+      // Iterate over each setting in the saved display settings
+      Object.entries(graphState.displaySettings).forEach(([key, value]) => {
+        // Only apply if the setting exists in the store and the value is defined
+        if (key in displaySettingsStore && value !== undefined) {
+          (displaySettingsStore as any)[key] = value;
+        }
+      });
     }
   };
 

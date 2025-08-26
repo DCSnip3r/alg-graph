@@ -24,7 +24,7 @@ describe('useSavedGraphsStore', () => {
     displaySettingsStore.twistyNodeSize = 300;
     displaySettingsStore.showColorizedEdgeLabels = false;
     
-    const nodes = [{ id: 'n-1', type: 'default' }];
+    const nodes = [{ id: 'n-1', type: 'default', position: { x: 0, y: 0 } }];
     const edges = [{ id: 'e-1', source: 'n-1', target: 'n-2' }];
     
     const result = savedGraphsStore.saveGraph('TestGraph', nodes, edges);

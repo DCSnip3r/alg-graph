@@ -170,5 +170,37 @@ describe('useGraphPersistence', () => {
       expect(mockSetNodes).toHaveBeenCalledWith([]);
       expect(mockSetEdges).toHaveBeenCalledWith([]);
     });
+
+    it('should handle invalid and undefined display settings gracefully (generalized approach)', () => {
+      const { importGraphFromFile } = useGraphPersistence({
+        nodes: { value: [] },
+        edges: { value: [] },
+        setNodes: mockSetNodes,
+        setEdges: mockSetEdges,
+        nodeIdCounter: mockNodeIdCounter,
+      });
+
+      const graphStateWithMixedSettings = {
+        name: 'Mixed Settings Graph',
+        nodes: [],
+        edges: [],
+        algPresets: [],
+        displaySettings: {
+          twistyNodeSize: 400, // Valid setting
+          showColorizedEdgeLabels: true, // Valid setting
+          invalidSetting: 'should be ignored', // Invalid setting - doesn't exist in store
+          undefinedSetting: undefined, // Undefined setting - should be ignored
+        },
+        example: true,
+      };
+
+      // Should not throw an error and should handle invalid/undefined settings gracefully
+      expect(() => {
+        importGraphFromFile(graphStateWithMixedSettings);
+      }).not.toThrow();
+
+      expect(mockSetNodes).toHaveBeenCalledWith([]);
+      expect(mockSetEdges).toHaveBeenCalledWith([]);
+    });
   });
 });
