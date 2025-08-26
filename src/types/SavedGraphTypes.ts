@@ -6,17 +6,16 @@ export interface SavedGraphManifest {
   savedAt: string; // ISO string date
 }
 
-// Define which display settings should be persisted with saved graphs
-export interface PersistableDisplaySettings {
-  twistyNodeSize?: number;
-  showColorizedEdgeLabels?: boolean;
-}
+// Define the keys that should be persisted - single source of truth
+export const PERSISTABLE_DISPLAY_SETTING_KEYS = ['twistyNodeSize', 'showColorizedEdgeLabels'] as const;
 
-// Export the keys that should be persisted - single source of truth
-export const PERSISTABLE_DISPLAY_SETTING_KEYS: (keyof PersistableDisplaySettings)[] = [
-  'twistyNodeSize',
-  'showColorizedEdgeLabels'
-];
+// Automatically derive the interface from the keys array - no duplication!
+export type PersistableDisplaySettings = {
+  [K in typeof PERSISTABLE_DISPLAY_SETTING_KEYS[number]]?: 
+    K extends 'twistyNodeSize' ? number :
+    K extends 'showColorizedEdgeLabels' ? boolean :
+    never;
+};
 
 export interface SavedGraphState {
   name: string;
