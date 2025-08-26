@@ -12,6 +12,12 @@ export interface PersistableDisplaySettings {
   showColorizedEdgeLabels?: boolean;
 }
 
+// Export the keys that should be persisted - single source of truth
+export const PERSISTABLE_DISPLAY_SETTING_KEYS: (keyof PersistableDisplaySettings)[] = [
+  'twistyNodeSize',
+  'showColorizedEdgeLabels'
+];
+
 export interface SavedGraphState {
   name: string;
   nodes: Node[];
