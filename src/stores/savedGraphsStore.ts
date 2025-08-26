@@ -2,7 +2,8 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { Node, Edge } from '@vue-flow/core';
 import { useAlgPresetsStore } from './algPresetsStore';
-import type { SavedGraphManifest, SavedGraphState } from '../types/SavedGraphTypes';
+import { useDisplaySettingsStore } from './displaySettingsStore';
+import type { SavedGraphManifest, SavedGraphState, PersistableDisplaySettings } from '../types/SavedGraphTypes';
 
 const LOCAL_STORAGE_KEY_PREFIX = 'vueFlowGraph_';
 const SAVED_GRAPHS_LIST_KEY = 'vueFlowGraphsList';
@@ -10,6 +11,7 @@ const SAVED_GRAPHS_LIST_KEY = 'vueFlowGraphsList';
 
 export const useSavedGraphsStore = defineStore('savedGraphs', () => {
   const algPresetsStore = useAlgPresetsStore();
+  const displaySettingsStore = useDisplaySettingsStore();
   const savedGraphsManifest = ref<SavedGraphManifest[]>([]);
 
   const loadManifest = () => {
@@ -36,11 +38,18 @@ export const useSavedGraphsStore = defineStore('savedGraphs', () => {
       return false;
     }
 
+    // Extract only the specific display settings we want to persist
+    const persistableDisplaySettings: PersistableDisplaySettings = {
+      twistyNodeSize: displaySettingsStore.twistyNodeSize,
+      showColorizedEdgeLabels: displaySettingsStore.showColorizedEdgeLabels,
+    };
+
     const graphState: SavedGraphState = {
       name,
       nodes: JSON.parse(JSON.stringify(nodes)), // Deep clone
       edges: JSON.parse(JSON.stringify(edges)), // Deep clone
       algPresets: JSON.parse(JSON.stringify(algPresetsStore.presets)), // Deep clone
+      displaySettings: persistableDisplaySettings,
       // viewport: viewport ? JSON.parse(JSON.stringify(viewport)) : undefined,
     };
 

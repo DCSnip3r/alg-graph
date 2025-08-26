@@ -57,4 +57,118 @@ describe('useGraphPersistence', () => {
     expect(mockSetEdges).toHaveBeenCalledWith([]);
     expect(mockNodeIdCounter.value).toBe(3);
   });
+
+  describe('display settings persistence', () => {
+    it('should apply display settings when importing a graph with displaySettings', () => {
+      const { importGraphFromFile } = useGraphPersistence({
+        nodes: { value: [] },
+        edges: { value: [] },
+        setNodes: mockSetNodes,
+        setEdges: mockSetEdges,
+        nodeIdCounter: mockNodeIdCounter,
+      });
+
+      const graphState = {
+        name: 'Test Graph',
+        nodes: [],
+        edges: [],
+        algPresets: [],
+        displaySettings: {
+          twistyNodeSize: 250,
+          showColorizedEdgeLabels: false,
+        },
+        example: true, // Prevent saving to store during test
+      };
+
+      importGraphFromFile(graphState);
+
+      expect(mockSetNodes).toHaveBeenCalledWith([]);
+      expect(mockSetEdges).toHaveBeenCalledWith([]);
+    });
+
+    it('should apply display settings when loading from store', () => {
+      const graphWithDisplaySettings = {
+        name: 'Test Graph',
+        nodes: [],
+        edges: [],
+        algPresets: [],
+        displaySettings: {
+          twistyNodeSize: 300,
+          showColorizedEdgeLabels: true,
+        },
+      };
+
+      (globalThis as any).localStorage.getItem.mockReturnValue(
+        JSON.stringify(graphWithDisplaySettings)
+      );
+
+      const { getGraphFromStore } = useGraphPersistence({
+        nodes: { value: [] },
+        edges: { value: [] },
+        setNodes: mockSetNodes,
+        setEdges: mockSetEdges,
+        nodeIdCounter: mockNodeIdCounter,
+      });
+
+      const result = getGraphFromStore('TestGraph');
+
+      expect(result).toEqual(graphWithDisplaySettings);
+      expect((globalThis as any).localStorage.getItem).toHaveBeenCalledWith('vueFlowGraph_TestGraph');
+    });
+
+    it('should handle graphs without displaySettings gracefully', () => {
+      const { importGraphFromFile } = useGraphPersistence({
+        nodes: { value: [] },
+        edges: { value: [] },
+        setNodes: mockSetNodes,
+        setEdges: mockSetEdges,
+        nodeIdCounter: mockNodeIdCounter,
+      });
+
+      const graphStateWithoutDisplaySettings = {
+        name: 'Old Graph',
+        nodes: [],
+        edges: [],
+        algPresets: [],
+        example: true,
+      };
+
+      // Should not throw an error
+      expect(() => {
+        importGraphFromFile(graphStateWithoutDisplaySettings);
+      }).not.toThrow();
+
+      expect(mockSetNodes).toHaveBeenCalledWith([]);
+      expect(mockSetEdges).toHaveBeenCalledWith([]);
+    });
+
+    it('should handle partial display settings', () => {
+      const { importGraphFromFile } = useGraphPersistence({
+        nodes: { value: [] },
+        edges: { value: [] },
+        setNodes: mockSetNodes,
+        setEdges: mockSetEdges,
+        nodeIdCounter: mockNodeIdCounter,
+      });
+
+      const graphStateWithPartialSettings = {
+        name: 'Partial Settings Graph',
+        nodes: [],
+        edges: [],
+        algPresets: [],
+        displaySettings: {
+          twistyNodeSize: 350, // Only node size, no edge labels setting
+        },
+        example: true,
+      };
+
+      // Should not throw an error
+      expect(() => {
+        importGraphFromFile(graphStateWithPartialSettings);
+      }).not.toThrow();
+
+      expect(mockSetNodes).toHaveBeenCalledWith([]);
+      expect(mockSetEdges).toHaveBeenCalledWith([]);
+    });
+  });
 });

@@ -6,11 +6,18 @@ export interface SavedGraphManifest {
   savedAt: string; // ISO string date
 }
 
+// Define which display settings should be persisted with saved graphs
+export interface PersistableDisplaySettings {
+  twistyNodeSize?: number;
+  showColorizedEdgeLabels?: boolean;
+}
+
 export interface SavedGraphState {
   name: string;
   nodes: Node[];
   edges: Edge[];
   algPresets: AlgPreset[];
+  displaySettings?: PersistableDisplaySettings;
   // You could add viewport info here too if needed:
   // viewport: { x: number; y: number; zoom: number };
 }
