@@ -1,10 +1,12 @@
 import { useSavedGraphsStore } from '../stores/savedGraphsStore';
 import { useAlgPresetsStore } from '../stores/algPresetsStore';
+import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
 
 // Only handles pure data logic, no UI events or file dialogs
 export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCounter }: any) {
   const savedGraphsStore = useSavedGraphsStore();
   const algPresetsStore = useAlgPresetsStore();
+  const displaySettingsStore = useDisplaySettingsStore();
 
   // Save current graph state to store
   const saveGraphToStore = (graphName: string) => {
@@ -25,11 +27,25 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
     nodeIdCounter.value = maxId + 1;
   };
 
+  // Helper function to apply display settings from saved graph
+  const applyDisplaySettings = (graphState: any) => {
+    if (graphState.displaySettings) {
+      // Iterate over each setting in the saved display settings
+      Object.entries(graphState.displaySettings).forEach(([key, value]) => {
+        // Only apply if the setting exists in the store and the value is defined
+        if (key in displaySettingsStore && value !== undefined) {
+          (displaySettingsStore as any)[key] = value;
+        }
+      });
+    }
+  };
+
   // Import a graph from a file (parsed object)
   const importGraphFromFile = (graphState: any) => {
     setNodes(graphState.nodes);
     setEdges(graphState.edges);
     algPresetsStore.replaceAllPresets(graphState.algPresets || []);
+    applyDisplaySettings(graphState);
     if (graphState.example){return}
     savedGraphsStore.saveGraph(graphState.name, graphState.nodes, graphState.edges);
   };
@@ -41,6 +57,7 @@ export function useGraphPersistence({ nodes, edges, setNodes, setEdges, nodeIdCo
       try {
         const graphState = JSON.parse(graphJSON);
         algPresetsStore.replaceAllPresets(graphState.algPresets || []);
+        applyDisplaySettings(graphState);
         return graphState;
       } catch (e) {
         console.error("Error parsing saved graph data:", e);
