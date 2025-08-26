@@ -38,11 +38,24 @@ export const useSavedGraphsStore = defineStore('savedGraphs', () => {
       return false;
     }
 
-    // Extract only the specific display settings we want to persist
-    const persistableDisplaySettings: PersistableDisplaySettings = {
-      twistyNodeSize: displaySettingsStore.twistyNodeSize,
-      showColorizedEdgeLabels: displaySettingsStore.showColorizedEdgeLabels,
+    // Helper function to extract persistable settings dynamically
+    const extractPersistableSettings = (): PersistableDisplaySettings => {
+      // Define the keys we want to persist (must match PersistableDisplaySettings interface)
+      const persistableKeys: (keyof PersistableDisplaySettings)[] = [
+        'twistyNodeSize', 
+        'showColorizedEdgeLabels'
+      ];
+      
+      const settings: PersistableDisplaySettings = {};
+      persistableKeys.forEach(key => {
+        if (key in displaySettingsStore) {
+          (settings as any)[key] = (displaySettingsStore as any)[key];
+        }
+      });
+      return settings;
     };
+
+    const persistableDisplaySettings = extractPersistableSettings();
 
     const graphState: SavedGraphState = {
       name,
