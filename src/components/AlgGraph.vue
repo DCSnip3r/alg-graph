@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { VueFlow, useVueFlow } from '@vue-flow/core';
 import { useNodeManagement } from '../composables/useNodeManagement';
 import { useEdgeManagement } from '../composables/useEdgeManagement';
@@ -15,6 +16,10 @@ import { useNodeConfluence } from '../composables/useNodeConfluence';
 import { useAutoLayout } from '../composables/useAutoLayout';
 import { useGridSnap } from '../composables/useGridSnap';
 import { useGraphScaling } from '../composables/useGraphScaling';
+import { useGraphDataStore } from '../stores/graphDataStore';
+
+const router = useRouter();
+const graphDataStore = useGraphDataStore();
 
 const { 
   onPaneReady, addNodes, addEdges, findNode, 
@@ -70,6 +75,13 @@ function handleSnapToGrid(gridSize: number) {
 function handleScaleGraph({ factor }: { factor: number }) {
   scaleAll(factor);
   // Do not auto-fit; user intent is incremental spacing change
+}
+
+function handleRender3D() {
+  // Store current graph data in the store
+  graphDataStore.setGraphData(nodes.value, edges.value);
+  // Navigate to 3D view
+  router.push('/3d');
 }
 
 onPaneReady((flowInstance) => {
@@ -190,6 +202,7 @@ onMounted(() => {
       @custom-layout-request="handleCustomLayout"
   @snap-to-grid-request="handleSnapToGrid"
   @scale-graph-request="handleScaleGraph"
+      @render-3d-request="handleRender3D"
     />
     <VueFlow 
       :nodes="nodes" 
