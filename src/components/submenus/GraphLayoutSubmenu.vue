@@ -3,6 +3,20 @@
     <CollapsibleHeader title="Layout" v-model="isVisible" />
 
     <div v-if="isVisible" class="submenu-layout">
+      <!-- 3D VIEW ROW -->
+      <div class="action-row">
+        <div class="action-col">
+          <div class="row">
+            <button @click="emit('render-3d-request')" class="render-3d-button" aria-label="Render graph in 3D" title="Open 3D Force Graph Viewer">
+              🎨 Render in 3D
+            </button>
+          </div>
+        </div>
+        <div class="desc-col">
+          <p class="help-inline"><strong>3D View:</strong> Opens an interactive 3D force-directed graph visualization of your current graph.</p>
+        </div>
+      </div>
+
       <!-- SNAP ROW -->
       <div class="action-row">
         <div class="action-col">
@@ -88,7 +102,7 @@ import { ref, watch } from 'vue';
 import CollapsibleHeader from '../shared/CollapsibleHeader.vue';
 import { useDisplaySettingsStore } from '../../stores/displaySettingsStore';
 
-const emit = defineEmits(['custom-layout-request', 'snap-to-grid-request', 'scale-graph-request']);
+const emit = defineEmits(['custom-layout-request', 'snap-to-grid-request', 'scale-graph-request', 'render-3d-request']);
 
 const isVisible = ref(false);
 // Layout controls state
@@ -136,6 +150,8 @@ function applyCustomLayout() {
 .mini-input, .mini-select { font-size:0.65rem; padding:2px 4px; height:22px; }
 .snap-button { background:#17a2b8; color:#fff; border:none; padding:2px 8px; font-size:0.65rem; border-radius:4px; cursor:pointer; height:22px; }
 .snap-button:hover { background:#138496; }
+.render-3d-button { background:#28a745; color:#fff; border:none; padding:6px 16px; font-size:0.85rem; border-radius:4px; cursor:pointer; font-weight:600; transition:background-color .2s ease; }
+.render-3d-button:hover { background:#218838; }
 .scale-buttons { display:inline-flex; align-items:center; gap:4px; }
 .scale-button { background:#555; color:#fff; border:none; width:22px; height:22px; border-radius:4px; font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; line-height:1; }
 .scale-button:hover { background:#666; }

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import AlgGraph from './components/AlgGraph.vue';
+// App component now uses router-view
 </script>
 
 <template>
   <div>
-    <AlgGraph />
+    <router-view />
   </div>
 </template>
 

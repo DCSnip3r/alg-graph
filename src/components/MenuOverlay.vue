@@ -22,6 +22,7 @@
         @custom-layout-request="emit('custom-layout-request', $event)"
         @snap-to-grid-request="emit('snap-to-grid-request', $event)"
         @scale-graph-request="emit('scale-graph-request', $event)"
+        @render-3d-request="emit('render-3d-request')"
       />
     </div>
   </div>
@@ -38,7 +39,7 @@ const props = defineProps<{
   saveStatus: { message: string, type: 'success' | 'error' } | null;
 }>();
 
-const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-graph-from-file-request', 'auto-layout-request', 'custom-layout-request', 'snap-to-grid-request', 'scale-graph-request']);
+const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-graph-from-file-request', 'auto-layout-request', 'custom-layout-request', 'snap-to-grid-request', 'scale-graph-request', 'render-3d-request']);
 
 const { isVisible, toggleVisibility } = useCollapsible(true);
 </script>
