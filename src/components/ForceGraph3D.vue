@@ -11,7 +11,6 @@
       :graph-data="graphData"
       :node-label="(node: any) => node.name"
       :node-color="() => '#4a9eff'"
-      :node-val="10"
       :link-label="(link: any) => link.label || ''"
       :link-color="(link: any) => link.color || '#999999'"
       :link-width="2"
