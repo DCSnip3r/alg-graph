@@ -181,7 +181,25 @@ const initializeEdges = () => {
 
 onMounted(() => {
   initializeEdges();
-  resetNodes(); // Start with a single solved node
+  
+  // Check if we're returning from 3D view with saved graph data
+  if (graphDataStore.nodes.length > 0 || graphDataStore.edges.length > 0) {
+    // Restore the graph from the store
+    setNodes(graphDataStore.nodes);
+    setEdges(graphDataStore.edges);
+    
+    // Update the node counter to avoid ID conflicts
+    let maxId = 0;
+    graphDataStore.nodes.forEach(node => {
+      const idParts = node.id.split('-');
+      const idNum = parseInt(idParts[1]);
+      if (!isNaN(idNum) && idNum > maxId) maxId = idNum;
+    });
+    nodeIdCounter.value = maxId + 1;
+  } else {
+    // Start with a single solved node if no graph data
+    resetNodes();
+  }
 });
 
 </script>

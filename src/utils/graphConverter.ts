@@ -45,7 +45,7 @@ export function convertToForceGraphData(
 
   // Convert edges to links
   const forceLinks: ForceGraphLink[] = edges.map((edge) => {
-    const algorithm = edge.data?.algorithm || edge.label || '';
+    const algorithm = edge.data?.algorithm || '';
     return {
       source: edge.source,
       target: edge.target,

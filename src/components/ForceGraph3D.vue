@@ -45,8 +45,8 @@ const goBack = () => {
 };
 
 onMounted(() => {
-  // If no graph data, redirect back to editor
-  if (graphDataStore.nodes.length === 0) {
+  // If no graph data (no nodes and no edges), redirect back to editor
+  if (graphDataStore.nodes.length === 0 && graphDataStore.edges.length === 0) {
     router.push('/');
   }
 });
