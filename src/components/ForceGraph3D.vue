@@ -79,14 +79,6 @@ onMounted(async () => {
   }
   
   isLoading.value = false;
-
-  // Pause animation after 3 seconds to test if movement causes flickering
-  setTimeout(() => {
-    if (graphRef.value) {
-      graphRef.value.pauseAnimation();
-      console.log('Animation paused to test for flickering');
-    }
-  }, 3000);
 });
 
 onBeforeUnmount(() => {
