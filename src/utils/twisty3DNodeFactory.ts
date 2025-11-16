@@ -2,7 +2,7 @@ import { TwistyPlayer } from 'cubing/twisty';
 import type { Object3D } from 'three';
 
 // Configuration constants
-let PUZZLE_SCALE_FACTOR = 15; // Scale multiplier for puzzle objects in the force graph
+const PUZZLE_SCALE_FACTOR = 5; // Scale multiplier for puzzle objects in the force graph
 const PUZZLE_LOAD_TIMEOUT_MS = 10000; // Maximum time to wait for puzzle object creation
 const PUZZLE_INIT_POLL_INTERVAL_MS = 50; // Polling interval for puzzle initialization check
 const PUZZLE_INIT_MAX_WAIT_MS = 2000; // Maximum time for initial polling
@@ -141,27 +141,6 @@ export async function preloadTwisty3DNodes(nodeAlgs: string[]): Promise<void> {
 export function getTwisty3DNode(alg: string = ''): Object3D | null {
   const key = alg || 'empty';
   return puzzleCache.get(key) || null;
-}
-
-/**
- * Sets the scale factor for puzzle objects.
- * This allows adjusting the size of cube nodes in the force graph.
- * 
- * @param scale - The new scale factor (default is 15)
- */
-export function setPuzzleScale(scale: number): void {
-  PUZZLE_SCALE_FACTOR = scale;
-  // Update existing cached objects
-  puzzleCache.forEach((obj) => {
-    obj.scale.set(PUZZLE_SCALE_FACTOR, PUZZLE_SCALE_FACTOR, PUZZLE_SCALE_FACTOR);
-  });
-}
-
-/**
- * Gets the current puzzle scale factor.
- */
-export function getPuzzleScale(): number {
-  return PUZZLE_SCALE_FACTOR;
 }
 
 /**
