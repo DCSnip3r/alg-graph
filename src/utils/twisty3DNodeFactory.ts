@@ -79,6 +79,13 @@ async function createTwisty3DNodeAsync(
     return puzzleObject;
   } catch (error) {
     console.error('Error creating Twisty 3D node:', error);
+    // Clean up any created elements
+    const key = alg || 'empty';
+    const player = playerInstances.get(key);
+    if (player?.parentElement?.parentElement) {
+      player.parentElement.parentElement.removeChild(player.parentElement);
+    }
+    playerInstances.delete(key);
     return null;
   }
 }
