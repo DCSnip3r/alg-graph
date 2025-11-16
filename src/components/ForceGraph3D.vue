@@ -58,7 +58,13 @@ const goBack = () => {
 
 // Create custom 3D node objects using cubing.js
 // This function must be synchronous for vue-force-graph
+// Returns null for collapsed nodes to render them as default spheres
 const nodeThreeObject = (node: any) => {
+  // If node is collapsed, return null to use default sphere rendering
+  if (node.collapsed) {
+    return null;
+  }
+  
   const alg = node.alg || '';
   return getTwisty3DNode(alg);
 };

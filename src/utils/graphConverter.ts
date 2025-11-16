@@ -6,6 +6,7 @@ export interface ForceGraphNode {
   name: string;
   alg?: string;
   val?: number;
+  collapsed?: boolean;
 }
 
 export interface ForceGraphLink {
@@ -41,6 +42,7 @@ export function convertToForceGraphData(
     name: node.data?.label || node.id,
     alg: node.data?.alg || '',
     val: 10, // Size of the node
+    collapsed: node.data?.collapsed || false,
   }));
 
   // Convert edges to links
