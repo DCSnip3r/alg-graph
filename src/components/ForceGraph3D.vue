@@ -10,7 +10,7 @@
       ref="graphRef"
       :graph-data="graphData"
       :node-label="(node: any) => node.name"
-      :node-color="() => '#4a9eff'"
+      :node-three-object="nodeThreeObject"
       :link-label="(link: any) => link.label || ''"
       :link-color="(link: any) => link.color || '#999999'"
       :link-width="2"
@@ -25,6 +25,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGraphDataStore } from '../stores/graphDataStore';
 import { convertToForceGraphData } from '../utils/graphConverter';
+import { createTwisty3DNode } from '../utils/twisty3DNodeFactory';
 import { VueForceGraph3D } from 'vue-force-graph';
 
 const router = useRouter();
@@ -42,6 +43,12 @@ const graphData = computed(() => {
 // Navigate back to 2D editor
 const goBack = () => {
   router.push('/');
+};
+
+// Create custom 3D node objects using cubing.js
+const nodeThreeObject = async (node: any) => {
+  const alg = node.alg || '';
+  return await createTwisty3DNode(alg);
 };
 
 onMounted(() => {
