@@ -25,6 +25,7 @@
       :link-width="2"
       :link-directional-arrow-length="3.5"
       :link-directional-arrow-rel-pos="1"
+      :renderer-config="{ logarithmicDepthBuffer: true, antialias: true }"
     />
   </div>
 </template>
