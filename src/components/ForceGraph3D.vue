@@ -5,31 +5,44 @@
       ✕ Close 3D View
     </button>
 
+    <!-- Loading state -->
+    <div v-if="isLoading" class="loading-overlay">
+      <div class="loading-message">
+        <div class="spinner"></div>
+        <p>Loading 3D puzzles...</p>
+      </div>
+    </div>
+
     <!-- 3D Force Graph -->
     <VueForceGraph3D
+      v-else
       ref="graphRef"
       :graph-data="graphData"
       :node-label="(node: any) => node.name"
-      :node-color="() => '#4a9eff'"
+      :node-three-object="nodeThreeObject"
+      :node-color="nodeColor"
       :link-label="(link: any) => link.label || ''"
       :link-color="(link: any) => link.color || '#999999'"
       :link-width="2"
       :link-directional-arrow-length="3.5"
       :link-directional-arrow-rel-pos="1"
+      :renderer-config="{ logarithmicDepthBuffer: true, antialias: true }"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGraphDataStore } from '../stores/graphDataStore';
 import { convertToForceGraphData } from '../utils/graphConverter';
+import { preloadTwisty3DNodes, getTwisty3DNode, clearTwisty3DCache } from '../utils/twisty3DNodeFactory';
 import { VueForceGraph3D } from 'vue-force-graph';
 
 const router = useRouter();
 const graphDataStore = useGraphDataStore();
 const graphRef = ref<any>(null);
+const isLoading = ref(true);
 
 // Convert the graph data to force graph format
 const graphData = computed(() => {
@@ -44,11 +57,60 @@ const goBack = () => {
   router.push('/');
 };
 
-onMounted(() => {
+// Create custom 3D node objects using cubing.js
+// This function must be synchronous for vue-force-graph
+// Returns null for collapsed nodes to render them as default spheres
+const nodeThreeObject = (node: any) => {
+  // If node is collapsed, return null to use default sphere rendering
+  if (node.collapsed) {
+    return null;
+  }
+  
+  const alg = node.alg || '';
+  return getTwisty3DNode(alg);
+};
+
+// Custom node color function for collapsed nodes
+const nodeColor = (node: any) => {
+  // If node is collapsed, check for incoming edge colors
+  if (node.collapsed) {
+    // Find incoming links to this node
+    const incomingLinks = graphData.value.links.filter((link: any) => link.target === node.id || link.target.id === node.id);
+    
+    // If there's exactly one incoming link, use its color
+    if (incomingLinks.length === 1) {
+      return incomingLinks[0].color || 'rgba(255, 255, 255, 0.6)';
+    }
+    
+    // Otherwise, use white with opacity
+    return 'rgba(255, 255, 255, 0.6)';
+  }
+  
+  // For non-collapsed nodes (3D cubes), return undefined to use default
+  return undefined;
+};
+
+onMounted(async () => {
   // If no graph data (no nodes and no edges), redirect back to editor
   if (graphDataStore.nodes.length === 0 && graphDataStore.edges.length === 0) {
     router.push('/');
+    return;
   }
+
+  // Pre-load all puzzle objects before rendering
+  const nodeAlgs = graphDataStore.nodes.map(node => node.data?.alg || '');
+  
+  try {
+    await preloadTwisty3DNodes(nodeAlgs);
+  } catch (error) {
+    console.error('Error loading 3D puzzles:', error);
+  }
+  
+  isLoading.value = false;
+});
+
+onBeforeUnmount(() => {
+  clearTwisty3DCache();
 });
 </script>
 
@@ -88,5 +150,43 @@ onMounted(() => {
 .close-button:active {
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1a1a;
+  z-index: 999;
+}
+
+.loading-message {
+  text-align: center;
+  color: white;
+}
+
+.loading-message p {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #4a9eff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 </style>
