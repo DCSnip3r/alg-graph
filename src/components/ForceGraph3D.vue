@@ -5,6 +5,28 @@
       ✕ Close 3D View
     </button>
 
+    <!-- Algorithm Legend -->
+    <div class="legend-container" :class="{ collapsed: isLegendCollapsed }">
+      <button 
+        class="legend-toggle" 
+        @click="isLegendCollapsed = !isLegendCollapsed"
+        :title="isLegendCollapsed ? 'Show Legend' : 'Hide Legend'"
+      >
+        <span class="chevron" :class="{ rotated: !isLegendCollapsed }">›</span>
+      </button>
+      <div v-if="!isLegendCollapsed" class="legend-content">
+        <div 
+          v-for="preset in algPresetsStore.presets" 
+          :key="preset.id"
+          class="legend-item"
+          :style="{ backgroundColor: preset.color, color: getTextColor(preset.color) }"
+        >
+          <span class="legend-name">{{ preset.name }}</span>
+          <span class="legend-alg">{{ preset.algorithm }}</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Loading state -->
     <div v-if="isLoading" class="loading-overlay">
       <div class="loading-message">
@@ -35,14 +57,19 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGraphDataStore } from '../stores/graphDataStore';
+import { useAlgPresetsStore } from '../stores/algPresetsStore';
+import { useColorUtils } from '../composables/useColorUtils';
 import { convertToForceGraphData } from '../utils/graphConverter';
 import { preloadTwisty3DNodes, getTwisty3DNode, clearTwisty3DCache } from '../utils/twisty3DNodeFactory';
 import { VueForceGraph3D } from 'vue-force-graph';
 
 const router = useRouter();
 const graphDataStore = useGraphDataStore();
+const algPresetsStore = useAlgPresetsStore();
+const { getTextColorForBackground } = useColorUtils();
 const graphRef = ref<any>(null);
 const isLoading = ref(true);
+const isLegendCollapsed = ref(false);
 
 // Convert the graph data to force graph format
 const graphData = computed(() => {
@@ -55,6 +82,11 @@ const graphData = computed(() => {
 // Navigate back to 2D editor
 const goBack = () => {
   router.push('/');
+};
+
+// Get appropriate text color for background
+const getTextColor = (backgroundColor: string) => {
+  return getTextColorForBackground(backgroundColor);
 };
 
 // Create custom 3D node objects using cubing.js
@@ -148,6 +180,83 @@ onBeforeUnmount(() => {
 .close-button:active {
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.legend-container {
+  position: absolute;
+  top: 20px;
+  right: 290px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.legend-container.collapsed {
+  right: 290px;
+}
+
+.legend-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #666;
+  font-size: 24px;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.legend-toggle:hover {
+  color: #999;
+}
+
+.chevron {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-weight: bold;
+}
+
+.chevron.rotated {
+  transform: rotate(90deg);
+}
+
+.legend-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.legend-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.3;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  min-width: 100px;
+  max-width: 200px;
+  transition: all 0.2s ease;
+}
+
+.legend-item:hover {
+  transform: translateX(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.legend-name {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.legend-alg {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  opacity: 0.9;
 }
 
 .loading-overlay {
