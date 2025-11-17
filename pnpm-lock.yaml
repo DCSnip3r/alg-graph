@@ -447,14 +447,14 @@ packages:
   '@vue/devtools-api@6.6.4':
     resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
 
-  '@vue/devtools-api@7.7.8':
-    resolution: {integrity: sha512-BtFcAmDbtXGwurWUFf8ogIbgZyR+rcVES1TSNEI8Em80fD8Anu+qTRN1Fc3J6vdRHlVM3fzPV1qIo+B4AiqGzw==}
+  '@vue/devtools-api@7.7.9':
+    resolution: {integrity: sha512-kIE8wvwlcZ6TJTbNeU2HQNtaxLx3a84aotTITUuL/4bzfPxzajGBOoqjMhwZJ8L9qFYDU/lAYMEEm11dnZOD6g==}
 
-  '@vue/devtools-kit@7.7.8':
-    resolution: {integrity: sha512-4Y8op+AoxOJhB9fpcEF6d5vcJXWKgHxC3B0ytUB8zz15KbP9g9WgVzral05xluxi2fOeAy6t140rdQ943GcLRQ==}
+  '@vue/devtools-kit@7.7.9':
+    resolution: {integrity: sha512-PyQ6odHSgiDVd4hnTP+aDk2X4gl2HmLDfiyEnn3/oV+ckFDuswRs4IbBT7vacMuGdwY/XemxBoh302ctbsptuA==}
 
-  '@vue/devtools-shared@7.7.8':
-    resolution: {integrity: sha512-XHpO3jC5nOgYr40M9p8Z4mmKfTvUxKyRcUnpBAYg11pE78eaRFBKb0kG5yKLroMuJeeNH9LWmKp2zMU5LUc7CA==}
+  '@vue/devtools-shared@7.7.9':
+    resolution: {integrity: sha512-iWAb0v2WYf0QWmxCGy0seZNDPdO3Sp5+u78ORnyeonS6MT4PC7VPrryX2BpMJrwlDeaZ6BD4vP4XKjK0SZqaeA==}
 
   '@vue/language-core@2.2.12':
     resolution: {integrity: sha512-IsGljWbKGU1MZpBPN+BvPAdr55YPkj2nB/TBNGNC32Vy2qLG25DYu/NBN2vNtZqdRbTRjaoYrahLrToim2NanA==}
@@ -594,8 +594,8 @@ packages:
     resolution: {integrity: sha512-7Vv6asjS4gMOuILabD3l739tsaxFQmC+a7pLZm02zyvs8p977bL3zEgq3yDk5rn9B0PbYgIv++jmHcuUab4RhA==}
     engines: {node: '>=18'}
 
-  csstype@3.2.1:
-    resolution: {integrity: sha512-98XGutrXoh75MlgLihlNxAGbUuFQc7l1cqcnEZlLNKc0UrVdPndgmaDmYTDDh929VS/eqTZV0rozmhu2qqT1/g==}
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
   cubing@0.53.15:
     resolution: {integrity: sha512-ijugwbdb231ChOHZ9wwsqXRLP47jjOKPfJO6LLobiOTZKIJFNdAaiV9vG4c+dwiGf6Wllfj0VHOUgYclovzuzw==}
@@ -924,8 +924,8 @@ packages:
   ngraph.forcelayout@3.3.1:
     resolution: {integrity: sha512-MKBuEh1wujyQHFTW57y5vd/uuEOK0XfXYxm3lC7kktjJLRdt/KEKEknyOlc6tjXflqBKEuYBBcu7Ax5VY+S6aw==}
 
-  ngraph.graph@20.1.0:
-    resolution: {integrity: sha512-1jorNgIc0Kg0L9bTNN4+RCrVvbZ+4pqGVMrbhX3LLyqYcRdLvAQRRnxddmfj9l5f6Eq59SUTfbYZEm8cktiE7Q==}
+  ngraph.graph@20.1.1:
+    resolution: {integrity: sha512-KNtZWYzYe7SMOuG3vvROznU+fkPmL5cGYFsWjqt+Ob1uF5xZz5EjomtsNOZEIwVuD37/zokeEqNK1ghY4/fhDg==}
 
   ngraph.merge@1.0.0:
     resolution: {integrity: sha512-5J8YjGITUJeapsomtTALYsw7rFveYkM+lBj3QiYZ79EymQcuri65Nw3knQtFxQBU1r5iOaVRXrSwMENUPK62Vg==}
@@ -1612,13 +1612,13 @@ snapshots:
 
   '@vue/devtools-api@6.6.4': {}
 
-  '@vue/devtools-api@7.7.8':
+  '@vue/devtools-api@7.7.9':
     dependencies:
-      '@vue/devtools-kit': 7.7.8
+      '@vue/devtools-kit': 7.7.9
 
-  '@vue/devtools-kit@7.7.8':
+  '@vue/devtools-kit@7.7.9':
     dependencies:
-      '@vue/devtools-shared': 7.7.8
+      '@vue/devtools-shared': 7.7.9
       birpc: 2.8.0
       hookable: 5.5.3
       mitt: 3.0.1
@@ -1626,7 +1626,7 @@ snapshots:
       speakingurl: 14.0.1
       superjson: 2.2.5
 
-  '@vue/devtools-shared@7.7.8':
+  '@vue/devtools-shared@7.7.9':
     dependencies:
       rfdc: 1.4.1
 
@@ -1657,7 +1657,7 @@ snapshots:
       '@vue/reactivity': 3.5.24
       '@vue/runtime-core': 3.5.24
       '@vue/shared': 3.5.24
-      csstype: 3.2.1
+      csstype: 3.2.3
 
   '@vue/server-renderer@3.5.24(vue@3.5.24(typescript@5.6.3))':
     dependencies:
@@ -1799,7 +1799,7 @@ snapshots:
     dependencies:
       is-what: 5.5.0
 
-  csstype@3.2.1: {}
+  csstype@3.2.3: {}
 
   cubing@0.53.15:
     dependencies:
@@ -2139,7 +2139,7 @@ snapshots:
       ngraph.merge: 1.0.0
       ngraph.random: 1.2.0
 
-  ngraph.graph@20.1.0:
+  ngraph.graph@20.1.1:
     dependencies:
       ngraph.events: 1.4.0
 
@@ -2199,7 +2199,7 @@ snapshots:
 
   pinia@3.0.4(typescript@5.6.3)(vue@3.5.24(typescript@5.6.3)):
     dependencies:
-      '@vue/devtools-api': 7.7.8
+      '@vue/devtools-api': 7.7.9
       vue: 3.5.24(typescript@5.6.3)
     optionalDependencies:
       typescript: 5.6.3
@@ -2312,7 +2312,7 @@ snapshots:
       data-bind-mapper: 1.0.3
       kapsule: 1.16.3
       ngraph.forcelayout: 3.3.1
-      ngraph.graph: 20.1.0
+      ngraph.graph: 20.1.1
       three: 0.164.1
       tinycolor2: 1.6.0
 
@@ -2326,7 +2326,7 @@ snapshots:
       data-bind-mapper: 1.0.3
       kapsule: 1.16.3
       ngraph.forcelayout: 3.3.1
-      ngraph.graph: 20.1.0
+      ngraph.graph: 20.1.1
       three: 0.181.1
       tinycolor2: 1.6.0
 
