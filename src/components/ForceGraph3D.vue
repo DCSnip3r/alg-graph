@@ -1,24 +1,20 @@
 <template>
   <div class="force-graph-container">
-    <!-- Combined Menu: Algorithm Legend and Close Button -->
+    <!-- Close button -->
+    <button class="close-button" @click="goBack" title="Return to 2D Editor">
+      ✕ Close 3D View
+    </button>
+
+    <!-- Algorithm Legend -->
     <div class="legend-container" :class="{ collapsed: isLegendCollapsed }">
-      <div class="legend-header">
-        <span v-if="isLegendCollapsed" class="collapse-line"></span>
-        <button 
-          class="legend-toggle" 
-          @click="isLegendCollapsed = !isLegendCollapsed"
-          :title="isLegendCollapsed ? 'Show Legend' : 'Hide Legend'"
-        >
-          <span class="chevron" :class="{ rotated: !isLegendCollapsed }">‹</span>
-        </button>
-      </div>
+      <button 
+        class="legend-toggle" 
+        @click="isLegendCollapsed = !isLegendCollapsed"
+        :title="isLegendCollapsed ? 'Show Legend' : 'Hide Legend'"
+      >
+        <span class="chevron" :class="{ rotated: !isLegendCollapsed }">›</span>
+      </button>
       <div v-if="!isLegendCollapsed" class="legend-content">
-        <!-- Close button -->
-        <button class="close-button" @click="goBack" title="Return to 2D Editor">
-          ✕ Close 3D View
-        </button>
-        
-        <!-- Algorithm presets -->
         <div 
           v-for="preset in algPresetsStore.presets" 
           :key="preset.id"
@@ -158,10 +154,38 @@ onBeforeUnmount(() => {
   background-color: #1a1a1a;
 }
 
-.legend-container {
+.close-button {
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 1000;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.close-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.legend-container {
+  position: absolute;
+  top: 20px;
+  right: 290px;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -169,17 +193,8 @@ onBeforeUnmount(() => {
   gap: 8px;
 }
 
-.legend-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.collapse-line {
-  width: 30px;
-  height: 2px;
-  background-color: rgba(128, 128, 128, 0.6);
-  border-radius: 1px;
+.legend-container.collapsed {
+  right: 290px;
 }
 
 .legend-toggle {
@@ -204,32 +219,7 @@ onBeforeUnmount(() => {
 }
 
 .chevron.rotated {
-  transform: rotate(-90deg);
-}
-
-.close-button {
-  background-color: rgba(64, 64, 64, 0.8);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 6px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.close-button:hover {
-  background-color: rgba(80, 80, 80, 0.9);
-  transform: translateX(-2px);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-}
-
-.close-button:active {
-  transform: translateX(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transform: rotate(90deg);
 }
 
 .legend-content {
