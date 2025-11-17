@@ -37,13 +37,16 @@ export function convertToForceGraphData(
   };
 
   // Convert nodes
-  const forceNodes: ForceGraphNode[] = nodes.map((node) => ({
-    id: node.id,
-    name: node.data?.label || node.id,
-    alg: node.data?.alg || '',
-    val: 10, // Size of the node
-    collapsed: node.data?.collapsed || false,
-  }));
+  const forceNodes: ForceGraphNode[] = nodes.map((node) => {
+    const isCollapsed = node.data?.collapsed || false;
+    return {
+      id: node.id,
+      name: node.data?.label || node.id,
+      alg: node.data?.alg || '',
+      val: isCollapsed ? 3 : 10, // Smaller size for collapsed nodes
+      collapsed: isCollapsed,
+    };
+  });
 
   // Convert edges to links
   const forceLinks: ForceGraphLink[] = edges.map((edge) => {

@@ -20,6 +20,7 @@
       :graph-data="graphData"
       :node-label="(node: any) => node.name"
       :node-three-object="nodeThreeObject"
+      :node-color="nodeColor"
       :link-label="(link: any) => link.label || ''"
       :link-color="(link: any) => link.color || '#999999'"
       :link-width="2"
@@ -67,6 +68,26 @@ const nodeThreeObject = (node: any) => {
   
   const alg = node.alg || '';
   return getTwisty3DNode(alg);
+};
+
+// Custom node color function for collapsed nodes
+const nodeColor = (node: any) => {
+  // If node is collapsed, check for incoming edge colors
+  if (node.collapsed) {
+    // Find incoming links to this node
+    const incomingLinks = graphData.value.links.filter((link: any) => link.target === node.id || link.target.id === node.id);
+    
+    // If there's exactly one incoming link, use its color
+    if (incomingLinks.length === 1) {
+      return incomingLinks[0].color || 'rgba(255, 255, 255, 0.6)';
+    }
+    
+    // Otherwise, use white with opacity
+    return 'rgba(255, 255, 255, 0.6)';
+  }
+  
+  // For non-collapsed nodes (3D cubes), return undefined to use default
+  return undefined;
 };
 
 onMounted(async () => {
