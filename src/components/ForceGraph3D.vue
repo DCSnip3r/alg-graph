@@ -65,22 +65,24 @@ onMounted(() => {
   top: 20px;
   right: 20px;
   z-index: 1000;
-  background-color: #dc3545;
+  background-color: #191919;
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease;
+  opacity: 0.5;
 }
 
 .close-button:hover {
   background-color: #c82333;
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  opacity: 1;
 }
 
 .close-button:active {
