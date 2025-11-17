@@ -63,7 +63,7 @@ async function createTwisty3DNodeAsync(
       const start = Date.now();
       while (Date.now() - start < PUZZLE_INIT_MAX_WAIT_MS) {
         const obj = await twistyPlayer.experimentalCurrentThreeJSPuzzleObject();
-        if (obj) return obj;
+        if (obj) return obj as unknown as Object3D;
         await new Promise(res => setTimeout(res, PUZZLE_INIT_POLL_INTERVAL_MS));
       }
       return null;
