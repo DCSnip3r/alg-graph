@@ -76,12 +76,8 @@ const isLoading = ref(true);
 const isLegendCollapsed = ref(false);
 
 // Convert the graph data to force graph format
-const graphData = computed(() => {
-  return convertToForceGraphData(
-    graphDataStore.nodes,
-    graphDataStore.edges
-  );
-});
+// Using ref instead of computed to prevent unnecessary re-renders
+const graphData = ref<any>(null);
 
 // Navigate back to 2D editor
 const goBack = () => {
@@ -110,6 +106,11 @@ const nodeThreeObject = (node: any) => {
 const nodeColor = (node: any) => {
   // If node is collapsed, check for incoming edge colors
   if (node.collapsed) {
+    // Safety check: ensure graphData is initialized
+    if (!graphData.value || !graphData.value.links) {
+      return 'rgba(255, 255, 255, 0.6)';
+    }
+    
     // Find incoming links to this node
     const incomingLinks = graphData.value.links.filter((link: any) => link.target === node.id || link.target.id === node.id);
     
@@ -132,6 +133,12 @@ onMounted(async () => {
     router.push('/');
     return;
   }
+
+  // Convert the graph data once and store it
+  graphData.value = convertToForceGraphData(
+    graphDataStore.nodes,
+    graphDataStore.edges
+  );
 
   // Pre-load all puzzle objects before rendering
   const nodeAlgs = graphDataStore.nodes.map(node => node.data?.alg || '');
