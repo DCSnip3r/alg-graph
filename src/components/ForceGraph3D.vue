@@ -58,6 +58,9 @@ import { preloadTwisty3DNodes, getTwisty3DNode, clearTwisty3DCache, getAllPuzzle
 import { VueForceGraph3D } from 'vue-force-graph';
 import { Euler, Quaternion } from 'three';
 
+// Rotation sensitivity for shift+drag
+const ROTATION_SENSITIVITY = 0.01;
+
 const router = useRouter();
 const graphDataStore = useGraphDataStore();
 const displaySettings = useDisplaySettingsStore();
@@ -69,6 +72,7 @@ const isShiftPressed = ref(false);
 const isDragging = ref(false);
 const lastMouseX = ref(0);
 const lastMouseY = ref(0);
+let animationFrameId: number | null = null;
 
 // Convert the graph data to force graph format
 const graphData = computed(() => {
@@ -194,9 +198,8 @@ const handleMouseMove = (e: MouseEvent) => {
     
     // Rotate cubes based on mouse movement
     // Horizontal movement rotates around Y axis, vertical around X axis
-    const sensitivity = 0.01;
-    displaySettings.cubeRotationY += deltaX * sensitivity;
-    displaySettings.cubeRotationX += deltaY * sensitivity;
+    displaySettings.cubeRotationY += deltaX * ROTATION_SENSITIVITY;
+    displaySettings.cubeRotationX += deltaY * ROTATION_SENSITIVITY;
     
     lastMouseX.value = e.clientX;
     lastMouseY.value = e.clientY;
@@ -229,11 +232,14 @@ onMounted(async () => {
   isLoading.value = false;
   
   // Set up animation loop for continuous rotation updates
+  // Only run when locked (for billboard effect) to optimize performance
   const animationLoop = () => {
-    applyRotationToCubes();
-    requestAnimationFrame(animationLoop);
+    if (displaySettings.lockCubeRotation) {
+      applyRotationToCubes();
+    }
+    animationFrameId = requestAnimationFrame(animationLoop);
   };
-  animationLoop();
+  animationFrameId = requestAnimationFrame(animationLoop);
   
   // Add event listeners for keyboard and mouse
   window.addEventListener('keydown', handleKeyDown);
@@ -244,6 +250,11 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
+  // Cancel animation frame
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId);
+  }
+  
   clearTwisty3DCache();
   
   // Remove event listeners
