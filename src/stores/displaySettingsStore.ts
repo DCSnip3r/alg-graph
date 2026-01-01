@@ -9,6 +9,12 @@ export const useDisplaySettingsStore = defineStore('displaySettings', () => {
   const createConfluenceEdges = ref(true); // New option: create visual confluence edges
   // Configurable size for twisty nodes (width & height of the twisty-player square). Default changed from 350px to 200px.
   const twistyNodeSize = ref(200);
+  
+  // 3D Graph cube rotation settings
+  const lockCubeRotation = ref(true); // Lock cube orientation during graph rotation
+  const cubeRotationX = ref(0); // Independent cube rotation X axis (radians)
+  const cubeRotationY = ref(0); // Independent cube rotation Y axis (radians)
+  const cubeRotationZ = ref(0); // Independent cube rotation Z axis (radians)
 
   return {
     showColorizedEdgeLabels,
@@ -17,5 +23,9 @@ export const useDisplaySettingsStore = defineStore('displaySettings', () => {
     matchIfAUF,
     createConfluenceEdges,
     twistyNodeSize,
+    lockCubeRotation,
+    cubeRotationX,
+    cubeRotationY,
+    cubeRotationZ,
   };
 });
