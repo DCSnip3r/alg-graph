@@ -123,12 +123,6 @@ const nodeColor = (node: any) => {
 
 // Apply rotation to all puzzle cubes
 const applyRotationToCubes = () => {
-  if (!graphRef.value) return;
-  
-  const graph = graphRef.value;
-  const camera = graph.camera?.();
-  if (!camera) return;
-  
   const puzzleObjects = getAllPuzzleObjects();
   const cubeRotation = new Euler(
     displaySettings.cubeRotationX,
@@ -137,9 +131,16 @@ const applyRotationToCubes = () => {
     'XYZ'
   );
   
-  puzzleObjects.forEach((puzzleObj) => {
-    if (puzzleObj) {
-      if (displaySettings.lockCubeRotation) {
+  if (displaySettings.lockCubeRotation) {
+    // When locked, need camera for billboard effect
+    if (!graphRef.value) return;
+    
+    const graph = graphRef.value;
+    const camera = graph.camera?.();
+    if (!camera) return;
+    
+    puzzleObjects.forEach((puzzleObj) => {
+      if (puzzleObj) {
         // When locked, make cube face the camera (billboard effect) plus independent rotation
         // Create a quaternion that makes the cube face the camera direction
         const quaternion = new Quaternion();
@@ -151,12 +152,16 @@ const applyRotationToCubes = () => {
         // Then apply independent rotation on top
         const independentRotation = new Quaternion().setFromEuler(cubeRotation);
         puzzleObj.quaternion.multiply(independentRotation);
-      } else {
-        // When unlocked, just apply independent rotation (let cubes rotate naturally with view)
+      }
+    });
+  } else {
+    // When unlocked, just apply independent rotation (let cubes rotate naturally with view)
+    puzzleObjects.forEach((puzzleObj) => {
+      if (puzzleObj) {
         puzzleObj.rotation.set(cubeRotation.x, cubeRotation.y, cubeRotation.z);
       }
-    }
-  });
+    });
+  }
 };
 
 // Handle keyboard events for shift key
@@ -225,9 +230,7 @@ onMounted(async () => {
   
   // Set up animation loop for continuous rotation updates
   const animationLoop = () => {
-    if (displaySettings.lockCubeRotation) {
-      applyRotationToCubes();
-    }
+    applyRotationToCubes();
     requestAnimationFrame(animationLoop);
   };
   animationLoop();
