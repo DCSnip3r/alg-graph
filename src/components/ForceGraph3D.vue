@@ -35,7 +35,7 @@
       :link-directional-arrow-length="3.5"
       :link-directional-arrow-rel-pos="1"
       :renderer-config="{ logarithmicDepthBuffer: true, antialias: true }"
-      :enable-navigation-controls="!isShiftPressed"
+      :enableNavigationControls="!isShiftPressed"
     />
   </div>
 </template>
