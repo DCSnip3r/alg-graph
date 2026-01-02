@@ -7,15 +7,6 @@
         ✕ Close 3D View
       </button>
       
-      <!-- Lock cube rotation toggle -->
-      <button 
-        class="control-button" 
-        @click="toggleCubeLock" 
-        :title="displaySettings.lockCubeRotation ? 'Unlock cube rotation (cubes will rotate with graph)' : 'Lock cube rotation (cubes maintain orientation)'"
-      >
-        {{ displaySettings.lockCubeRotation ? '🔒' : '🔓' }} {{ displaySettings.lockCubeRotation ? 'Locked' : 'Unlocked' }}
-      </button>
-      
       <!-- Hint for shift+drag -->
       <div class="hint-text">
         Hold <kbd>Shift</kbd> and drag to rotate cubes independently
@@ -44,6 +35,7 @@
       :link-directional-arrow-length="3.5"
       :link-directional-arrow-rel-pos="1"
       :renderer-config="{ logarithmicDepthBuffer: true, antialias: true }"
+      :enable-navigation-controls="!isShiftPressed"
     />
   </div>
 </template>
@@ -87,11 +79,6 @@ const goBack = () => {
   router.push('/');
 };
 
-// Toggle cube rotation lock
-const toggleCubeLock = () => {
-  displaySettings.lockCubeRotation = !displaySettings.lockCubeRotation;
-};
-
 // Create custom 3D node objects using cubing.js
 // This function must be synchronous for vue-force-graph
 // Returns null for collapsed nodes to render them as default spheres
@@ -125,8 +112,14 @@ const nodeColor = (node: any) => {
   return undefined;
 };
 
-// Apply rotation to all puzzle cubes
+// Apply rotation to all puzzle cubes (always locked mode)
 const applyRotationToCubes = () => {
+  if (!graphRef.value) return;
+  
+  const graph = graphRef.value;
+  const camera = graph.camera?.();
+  if (!camera) return;
+  
   const puzzleObjects = getAllPuzzleObjects();
   const cubeRotation = new Euler(
     displaySettings.cubeRotationX,
@@ -135,37 +128,21 @@ const applyRotationToCubes = () => {
     'XYZ'
   );
   
-  if (displaySettings.lockCubeRotation) {
-    // When locked, need camera for billboard effect
-    if (!graphRef.value) return;
-    
-    const graph = graphRef.value;
-    const camera = graph.camera?.();
-    if (!camera) return;
-    
-    puzzleObjects.forEach((puzzleObj) => {
-      if (puzzleObj) {
-        // When locked, make cube face the camera (billboard effect) plus independent rotation
-        // Create a quaternion that makes the cube face the camera direction
-        const quaternion = new Quaternion();
-        quaternion.setFromRotationMatrix(camera.matrixWorld);
-        
-        // Apply the camera's rotation to make cube face camera
-        puzzleObj.quaternion.copy(quaternion);
-        
-        // Then apply independent rotation on top
-        const independentRotation = new Quaternion().setFromEuler(cubeRotation);
-        puzzleObj.quaternion.multiply(independentRotation);
-      }
-    });
-  } else {
-    // When unlocked, just apply independent rotation (let cubes rotate naturally with view)
-    puzzleObjects.forEach((puzzleObj) => {
-      if (puzzleObj) {
-        puzzleObj.rotation.set(cubeRotation.x, cubeRotation.y, cubeRotation.z);
-      }
-    });
-  }
+  puzzleObjects.forEach((puzzleObj) => {
+    if (puzzleObj) {
+      // Make cube face the camera (billboard effect) plus independent rotation
+      // Create a quaternion that makes the cube face the camera direction
+      const quaternion = new Quaternion();
+      quaternion.setFromRotationMatrix(camera.matrixWorld);
+      
+      // Apply the camera's rotation to make cube face camera
+      puzzleObj.quaternion.copy(quaternion);
+      
+      // Then apply independent rotation on top
+      const independentRotation = new Quaternion().setFromEuler(cubeRotation);
+      puzzleObj.quaternion.multiply(independentRotation);
+    }
+  });
 };
 
 // Handle keyboard events for shift key
@@ -231,12 +208,9 @@ onMounted(async () => {
   
   isLoading.value = false;
   
-  // Set up animation loop for continuous rotation updates
-  // Only run when locked (for billboard effect) to optimize performance
+  // Set up animation loop for continuous rotation updates (always active for billboard effect)
   const animationLoop = () => {
-    if (displaySettings.lockCubeRotation) {
-      applyRotationToCubes();
-    }
+    applyRotationToCubes();
     animationFrameId = requestAnimationFrame(animationLoop);
   };
   animationFrameId = requestAnimationFrame(animationLoop);
