@@ -12,6 +12,9 @@ const puzzleCache = new Map<string, Object3D>();
 const loadingPromises = new Map<string, Promise<Object3D | null>>();
 const playerInstances = new Map<string, TwistyPlayer>();
 
+// Store all puzzle objects for rotation management
+const allPuzzleObjects: Object3D[] = [];
+
 /**
  * Creates a Three.js Object3D from a cubing.js TwistyPlayer for use in 3D graphs.
  * 
@@ -85,6 +88,9 @@ async function createTwisty3DNodeAsync(
 
     // Scale the puzzle to an appropriate size for the force graph
     puzzleObject.scale.set(PUZZLE_SCALE_FACTOR, PUZZLE_SCALE_FACTOR, PUZZLE_SCALE_FACTOR);
+    
+    // Track this puzzle object for rotation management
+    allPuzzleObjects.push(puzzleObject);
 
     // Don't remove the container yet - the player needs to stay connected
     // for animation to continue working
@@ -144,6 +150,14 @@ export function getTwisty3DNode(alg: string = ''): Object3D | null {
 }
 
 /**
+ * Gets all puzzle objects for rotation management.
+ * @returns Array of all loaded puzzle Object3D instances
+ */
+export function getAllPuzzleObjects(): Object3D[] {
+  return allPuzzleObjects;
+}
+
+/**
  * Clears the puzzle cache and cleans up DOM elements.
  */
 export function clearTwisty3DCache(): void {
@@ -160,4 +174,5 @@ export function clearTwisty3DCache(): void {
   puzzleCache.clear();
   loadingPromises.clear();
   playerInstances.clear();
+  allPuzzleObjects.length = 0; // Clear array
 }

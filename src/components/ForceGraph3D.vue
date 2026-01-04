@@ -1,9 +1,17 @@
 <template>
   <div class="force-graph-container">
-    <!-- Close button -->
-    <button class="close-button" @click="goBack" title="Return to 2D Editor">
-      ✕ Close 3D View
-    </button>
+    <!-- Controls Panel -->
+    <div class="controls-panel">
+      <!-- Close button -->
+      <button class="close-button" @click="goBack" title="Return to 2D Editor">
+        ✕ Close 3D View
+      </button>
+      
+      <!-- Hint for shift+drag -->
+      <div class="hint-text">
+        Hold <kbd>Shift</kbd> and drag to rotate cubes independently
+      </div>
+    </div>
 
     <!-- Loading state -->
     <div v-if="isLoading" class="loading-overlay">
@@ -35,14 +43,27 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGraphDataStore } from '../stores/graphDataStore';
+import { useDisplaySettingsStore } from '../stores/displaySettingsStore';
 import { convertToForceGraphData } from '../utils/graphConverter';
-import { preloadTwisty3DNodes, getTwisty3DNode, clearTwisty3DCache } from '../utils/twisty3DNodeFactory';
+import { preloadTwisty3DNodes, getTwisty3DNode, clearTwisty3DCache, getAllPuzzleObjects } from '../utils/twisty3DNodeFactory';
 import { VueForceGraph3D } from 'vue-force-graph';
+import { Euler, Quaternion } from 'three';
+
+// Rotation sensitivity for shift+drag
+const ROTATION_SENSITIVITY = 0.01;
 
 const router = useRouter();
 const graphDataStore = useGraphDataStore();
+const displaySettings = useDisplaySettingsStore();
 const graphRef = ref<any>(null);
 const isLoading = ref(true);
+
+// Track state for shift+drag rotation
+const isShiftPressed = ref(false);
+const isDragging = ref(false);
+const lastMouseX = ref(0);
+const lastMouseY = ref(0);
+let animationFrameId: number | null = null;
 
 // Convert the graph data to force graph format
 const graphData = computed(() => {
@@ -90,6 +111,84 @@ const nodeColor = (node: any) => {
   return undefined;
 };
 
+// Apply rotation to all puzzle cubes (always locked mode)
+const applyRotationToCubes = () => {
+  if (!graphRef.value) return;
+  
+  const graph = graphRef.value;
+  const camera = graph.camera?.();
+  if (!camera) return;
+  
+  const puzzleObjects = getAllPuzzleObjects();
+  const cubeRotation = new Euler(
+    displaySettings.cubeRotationX,
+    displaySettings.cubeRotationY,
+    displaySettings.cubeRotationZ,
+    'XYZ'
+  );
+  
+  puzzleObjects.forEach((puzzleObj) => {
+    if (puzzleObj) {
+      // Make cube face the camera (billboard effect) plus independent rotation
+      // Create a quaternion that makes the cube face the camera direction
+      const quaternion = new Quaternion();
+      quaternion.setFromRotationMatrix(camera.matrixWorld);
+      
+      // Apply the camera's rotation to make cube face camera
+      puzzleObj.quaternion.copy(quaternion);
+      
+      // Then apply independent rotation on top
+      const independentRotation = new Quaternion().setFromEuler(cubeRotation);
+      puzzleObj.quaternion.multiply(independentRotation);
+    }
+  });
+};
+
+// Handle keyboard events for shift key
+const handleKeyDown = (e: KeyboardEvent) => {
+  if (e.key === 'Shift') {
+    isShiftPressed.value = true;
+  }
+};
+
+const handleKeyUp = (e: KeyboardEvent) => {
+  if (e.key === 'Shift') {
+    isShiftPressed.value = false;
+  }
+};
+
+// Handle mouse events for shift+drag rotation
+const handleMouseDown = (e: MouseEvent) => {
+  if (isShiftPressed.value) {
+    isDragging.value = true;
+    lastMouseX.value = e.clientX;
+    lastMouseY.value = e.clientY;
+    e.preventDefault();
+  }
+};
+
+const handleMouseMove = (e: MouseEvent) => {
+  if (isDragging.value && isShiftPressed.value) {
+    const deltaX = e.clientX - lastMouseX.value;
+    const deltaY = e.clientY - lastMouseY.value;
+    
+    // Rotate cubes based on mouse movement
+    // Horizontal movement rotates around Y axis, vertical around X axis
+    displaySettings.cubeRotationY += deltaX * ROTATION_SENSITIVITY;
+    displaySettings.cubeRotationX += deltaY * ROTATION_SENSITIVITY;
+    
+    lastMouseX.value = e.clientX;
+    lastMouseY.value = e.clientY;
+    
+    applyRotationToCubes();
+    e.preventDefault();
+  }
+};
+
+const handleMouseUp = () => {
+  isDragging.value = false;
+};
+
 onMounted(async () => {
   // If no graph data (no nodes and no edges), redirect back to editor
   if (graphDataStore.nodes.length === 0 && graphDataStore.edges.length === 0) {
@@ -107,10 +206,36 @@ onMounted(async () => {
   }
   
   isLoading.value = false;
+  
+  // Set up animation loop for continuous rotation updates (always active for billboard effect)
+  const animationLoop = () => {
+    applyRotationToCubes();
+    animationFrameId = requestAnimationFrame(animationLoop);
+  };
+  animationFrameId = requestAnimationFrame(animationLoop);
+  
+  // Add event listeners for keyboard and mouse
+  window.addEventListener('keydown', handleKeyDown);
+  window.addEventListener('keyup', handleKeyUp);
+  window.addEventListener('mousedown', handleMouseDown);
+  window.addEventListener('mousemove', handleMouseMove);
+  window.addEventListener('mouseup', handleMouseUp);
 });
 
 onBeforeUnmount(() => {
+  // Cancel animation frame
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId);
+  }
+  
   clearTwisty3DCache();
+  
+  // Remove event listeners
+  window.removeEventListener('keydown', handleKeyDown);
+  window.removeEventListener('keyup', handleKeyUp);
+  window.removeEventListener('mousedown', handleMouseDown);
+  window.removeEventListener('mousemove', handleMouseMove);
+  window.removeEventListener('mouseup', handleMouseUp);
 });
 </script>
 
@@ -122,11 +247,19 @@ onBeforeUnmount(() => {
   background-color: #1a1a1a;
 }
 
-.close-button {
+.controls-panel {
   position: absolute;
   top: 20px;
   right: 20px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.close-button,
+.control-button {
   background-color: #191919;
   color: white;
   border: none;
@@ -138,18 +271,47 @@ onBeforeUnmount(() => {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease;
   opacity: 0.5;
+  white-space: nowrap;
 }
 
-.close-button:hover {
-  background-color: #c82333;
+.close-button:hover,
+.control-button:hover {
+  background-color: #2a2a2a;
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
   opacity: 1;
 }
 
-.close-button:active {
+.close-button:hover {
+  background-color: #c82333;
+}
+
+.close-button:active,
+.control-button:active {
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hint-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  border-radius: 4px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.hint-text:hover {
+  opacity: 1;
+}
+
+.hint-text kbd {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-weight: bold;
 }
 
 .loading-overlay {
