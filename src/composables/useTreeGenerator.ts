@@ -1,15 +1,15 @@
 import { Alg } from 'cubing/alg';
-import type { Node } from '@vue-flow/core';
+import type { Node, Edge } from '@vue-flow/core';
 
 interface TreeGeneratorConfig {
   rootNodeId: string;
   levels: string[][]; // Array of levels, each containing algorithm strings
-  addNodes: Function;
-  addEdges: Function;
-  findNode: Function;
-  getNextNodeId: Function;
-  updateNodeData: Function;
-  checkAndRepositionNode: Function;
+  addNodes: (nodes: Node[]) => void;
+  addEdges: (edges: Edge[]) => void;
+  findNode: (id: string) => Node | undefined;
+  getNextNodeId: () => string;
+  updateNodeData: (id: string, data: any) => void;
+  checkAndRepositionNode: (nodeId: string, nodes: Node[], context?: { parentId?: string; rawSegment?: string; sourceHandle?: string }) => Promise<any>;
   nodes: { value: Node[] };
 }
 

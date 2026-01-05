@@ -89,7 +89,7 @@ function handleRender3D() {
 // Tree Generator
 const { generateTree } = useTreeGenerator();
 const isTreeGeneratorOpen = ref(false);
-const treeGeneratorModalRef = ref<any>(null);
+const treeGeneratorModalRef = ref<{ setProgress: (message: string) => void; finishGeneration: () => void } | null>(null);
 
 function openTreeGenerator() {
   isTreeGeneratorOpen.value = true;
