@@ -6,10 +6,12 @@ import { useNodeManagement } from '../composables/useNodeManagement';
 import { useEdgeManagement } from '../composables/useEdgeManagement';
 import { useGraphPersistence } from '../composables/useGraphPersistence';
 import { useDragAndDrop } from '../composables/useDragAndDrop'; // Import the new composable
+import { useTreeGenerator } from '../composables/useTreeGenerator';
 import TwistyNode from './TwistyNode.vue';
 import SpecialEdge from './SpecialEdge.vue';
 import ConfluenceEdge from './ConfluenceEdge.vue';
 import MenuOverlay from './MenuOverlay.vue';
+import TreeGeneratorModal from './TreeGeneratorModal.vue';
 import { Alg } from 'cubing/alg'; // Import the Alg class
 
 import { useNodeConfluence } from '../composables/useNodeConfluence';
@@ -82,6 +84,55 @@ function handleRender3D() {
   graphDataStore.setGraphData(nodes.value, edges.value);
   // Navigate to 3D view
   router.push('/3d');
+}
+
+// Tree Generator
+const { generateTree } = useTreeGenerator();
+const isTreeGeneratorOpen = ref(false);
+const treeGeneratorModalRef = ref<any>(null);
+
+function openTreeGenerator() {
+  isTreeGeneratorOpen.value = true;
+}
+
+function closeTreeGenerator() {
+  isTreeGeneratorOpen.value = false;
+}
+
+async function handleTreeGeneration(config: { rootNodeId: string; levels: string[][] }) {
+  console.log('Starting tree generation with config:', config);
+  
+  try {
+    await generateTree({
+      rootNodeId: config.rootNodeId,
+      levels: config.levels,
+      addNodes,
+      addEdges,
+      findNode,
+      getNextNodeId,
+      updateNodeData,
+      checkAndRepositionNode,
+      nodes,
+    });
+    
+    console.log('Tree generation completed successfully');
+    
+    // Notify the modal to close
+    if (treeGeneratorModalRef.value) {
+      treeGeneratorModalRef.value.finishGeneration();
+    }
+    
+    // Fit the view to show the new tree
+    setTimeout(() => {
+      fitView({ padding: 0.2 });
+    }, 200);
+  } catch (error) {
+    console.error('Tree generation error:', error);
+    alert(`Tree generation failed: ${error}`);
+    if (treeGeneratorModalRef.value) {
+      treeGeneratorModalRef.value.finishGeneration();
+    }
+  }
 }
 
 onPaneReady((flowInstance) => {
@@ -218,9 +269,17 @@ onMounted(() => {
       @load-graph-from-file-request="importGraphFromFile"
       @auto-layout-request="handleAutoLayout"
       @custom-layout-request="handleCustomLayout"
-  @snap-to-grid-request="handleSnapToGrid"
-  @scale-graph-request="handleScaleGraph"
+      @snap-to-grid-request="handleSnapToGrid"
+      @scale-graph-request="handleScaleGraph"
       @render-3d-request="handleRender3D"
+      @open-tree-generator="openTreeGenerator"
+    />
+    <TreeGeneratorModal
+      ref="treeGeneratorModalRef"
+      :is-open="isTreeGeneratorOpen"
+      :available-nodes="nodes"
+      @close="closeTreeGenerator"
+      @generate="handleTreeGeneration"
     />
     <VueFlow 
       :nodes="nodes" 
@@ -245,7 +304,7 @@ onMounted(() => {
         />
       </template>
       <template #edge-confluence="confluenceEdgeProps">
-  <ConfluenceEdge v-bind="confluenceEdgeProps" @delete-edge="deleteEdgeById" />
+        <ConfluenceEdge v-bind="confluenceEdgeProps" @delete-edge="deleteEdgeById" />
       </template>
     </VueFlow>
   </div>
