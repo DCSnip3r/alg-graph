@@ -38,11 +38,7 @@
       <button @click="algStore.addPreset()">Add Algorithm</button>
 
       <!-- Tree Generator Subsection -->
-      <div class="subsection">
-        <h5>Tree Generator</h5>
-        <p class="description">
-          Generate a hierarchical tree of algorithm permutations with automatic confluence detection.
-        </p>
+      <div>
         <button @click="openTreeGenerator" class="generate-tree-btn">
           🌳 Open Tree Generator
         </button>
@@ -245,15 +241,13 @@ function onInvertAlg(algEntry: { algorithm: string, name: string, color: string 
 }
 
 .generate-tree-btn {
-  width: 100%;
-  padding: 10px;
+  padding: 5px;
+  margin-top: 15px;
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.95rem;
+  cursor: pointer;  font-size: 0.75rem;
   transition: background-color 0.2s;
 }
 
