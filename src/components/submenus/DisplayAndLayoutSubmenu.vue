@@ -18,8 +18,7 @@
       </div>
 
       <!-- Display Toggles -->
-      <div class="partition-block">
-        <div class="block-heading">Display</div>
+      <PartitionBlock heading="Display">
         <div class="setting-item inline-setting">
           <label for="colorized-edge-labels">
             <input 
@@ -37,11 +36,10 @@
             <option value="experimental-2D-LL">Experimental 2D LL</option>
           </select>
         </div>
-      </div>
+      </PartitionBlock>
 
       <!-- Sizing -->
-      <div class="partition-block">
-        <div class="block-heading">Sizing</div>
+      <PartitionBlock heading="Sizing">
         <div class="setting-item">
           <div class="inline-setting">
             <label for="twisty-node-size">Twisty Node Size: {{ displaySettingsStore.twistyNodeSize }}px</label>
@@ -55,7 +53,7 @@
             />
           </div>
         </div>
-      </div>
+      </PartitionBlock>
 
       <!-- SNAP ROW -->
       <div class="action-row">
@@ -140,6 +138,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import CollapsibleHeader from '../shared/CollapsibleHeader.vue';
+import PartitionBlock from '../shared/PartitionBlock.vue';
 import { useDisplaySettingsStore } from '../../stores/displaySettingsStore';
 
 const emit = defineEmits(['custom-layout-request', 'snap-to-grid-request', 'scale-graph-request', 'render-3d-request']);
@@ -208,13 +207,6 @@ function applyCustomLayout() {
 
 /* Slightly taller inputs for clarity */
 .auto-arrange-row .mini-select, .auto-arrange-row .mini-input { height:24px; }
-
-/* Partition blocks reused styling */
-.partition-block { background:#1f1f1f; padding:8px 10px 10px; border-radius:6px; box-shadow:0 0 0 1px #2e2e2e inset; margin:8px 4px; }
-.partition-block:first-of-type { margin-top:6px; }
-.block-heading { font-size:0.55rem; letter-spacing:.5px; text-transform:uppercase; opacity:.75; margin:0 0 6px; font-weight:600; }
-.partition-block .setting-item { margin:6px 0; padding-left:0; }
-.partition-block .inline-setting { gap:8px; }
 
 .setting-item {
   margin: 10px 0;

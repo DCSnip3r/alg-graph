@@ -46,8 +46,7 @@
 
       <!-- Confluence Settings (Collapsible) -->
       <div class="subsection">
-        <CollapsibleHeader title="Confluence Settings" v-model="confluenceVisible" />
-        <div v-if="confluenceVisible" class="confluence-settings">
+        <PartitionBlock heading="Confluence Settings" :collapsible="true" v-model="confluenceVisible">
           <div class="setting-item inline-setting">
             <label for="create-confluence-edges">
               <input
@@ -88,7 +87,7 @@
               Delete duplicate node on confluence
             </label>
           </div>
-        </div>
+        </PartitionBlock>
       </div>
     </div>
   </div>
@@ -97,6 +96,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CollapsibleHeader from '../shared/CollapsibleHeader.vue';
+import PartitionBlock from '../shared/PartitionBlock.vue';
 import { useAlgPresetsStore } from '../../stores/algPresetsStore';
 import { useDisplaySettingsStore } from '../../stores/displaySettingsStore';
 import { useDragAndDrop } from '../../composables/useDragAndDrop';
@@ -253,10 +253,6 @@ function onInvertAlg(algEntry: { algorithm: string, name: string, color: string 
 
 .generate-tree-btn:hover {
   background-color: #45a049;
-}
-
-.confluence-settings {
-  padding: 10px 0;
 }
 
 .setting-item {
