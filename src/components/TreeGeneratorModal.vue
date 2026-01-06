@@ -58,19 +58,20 @@
 
         <!-- Preview Section -->
         <div v-if="previewStats" class="preview-section">
-          <h4>Preview</h4>
-          <p>
-            Root: <strong>{{ selectedRootNode?.data.label || 'None' }}</strong>
-          </p>
-          <p>
-            Levels: <strong>{{ levels.length }}</strong>
-          </p>
-          <p>
-            Estimated nodes: <strong>{{ previewStats.estimatedNodes }}</strong>
-          </p>
-          <p>
-            Estimated edges: <strong>{{ previewStats.estimatedEdges }}</strong>
-          </p>
+          <div class="preview-items">
+            <div class="preview-item">
+              <strong>Root:</strong> {{ selectedRootNode?.data.label || 'None' }}
+            </div>
+            <div class="preview-item">
+              <strong>Levels:</strong> {{ levels.length }}
+            </div>
+            <div class="preview-item">
+              <strong>Est. nodes:</strong> {{ previewStats.estimatedNodes }}
+            </div>
+            <div class="preview-item">
+              <strong>Est. edges:</strong> {{ previewStats.estimatedEdges }}
+            </div>
+          </div>
           <p class="warning-text" v-if="previewStats.estimatedNodes > 50">
             ⚠️ Warning: This will create many nodes. Consider reducing levels or algorithms.
           </p>
@@ -420,19 +421,25 @@ defineExpose({
 
 .preview-section {
   margin-top: 20px;
-  padding: 15px;
+  padding: 12px;
   background-color: #1a1a1a;
   border: 1px solid #444;
   border-radius: 4px;
 }
 
-.preview-section h4 {
-  margin-top: 0;
+.preview-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
   margin-bottom: 10px;
 }
 
-.preview-section p {
-  margin: 5px 0;
+.preview-item {
+  font-size: 0.9rem;
+}
+
+.preview-item strong {
+  margin-right: 4px;
 }
 
 .warning-text {

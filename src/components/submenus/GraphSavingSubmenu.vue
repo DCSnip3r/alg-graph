@@ -29,15 +29,12 @@
             </li>
           </ul>
           <p v-else>No graphs saved yet.</p>
-        </div>
-      </div>
-
-      <!-- Upload Graph File -->
-      <div class="partition-block">
-        <div class="block-heading">Upload</div>
-        <div class="upload-graph-section">
-          <input type="file" ref="fileInputRef" @change="handleFileUpload" accept=".json" style="display: none;">
-          <button @click="triggerFileInput" class="upload-button">Select .json File to Load</button>
+          
+          <!-- Upload Button moved here -->
+          <div class="upload-graph-section">
+            <input type="file" ref="fileInputRef" @change="handleFileUpload" accept=".json" style="display: none;">
+            <button @click="triggerFileInput" class="upload-button">Upload .json file</button>
+          </div>
         </div>
       </div>
 
@@ -130,10 +127,10 @@ const {
   margin-top: 15px; /* Add spacing above the section */
 }
 
-.section-header {
-  margin: 0 0 5px 10px; /* Align with the rest of the content */
-  font-size: .8rem;
-  font-weight: bold;
+.upload-graph-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #444;
 }
 
 .saved-graph-entry {
@@ -172,11 +169,12 @@ const {
   background-color: #6c757d; /* Grey background */
   color: white;
   border: none;
-  padding: 4px 8px;
+  padding: 8px 12px;
   font-size: 0.9em;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  width: 100%;
 }
 
 .upload-button:hover {
