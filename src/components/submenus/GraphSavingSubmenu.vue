@@ -14,7 +14,7 @@
       </PartitionBlock>
 
       <!-- Saved Graphs List -->
-      <PartitionBlock heading="Saved Graphs">
+      <PartitionBlock heading="Saved Graphs" :collapsible="true">
         <div class="saved-graph-section">
           <ul v-if="savedGraphsStore.savedGraphsManifest.length > 0">
             <li v-for="graph in savedGraphsStore.savedGraphsManifest" :key="graph.name" class="saved-graph-entry">
