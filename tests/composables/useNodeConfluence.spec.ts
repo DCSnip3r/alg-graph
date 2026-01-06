@@ -214,4 +214,36 @@ describe('useNodeConfluence', () => {
     expect(updateNodePosition).toHaveBeenCalled();
     expect(edges.value.some((e: any) => e.type === 'confluence')).toBe(true);
   });
+
+  it('bypasses confluence checks with whitespace in U move', async () => {
+    displaySettings.repositionOnConfluence = true;
+    displaySettings.createConfluenceEdges = true;
+    
+    const newNode = { id: 'n-7', data: { alg: "U R U R' U R U2' R'", rawAlgorithm: " U " }, position: { x: 0, y: 0 } };
+    const existingNode = { id: 'n-existing4', data: { alg: "R U R' U R U2' R'" }, position: { x: 300, y: 400 } };
+    nodes.push(existingNode);
+    nodes.push(newNode);
+    
+    await checkAndRepositionNode('n-7', nodes, { parentId: 'n-1', rawSegment: ' U ', sourceHandle: 'handle-r' });
+    
+    // Should NOT reposition or create confluence edge even with whitespace
+    expect(updateNodePosition).not.toHaveBeenCalled();
+    expect(edges.value.some((e: any) => e.type === 'confluence')).toBe(false);
+  });
+
+  it('does not bypass confluence checks for non-U moves like U R', async () => {
+    displaySettings.repositionOnConfluence = true;
+    displaySettings.createConfluenceEdges = true;
+    
+    // U R is not just U, so should not bypass
+    const newNode = { id: 'n-8', data: { alg: "U R", rawAlgorithm: "U R" }, position: { x: 0, y: 0 } };
+    const existingNode = { id: 'n-existing5', data: { alg: "U R" }, position: { x: 300, y: 400 } };
+    nodes.push(existingNode);
+    nodes.push(newNode);
+    
+    await checkAndRepositionNode('n-8', nodes, { parentId: 'n-1', rawSegment: 'U R', sourceHandle: 'handle-r' });
+    
+    // Should still perform confluence check
+    expect(updateNodePosition).toHaveBeenCalled();
+  });
 });
