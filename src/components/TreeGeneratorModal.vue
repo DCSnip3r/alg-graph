@@ -69,9 +69,9 @@
               class="alg-chip"
               :style="{ borderColor: preset.color }"
               @click="addAlgorithmToLevel(preset.algorithm)"
-              :title="`Click to add '${preset.algorithm}' to Level ${levels.length}`"
+              :title="`Click to add '${preset.algorithm}' to the last level (Level ${levels.length})`"
             >
-              <span class="alg-chip-name" v-if="preset.name">{{ preset.name }}</span>
+              <span class="alg-chip-name" v-if="preset.name && preset.name.trim()">{{ preset.name }}</span>
               <span class="alg-chip-algorithm">{{ preset.algorithm }}</span>
             </button>
           </div>
@@ -245,7 +245,7 @@ function addAlgorithmToLevel(algorithm: string) {
   if (currentValue.length > 0 && !currentValue.endsWith(',')) {
     levels.value[lastLevelIndex] = currentValue + ', ' + algorithm;
   } else if (currentValue.endsWith(',')) {
-    levels.value[lastLevelIndex] = currentValue + ' ' + algorithm;
+    levels.value[lastLevelIndex] = currentValue + algorithm;
   } else {
     levels.value[lastLevelIndex] = algorithm;
   }
