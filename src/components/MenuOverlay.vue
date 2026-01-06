@@ -6,9 +6,7 @@
     </div>
     <div v-show="isVisible" class="menu-content-wrapper">
       <hr class="submenu-divider" />
-      <AlgorithmsSubmenu />
-      <hr class="submenu-divider" />
-      <TreeGeneratorSubmenu @open-tree-generator="emit('open-tree-generator')" />
+      <AlgorithmsSubmenu @open-tree-generator="emit('open-tree-generator')" />
       <hr class="submenu-divider" />
       <GraphSavingSubmenu 
         :saveStatus="props.saveStatus" 
@@ -17,9 +15,7 @@
         @load-graph-from-file-request="emit('load-graph-from-file-request', $event)"
       />
       <hr class="submenu-divider" />
-      <DisplaySettingsSubmenu />
-      <hr class="submenu-divider" />
-      <GraphLayoutSubmenu
+      <DisplayAndLayoutSubmenu
         @auto-layout-request="emit('auto-layout-request')"
         @custom-layout-request="emit('custom-layout-request', $event)"
         @snap-to-grid-request="emit('snap-to-grid-request', $event)"
@@ -33,10 +29,8 @@
 <script setup lang="ts">
 import { useCollapsible } from '../composables/useCollapsible';
 import AlgorithmsSubmenu from './submenus/AlgorithmsSubmenu.vue';
-import TreeGeneratorSubmenu from './submenus/TreeGeneratorSubmenu.vue';
 import GraphSavingSubmenu from './submenus/GraphSavingSubmenu.vue';
-import DisplaySettingsSubmenu from './submenus/DisplaySettingsSubmenu.vue';
-import GraphLayoutSubmenu from './submenus/GraphLayoutSubmenu.vue';
+import DisplayAndLayoutSubmenu from './submenus/DisplayAndLayoutSubmenu.vue';
 
 const props = defineProps<{
   saveStatus: { message: string, type: 'success' | 'error' } | null;
