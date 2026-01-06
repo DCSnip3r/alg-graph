@@ -51,7 +51,7 @@ describe('useTreeGenerator', () => {
   describe('Terminal algorithms', () => {
     it('should mark nodes with semicolon as terminal', async () => {
       const { generateTree } = useTreeGenerator();
-      config.levels = [['R U R\';']]; // Terminal algorithm
+      config.levels = [[`R U R';`]]; // Terminal algorithm
 
       await generateTree(config);
 
@@ -65,7 +65,7 @@ describe('useTreeGenerator', () => {
     it('should not add children to terminal nodes', async () => {
       const { generateTree } = useTreeGenerator();
       config.levels = [
-        ['R U R\';', 'R U R\''], // One terminal, one non-terminal
+        [`R U R';`, `R U R'`], // One terminal, one non-terminal
         ['U'], // Second level
       ];
 
@@ -90,7 +90,7 @@ describe('useTreeGenerator', () => {
 
     it('should parse algorithm without semicolon correctly', async () => {
       const { generateTree } = useTreeGenerator();
-      config.levels = [['R U R\'']]; // Non-terminal
+      config.levels = [[`R U R'`]]; // Non-terminal
 
       await generateTree(config);
 
@@ -118,7 +118,7 @@ describe('useTreeGenerator', () => {
       });
 
       config.levels = [
-        ['R U R\'', 'U R U\' R\''], // Two algorithms
+        [`R U R'`, `U R U' R'`], // Two algorithms
         ['U2'], // Second level
       ];
 
