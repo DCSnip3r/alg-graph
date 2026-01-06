@@ -64,6 +64,13 @@ export function useTreeGenerator() {
   }
 
   /**
+   * Checks if an algorithm string is the special U_branch pattern
+   */
+  function isUBranchPattern(algString: string): boolean {
+    return algString.trim().toLowerCase() === 'u_branch';
+  }
+
+  /**
    * Parses an algorithm string and extracts the algorithm and terminal flag
    * Terminal algorithms end with a semicolon (;) and won't receive children in subsequent levels
    */
@@ -202,6 +209,241 @@ export function useTreeGenerator() {
   }
 
   /**
+   * Generates the U_branch cluster pattern: U and U' from parent, both connecting to U2
+   * Returns the U2 node that can be used for further branching
+   */
+  async function generateUBranchCluster(
+    config: TreeGeneratorConfig,
+    parentNode: Node
+  ): Promise<Node[]> {
+    const { addNodes, addEdges, findNode, getNextNodeId, updateNodeData, checkAndRepositionNode, nodes } = config;
+    const resultNodes: Node[] = [];
+
+    // Generate U node (going up)
+    const uNodeId = getNextNodeId();
+    const uPosition = {
+      x: parentNode.position.x + DIRECTIONS.up.dx,
+      y: parentNode.position.y + DIRECTIONS.up.dy,
+    };
+
+    const uNode = {
+      id: uNodeId,
+      type: 'twisty',
+      position: uPosition,
+      data: {
+        label: 'U',
+        alg: '',
+        rawAlgorithm: 'U',
+        targetHandleId: DIRECTIONS.up.targetHandle,
+        collapsed: false,
+        isTerminal: false,
+      },
+      style: {
+        borderColor: '#ffffff',
+        borderWidth: '8px',
+        borderStyle: 'solid',
+        borderRadius: '4px',
+      },
+    };
+
+    addNodes([uNode]);
+    await delay(50);
+
+    // Create edge from parent to U
+    const uEdge = {
+      id: `e${parentNode.id}-${uNodeId}-${DIRECTIONS.up.sourceHandle}`,
+      source: parentNode.id,
+      target: uNodeId,
+      sourceHandle: DIRECTIONS.up.sourceHandle,
+      targetHandle: DIRECTIONS.up.targetHandle,
+      type: 'special',
+      label: 'U',
+      data: { algorithm: 'U' },
+      animated: true,
+    };
+
+    addEdges([uEdge]);
+
+    // Compute U's accumulated algorithm
+    const parentAlg = parentNode.data.alg || '';
+    const uCombinedAlg = new Alg(parentAlg).concat(new Alg('U')).experimentalSimplify({ cancel: true }).toString();
+    updateNodeData(uNodeId, { alg: uCombinedAlg });
+    await delay(50);
+
+    // Check confluence for U node
+    const updatedUNode = findNode(uNodeId);
+    if (updatedUNode) {
+      await checkAndRepositionNode(uNodeId, nodes.value, {
+        parentId: parentNode.id,
+        rawSegment: 'U',
+        sourceHandle: DIRECTIONS.up.sourceHandle,
+      });
+      await delay(100);
+    }
+
+    // Generate U' node (going down)
+    const uPrimeNodeId = getNextNodeId();
+    const uPrimePosition = {
+      x: parentNode.position.x + DIRECTIONS.down.dx,
+      y: parentNode.position.y + DIRECTIONS.down.dy,
+    };
+
+    const uPrimeNode = {
+      id: uPrimeNodeId,
+      type: 'twisty',
+      position: uPrimePosition,
+      data: {
+        label: "U'",
+        alg: '',
+        rawAlgorithm: "U'",
+        targetHandleId: DIRECTIONS.down.targetHandle,
+        collapsed: false,
+        isTerminal: false,
+      },
+      style: {
+        borderColor: '#ffffff',
+        borderWidth: '8px',
+        borderStyle: 'solid',
+        borderRadius: '4px',
+      },
+    };
+
+    addNodes([uPrimeNode]);
+    await delay(50);
+
+    // Create edge from parent to U'
+    const uPrimeEdge = {
+      id: `e${parentNode.id}-${uPrimeNodeId}-${DIRECTIONS.down.sourceHandle}`,
+      source: parentNode.id,
+      target: uPrimeNodeId,
+      sourceHandle: DIRECTIONS.down.sourceHandle,
+      targetHandle: DIRECTIONS.down.targetHandle,
+      type: 'special',
+      label: "U'",
+      data: { algorithm: "U'" },
+      animated: true,
+    };
+
+    addEdges([uPrimeEdge]);
+
+    // Compute U's accumulated algorithm
+    const uPrimeCombinedAlg = new Alg(parentAlg).concat(new Alg("U'")).experimentalSimplify({ cancel: true }).toString();
+    updateNodeData(uPrimeNodeId, { alg: uPrimeCombinedAlg });
+    await delay(50);
+
+    // Check confluence for U' node
+    const updatedUPrimeNode = findNode(uPrimeNodeId);
+    if (updatedUPrimeNode) {
+      await checkAndRepositionNode(uPrimeNodeId, nodes.value, {
+        parentId: parentNode.id,
+        rawSegment: "U'",
+        sourceHandle: DIRECTIONS.down.sourceHandle,
+      });
+      await delay(100);
+    }
+
+    // Generate U2 node (positioned forward/right from parent, between U and U')
+    const u2NodeId = getNextNodeId();
+    const u2Position = {
+      x: parentNode.position.x + DIRECTIONS.forward.dx,
+      y: parentNode.position.y + DIRECTIONS.forward.dy,
+    };
+
+    const u2Node = {
+      id: u2NodeId,
+      type: 'twisty',
+      position: u2Position,
+      data: {
+        label: 'U2',
+        alg: '',
+        rawAlgorithm: 'U',
+        targetHandleId: DIRECTIONS.forward.targetHandle,
+        collapsed: false,
+        isTerminal: false,
+      },
+      style: {
+        borderColor: '#ffffff',
+        borderWidth: '8px',
+        borderStyle: 'solid',
+        borderRadius: '4px',
+      },
+    };
+
+    addNodes([u2Node]);
+    await delay(50);
+
+    // Get current U and U' nodes (might have been repositioned or deleted)
+    const currentUNode = findNode(uNodeId);
+    const currentUPrimeNode = findNode(uPrimeNodeId);
+
+    // Create edge from U to U2 (if U still exists)
+    if (currentUNode) {
+      const uToU2Edge = {
+        id: `e${uNodeId}-${u2NodeId}-${DIRECTIONS.forward.sourceHandle}`,
+        source: uNodeId,
+        target: u2NodeId,
+        sourceHandle: DIRECTIONS.forward.sourceHandle,
+        targetHandle: DIRECTIONS.forward.targetHandle,
+        type: 'special',
+        label: 'U',
+        data: { algorithm: 'U' },
+        animated: true,
+      };
+
+      addEdges([uToU2Edge]);
+
+      // Compute U2's accumulated algorithm from U path
+      const uAlg = currentUNode.data.alg || '';
+      const u2CombinedAlg = new Alg(uAlg).concat(new Alg('U')).experimentalSimplify({ cancel: true }).toString();
+      updateNodeData(u2NodeId, { alg: u2CombinedAlg });
+      await delay(50);
+
+      // Check confluence for U2 node
+      await checkAndRepositionNode(u2NodeId, nodes.value, {
+        parentId: uNodeId,
+        rawSegment: 'U',
+        sourceHandle: DIRECTIONS.forward.sourceHandle,
+      });
+      await delay(100);
+    }
+
+    // Create edge from U' to U2 (if U' still exists and U2 exists)
+    const currentU2Node = findNode(u2NodeId);
+    if (currentUPrimeNode && currentU2Node) {
+      const uPrimeToU2Edge = {
+        id: `e${uPrimeNodeId}-${u2NodeId}-${DIRECTIONS.forward.sourceHandle}`,
+        source: uPrimeNodeId,
+        target: u2NodeId,
+        sourceHandle: DIRECTIONS.forward.sourceHandle,
+        targetHandle: DIRECTIONS.forward.targetHandle,
+        type: 'special',
+        label: "U'",
+        data: { algorithm: "U'" },
+        animated: true,
+      };
+
+      addEdges([uPrimeToU2Edge]);
+      await delay(50);
+
+      // Check confluence again for this second path to U2
+      await checkAndRepositionNode(u2NodeId, nodes.value, {
+        parentId: uPrimeNodeId,
+        rawSegment: "U'",
+        sourceHandle: DIRECTIONS.forward.sourceHandle,
+      });
+      await delay(100);
+    }
+
+    // Return the final U2 node for potential further branching
+    const finalU2Node = findNode(u2NodeId);
+    if (finalU2Node && !finalU2Node.data.isTerminal) {
+      resultNodes.push(finalU2Node);
+    }
+
+    return resultNodes;
+  }
+
+  /**
    * Main tree generation function - processes levels iteratively
    */
   async function generateTree(config: TreeGeneratorConfig): Promise<void> {
@@ -232,6 +474,17 @@ export function useTreeGenerator() {
         if (validAlgs.length === 0) {
           console.warn(`No valid algorithms at level ${levelIndex + 1}`);
           continue;
+        }
+
+        // Check if this level contains the special U_branch pattern
+        const hasUBranch = validAlgs.some(alg => isUBranchPattern(alg));
+        
+        if (hasUBranch) {
+          // If U_branch is present, generate the cluster and ignore other algorithms in this level
+          console.log(`  Generating U_branch cluster for parent ${parentNode.id}`);
+          const clusterNodes = await generateUBranchCluster(config, parentNode);
+          nextLevelNodes.push(...clusterNodes);
+          continue; // Skip regular algorithm processing for this parent
         }
 
         // Generate child nodes for each algorithm

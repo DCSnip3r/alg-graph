@@ -26,6 +26,10 @@
             The generator will create all permutations, checking for confluence at each step.
             Add a semicolon (;) after an algorithm to disable future branching from that alg (e.g. R U R';, R' U' R, F U R'). 
           </p>
+          <p class="help-text special-pattern-hint">
+            <strong>Special pattern:</strong> Use <code>U_branch</code> to create a U-U'-U2 cluster structure, 
+            where U and U' branch from the parent node and both connect to U2.
+          </p>
           
           <div v-for="(_level, index) in levels" :key="index" class="level-group">
             <div class="level-header">
@@ -43,7 +47,7 @@
               v-model="levels[index]"
               type="text"
               class="form-control"
-              placeholder="e.g., R U R';, R' U' R, F U R'"
+              placeholder="e.g., R U R';, R' U' R, F U R' or U_branch"
               @input="validateLevel(index)"
             />
             <div v-if="levelErrors[index]" class="error-message">
@@ -61,8 +65,18 @@
           <h3>Your Algorithms</h3>
           <p class="help-text">
             Click an algorithm to add it to the last level, or copy and paste manually.
+            The special <code>U_branch</code> pattern is also available below.
           </p>
           <div class="alg-chips">
+            <!-- Add U_branch as a special preset button -->
+            <button
+              class="alg-chip special-pattern-chip"
+              @click="addAlgorithmToLevel('U_branch')"
+              :title="`Click to add 'U_branch' cluster pattern to the last level (Level ${levels.length})`"
+            >
+              <span class="alg-chip-name">U Branch Cluster</span>
+              <span class="alg-chip-algorithm">U_branch</span>
+            </button>
             <button
               v-for="preset in algStore.presets"
               :key="preset.id"
@@ -211,6 +225,11 @@ function validateLevel(index: number) {
   
   // Try to parse each algorithm (after removing terminal marker)
   for (const algStr of algs) {
+    // Skip validation for special patterns like U_branch
+    if (algStr.toLowerCase() === 'u_branch') {
+      continue;
+    }
+    
     // Remove terminal marker (;) if present before validation
     const cleanAlg = algStr.endsWith(';') ? algStr.slice(0, -1).trim() : algStr;
     try {
@@ -413,6 +432,21 @@ defineExpose({
   color: #aaa;
   font-size: 0.9rem;
   margin-bottom: 15px;
+}
+
+.special-pattern-hint {
+  background-color: rgba(76, 175, 80, 0.1);
+  padding: 8px 10px;
+  border-left: 3px solid #4CAF50;
+  border-radius: 4px;
+}
+
+.special-pattern-hint code {
+  background-color: #333;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+  color: #4CAF50;
 }
 
 .level-group {
@@ -620,5 +654,14 @@ defineExpose({
 .alg-chip-algorithm {
   font-family: monospace;
   font-size: 0.9rem;
+}
+
+.special-pattern-chip {
+  border-color: #4CAF50 !important;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1));
+}
+
+.special-pattern-chip:hover {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(76, 175, 80, 0.15));
 }
 </style>
