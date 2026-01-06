@@ -192,14 +192,13 @@ function applyCustomLayout() {
 .mini-input, .mini-select { font-size:0.65rem; padding:2px 4px; height:22px; }
 .snap-button { background:#17a2b8; color:#fff; border:none; padding:2px 8px; font-size:0.65rem; border-radius:4px; cursor:pointer; height:22px; }
 .snap-button:hover { background:#138496; }
-.render-3d-button { background:#28a745; color:#fff; border:none; padding:6px 16px; font-size:0.85rem; border-radius:4px; cursor:pointer; font-weight:600; transition:background-color .2s ease; width: 100%; }
+.render-3d-button { background:#28a745; color:#fff; border:none; padding:6px 16px; font-size:0.85rem; border-radius:4px; cursor:pointer; font-weight:600; transition:background-color .2s ease; width:100%; }
 .render-3d-button:hover { background:#218838; }
 .scale-buttons { display:inline-flex; align-items:center; gap:4px; }
 .scale-button { background:#555; color:#fff; border:none; width:22px; height:22px; border-radius:4px; font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; line-height:1; }
 .scale-button:hover { background:#666; }
 .scale-display { font-size:0.6rem; min-width:34px; text-align:center; background:#333; padding:2px 4px; border-radius:4px; }
 .apply-button.mini { padding:2px 8px; font-size:0.65rem; height:22px; }
-.advanced-help { display:none; }
 .input-with-unit { display:inline-flex; align-items:center; gap:2px; background:#333; padding:0 4px; border-radius:4px; }
 .input-with-unit .mini-input { border:none; background:transparent; width:50px; }
 .input-with-unit .unit { font-size:0.55rem; opacity:.8; }
