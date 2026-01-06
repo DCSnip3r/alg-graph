@@ -9,9 +9,10 @@ interface UseNodeConfluenceArgs {
   edges?: { value: Edge[] };
   updateNodeData?: (id: string, data: any) => void;
   removeNodes?: (nodeIds: string[]) => void;
+  setEdges?: (edges: Edge[]) => void;
 }
 
-export function useNodeConfluence({ findNode, updateNodePosition, addEdges, edges, updateNodeData, removeNodes }: UseNodeConfluenceArgs) {
+export function useNodeConfluence({ findNode, updateNodePosition, addEdges, edges, updateNodeData, removeNodes, setEdges }: UseNodeConfluenceArgs) {
   const displaySettings = useDisplaySettingsStore();
   const { isConfluent } = useAlg();
 
@@ -34,6 +35,14 @@ export function useNodeConfluence({ findNode, updateNodePosition, addEdges, edge
         if (displaySettings.deleteDuplicateOnConfluence && removeNodes && context?.parentId && context?.rawSegment) {
           // Delete the duplicate node
           removeNodes([updatedNodeId]);
+          
+          // Remove edges connected to the deleted node
+          if (setEdges && edges) {
+            const remainingEdges = edges.value.filter((edge: Edge) => 
+              edge.source !== updatedNodeId && edge.target !== updatedNodeId
+            );
+            setEdges(remainingEdges);
+          }
           
           // Create confluence edge from parent to existing confluent node if enabled
           if (displaySettings.createConfluenceEdges && addEdges && edges) {

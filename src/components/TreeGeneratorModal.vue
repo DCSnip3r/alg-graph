@@ -190,7 +190,9 @@ function validateLevel(index: number) {
       const cleanAlg = algStr.endsWith(';') ? algStr.slice(0, -1).trim() : algStr;
       new Alg(cleanAlg);
     } catch (e) {
-      levelErrors.value[index] = `Invalid algorithm: ${algStr}`;
+      // Show clean algorithm without semicolon in error message
+      const cleanAlg = algStr.endsWith(';') ? algStr.slice(0, -1).trim() : algStr;
+      levelErrors.value[index] = `Invalid algorithm: ${cleanAlg}`;
       return;
     }
   }

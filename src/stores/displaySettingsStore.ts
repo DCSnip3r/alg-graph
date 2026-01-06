@@ -7,7 +7,7 @@ export const useDisplaySettingsStore = defineStore('displaySettings', () => {
   const repositionOnConfluence = ref(false);
   const matchIfAUF = ref(true); // New option: match if AUF (U/U'/U2)
   const createConfluenceEdges = ref(true); // New option: create visual confluence edges
-  const deleteDuplicateOnConfluence = ref(false); // New option: delete the duplicate node when confluence is detected
+  const deleteDuplicateOnConfluence = ref(true); // New option: delete the duplicate node when confluence is detected
   // Configurable size for twisty nodes (width & height of the twisty-player square). Default changed from 350px to 200px.
   const twistyNodeSize = ref(200);
   

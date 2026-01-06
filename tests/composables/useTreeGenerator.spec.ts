@@ -106,7 +106,7 @@ describe('useTreeGenerator', () => {
       
       // First node is deleted, second is not
       let callCount = 0;
-      config.checkAndRepositionNode = vi.fn(async (nodeId: string) => {
+      config.checkAndRepositionNode = vi.fn(async (_nodeId: string) => {
         callCount++;
         if (callCount === 1) {
           // First call - simulate node deletion by returning nodeDeleted flag
