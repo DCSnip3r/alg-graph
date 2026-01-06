@@ -38,7 +38,7 @@ const {
 } = useNodeManagement({ addNodes, addEdges, updateNodeData, removeNodes, setNodes, findNode });
 
 // Initialize useNodeConfluence composable (inject edges & addEdges so it can create confluence edges)
-const { checkAndRepositionNode } = useNodeConfluence({ findNode, updateNodePosition, addEdges, edges, updateNodeData });
+const { checkAndRepositionNode } = useNodeConfluence({ findNode, updateNodePosition, addEdges, edges, updateNodeData, removeNodes });
 
 const { handleEdgeAlgorithmUpdate } = useEdgeManagement({ edges, nodes, findNode, updateNodeData, updateNodePosition, addEdges, checkAndRepositionNode });
 
