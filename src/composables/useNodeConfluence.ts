@@ -1,6 +1,7 @@
 import { useDisplaySettingsStore } from '../stores/displaySettingsStore.ts';
 import { useAlg } from './useAlg';
 import type { Node, Edge } from '@vue-flow/core';
+import { Alg } from 'cubing/alg';
 
 interface UseNodeConfluenceArgs {
   findNode: (id: string) => Node | undefined;
@@ -17,12 +18,32 @@ export function useNodeConfluence({ findNode, updateNodePosition, addEdges, edge
   const { isConfluent } = useAlg();
 
   /**
+   * Helper function to check if an algorithm is U, U', or U2
+   * These algorithms should bypass confluence checks
+   */
+  const isUMove = (algString: string | undefined): boolean => {
+    if (!algString) return false;
+    try {
+      const alg = new Alg(algString);
+      const normalized = alg.toString().trim();
+      return normalized === 'U' || normalized === "U'" || normalized === 'U2';
+    } catch {
+      return false;
+    }
+  };
+
+  /**
    * Core check for confluence. Optionally repositions the node and/or creates a confluence edge.
    * Returns metadata about the first confluence detected, including whether the duplicate node was deleted.
    */
   const checkAndRepositionNode = async (updatedNodeId: string, allNodes: Node[], context?: { parentId?: string; rawSegment?: string; sourceHandle?: string }) => {
     const updatedNode = findNode(updatedNodeId);
     if (!updatedNode) return null;
+
+    // Bypass confluence checks if the algorithm being added is U, U', or U2
+    if (isUMove(context?.rawSegment)) {
+      return null;
+    }
 
     for (const existingNode of allNodes) {
       if (existingNode.id === updatedNodeId) continue;
