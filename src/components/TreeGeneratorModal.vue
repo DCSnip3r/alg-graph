@@ -185,13 +185,12 @@ function validateLevel(index: number) {
   
   // Try to parse each algorithm (after removing terminal marker)
   for (const algStr of algs) {
+    // Remove terminal marker (;) if present before validation
+    const cleanAlg = algStr.endsWith(';') ? algStr.slice(0, -1).trim() : algStr;
     try {
-      // Remove terminal marker (;) if present before validation
-      const cleanAlg = algStr.endsWith(';') ? algStr.slice(0, -1).trim() : algStr;
       new Alg(cleanAlg);
     } catch (e) {
       // Show clean algorithm without semicolon in error message
-      const cleanAlg = algStr.endsWith(';') ? algStr.slice(0, -1).trim() : algStr;
       levelErrors.value[index] = `Invalid algorithm: ${cleanAlg}`;
       return;
     }
