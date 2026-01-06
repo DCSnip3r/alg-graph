@@ -4,7 +4,7 @@
       v-if="heading" 
       class="block-heading-wrapper" 
       :class="{ 'collapsible': collapsible }"
-      @click="collapsible ? toggle() : null"
+      @click="collapsible && toggle()"
     >
       <div class="block-heading">{{ heading }}</div>
       <span v-if="collapsible" class="chevron" :class="{ 'rotated': !isExpanded }">▲</span>
@@ -33,10 +33,13 @@ const emit = defineEmits(['update:modelValue']);
 const isExpanded = ref(props.modelValue);
 
 watch(() => props.modelValue, (newVal) => {
-  isExpanded.value = newVal;
+  if (newVal !== undefined) {
+    isExpanded.value = newVal;
+  }
 });
 
 const toggle = () => {
+  if (!props.collapsible) return;
   isExpanded.value = !isExpanded.value;
   emit('update:modelValue', isExpanded.value);
 };
