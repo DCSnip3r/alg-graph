@@ -8,6 +8,8 @@
       <hr class="submenu-divider" />
       <AlgorithmsSubmenu />
       <hr class="submenu-divider" />
+      <TreeGeneratorSubmenu @open-tree-generator="emit('open-tree-generator')" />
+      <hr class="submenu-divider" />
       <GraphSavingSubmenu 
         :saveStatus="props.saveStatus" 
         @save-graph-request="emit('save-graph-request', $event)"
@@ -31,6 +33,7 @@
 <script setup lang="ts">
 import { useCollapsible } from '../composables/useCollapsible';
 import AlgorithmsSubmenu from './submenus/AlgorithmsSubmenu.vue';
+import TreeGeneratorSubmenu from './submenus/TreeGeneratorSubmenu.vue';
 import GraphSavingSubmenu from './submenus/GraphSavingSubmenu.vue';
 import DisplaySettingsSubmenu from './submenus/DisplaySettingsSubmenu.vue';
 import GraphLayoutSubmenu from './submenus/GraphLayoutSubmenu.vue';
@@ -39,7 +42,7 @@ const props = defineProps<{
   saveStatus: { message: string, type: 'success' | 'error' } | null;
 }>();
 
-const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-graph-from-file-request', 'auto-layout-request', 'custom-layout-request', 'snap-to-grid-request', 'scale-graph-request', 'render-3d-request']);
+const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-graph-from-file-request', 'auto-layout-request', 'custom-layout-request', 'snap-to-grid-request', 'scale-graph-request', 'render-3d-request', 'open-tree-generator']);
 
 const { isVisible, toggleVisibility } = useCollapsible(true);
 </script>
