@@ -192,18 +192,11 @@ describe('useTreeGenerator', () => {
       expect(u2ToR).toBeDefined();
     });
 
-    it('should ignore other algorithms when U_branch is present in level', async () => {
+    it('should process U_branch alongside other algorithms in the same level', async () => {
       const { generateTree } = useTreeGenerator();
-      config.levels = [['U_branch', 'R', 'L']]; // Only U_branch should be processed
+      config.levels = [['U_branch', 'R', 'L']]; // U_branch should be processed with R and L
 
       await generateTree(config);
-
-      // Should only create U_branch cluster, not R or L nodes
-      const rNode = nodes.find(n => n.data.label === 'R' && n.data.rawAlgorithm === 'R');
-      const lNode = nodes.find(n => n.data.label === 'L');
-
-      expect(rNode).toBeUndefined();
-      expect(lNode).toBeUndefined();
 
       // U_branch cluster should exist
       const uNode = nodes.find(n => n.data.label === 'U');
@@ -213,6 +206,13 @@ describe('useTreeGenerator', () => {
       expect(uNode).toBeDefined();
       expect(uPrimeNode).toBeDefined();
       expect(u2Node).toBeDefined();
+
+      // R and L nodes should also exist
+      const rNode = nodes.find(n => n.data.label === 'R' && n.data.rawAlgorithm === 'R');
+      const lNode = nodes.find(n => n.data.label === 'L');
+
+      expect(rNode).toBeDefined();
+      expect(lNode).toBeDefined();
     });
   });
 });

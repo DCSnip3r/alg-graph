@@ -476,20 +476,19 @@ export function useTreeGenerator() {
           continue;
         }
 
-        // Check if this level contains the special U_branch pattern
-        const hasUBranch = validAlgs.some(alg => isUBranchPattern(alg));
-        
-        if (hasUBranch) {
-          // If U_branch is present, generate the cluster and ignore other algorithms in this level
-          console.log(`  Generating U_branch cluster for parent ${parentNode.id}`);
-          const clusterNodes = await generateUBranchCluster(config, parentNode);
-          nextLevelNodes.push(...clusterNodes);
-          continue; // Skip regular algorithm processing for this parent
-        }
-
         // Generate child nodes for each algorithm
         for (let algIndex = 0; algIndex < validAlgs.length; algIndex++) {
           const algString = validAlgs[algIndex];
+          
+          // Check if this is the special U_branch pattern
+          if (isUBranchPattern(algString)) {
+            console.log(`  Generating U_branch cluster for parent ${parentNode.id}`);
+            const clusterNodes = await generateUBranchCluster(config, parentNode);
+            nextLevelNodes.push(...clusterNodes);
+            await delay(50);
+            continue; // Skip to next algorithm
+          }
+
           const direction = getDirectionForChild(validAlgs.length, algIndex);
 
           console.log(`  Creating node for parent ${parentNode.id}, alg: ${algString}, direction:`, direction);
