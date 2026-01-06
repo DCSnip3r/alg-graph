@@ -326,7 +326,7 @@ export function useTreeGenerator() {
 
     addEdges([uPrimeEdge]);
 
-    // Compute U's accumulated algorithm
+    // Compute U' accumulated algorithm
     const uPrimeCombinedAlg = new Alg(parentAlg).concat(new Alg("U'")).experimentalSimplify({ cancel: true }).toString();
     updateNodeData(uPrimeNodeId, { alg: uPrimeCombinedAlg });
     await delay(50);
@@ -356,7 +356,7 @@ export function useTreeGenerator() {
       data: {
         label: 'U2',
         alg: '',
-        rawAlgorithm: 'U',
+        rawAlgorithm: 'U2',
         targetHandleId: DIRECTIONS.forward.targetHandle,
         collapsed: false,
         isTerminal: false,
