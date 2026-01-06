@@ -3,8 +3,7 @@
     <CollapsibleHeader title="Graph Management" v-model="isVisible" />
   <div v-if="isVisible" class="submenu-content">
       <!-- Save Current Graph -->
-      <div class="partition-block">
-        <div class="block-heading">Save Current</div>
+      <PartitionBlock heading="Save Current">
         <div class="save-graph-controls">
           <input type="text" v-model="graphNameToSave" placeholder="Graph Name">
           <button @click="handleSaveGraph" class="save-graph-button">Save Current Graph</button>
@@ -12,11 +11,10 @@
         <div v-if="props.saveStatus && props.saveStatus.type === 'success'" class="save-feedback success">
           {{ props.saveStatus.message }}
         </div>
-      </div>
+      </PartitionBlock>
 
       <!-- Saved Graphs List -->
-      <div class="partition-block">
-        <div class="block-heading">Saved Graphs</div>
+      <PartitionBlock heading="Saved Graphs" :collapsible="true">
         <div class="saved-graph-section">
           <ul v-if="savedGraphsStore.savedGraphsManifest.length > 0">
             <li v-for="graph in savedGraphsStore.savedGraphsManifest" :key="graph.name" class="saved-graph-entry">
@@ -36,11 +34,10 @@
             <button @click="triggerFileInput" class="upload-button">Upload .json file</button>
           </div>
         </div>
-      </div>
+      </PartitionBlock>
 
       <!-- Example Graphs -->
-      <div class="partition-block">
-        <div class="block-heading">Examples</div>
+      <PartitionBlock heading="Examples">
         <div class="example-graphs-section">
           <ul v-if="exampleGraphs.length > 0" class="example-graph-list">
             <li v-for="eg in exampleGraphs" :key="eg.name" class="example-graph-chip">
@@ -51,7 +48,7 @@
           </ul>
           <p v-else>No example graphs found.</p>
         </div>
-      </div>
+      </PartitionBlock>
     </div>
   </div>
 </template>
@@ -59,6 +56,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CollapsibleHeader from '../shared/CollapsibleHeader.vue';
+import PartitionBlock from '../shared/PartitionBlock.vue';
 import { useSavedGraphsStore } from '../../stores/savedGraphsStore';
 import { useGraphManagement } from '../../composables/useGraphManagement';
 
@@ -241,13 +239,5 @@ const {
   background: #bbdefb;
   color: #0d47a1;
 }
-
-/* Partition styling to match Layout submenu */
-.partition-block { background:#1f1f1f; padding:8px 10px 10px; border-radius:6px; box-shadow:0 0 0 1px #2e2e2e inset; margin:8px 4px; }
-.partition-block:first-of-type { margin-top:6px; }
-.block-heading { font-size:0.55rem; letter-spacing:.5px; text-transform:uppercase; opacity:.75; margin:0 0 6px; font-weight:600; }
-.partition-block .save-graph-controls { margin:4px 0 6px; }
-.partition-block .saved-graph-entry { padding:4px 0; }
-.partition-block .example-graph-list { max-width:100%; }
 
 </style>

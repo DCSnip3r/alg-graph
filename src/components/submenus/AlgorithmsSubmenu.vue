@@ -2,52 +2,55 @@
   <div class="submenu">
     <CollapsibleHeader title="Algorithms" v-model="isVisible" />
     <div v-if="isVisible" class="submenu-content">
-      <h5>User-Defined Algorithms (Drag in to add node)</h5>
-      <div 
-        v-for="(algEntry) in algStore.presets" 
-        :key="algEntry.id" 
-        class="algorithm-entry"
-        draggable="true"
-        @dragstart="onDragStart($event, algEntry)"
-      >
-        <button
-          class="delete-btn"
-          @click="algStore.deletePreset(algEntry.id)"
-          title="Delete this algorithm"
+      <PartitionBlock heading="User-Defined Algorithms" :collapsible="true">
+        <h5>Drag and drop a row to add node</h5>
+        <div
+          v-for="(algEntry) in algStore.presets"
+          :key="algEntry.id"
+          class="algorithm-entry"
+          draggable="true"
+          @dragstart="onDragStart($event, algEntry)"
         >
-          ×
-        </button>
-        <button
-          class="mirror-btn"
-          @click="onMirrorAlg(algEntry)"
-          title="Mirror this algorithm"
-        >
-          M
-        </button>
-        <button
-          class="invert-btn"
-          @click="onInvertAlg(algEntry)"
-          title="Invert this algorithm"
-        >
-          i
-        </button>
-        <input type="text" v-model="algEntry.algorithm" placeholder="Algorithm (e.g., R U R' U')">
-        <input type="text" v-model="algEntry.name" placeholder="Shorthand Name (e.g., Sune)">
-        <input type="color" v-model="algEntry.color" title="Algorithm Color">
-      </div>
-      <button @click="algStore.addPreset()">Add Algorithm</button>
+          <button
+            class="delete-btn"
+            @click="algStore.deletePreset(algEntry.id)"
+            title="Delete this algorithm"
+          >
+            ×
+          </button>
+          <button
+            class="mirror-btn"
+            @click="onMirrorAlg(algEntry)"
+            title="Mirror this algorithm"
+          >
+            M
+          </button>
+          <button
+            class="invert-btn"
+            @click="onInvertAlg(algEntry)"
+            title="Invert this algorithm"
+          >
+            i
+          </button>
+          <input type="text" v-model="algEntry.algorithm" placeholder="Algorithm (e.g., R U R' U')">
+          <input type="text" v-model="algEntry.name" placeholder="Shorthand Name (e.g., Sune)">
+          <input type="color" v-model="algEntry.color" title="Algorithm Color">
+        </div>
+        <button @click="algStore.addPreset()">+ Add Algorithm</button>
+      </PartitionBlock>
 
       <!-- Tree Generator Subsection -->
       <div>
-        <button @click="openTreeGenerator" class="generate-tree-btn">
-          🌳 Open Tree Generator
-        </button>
+        <PartitionBlock heading="Autogenerate" :collapsible="true">
+          <button @click="openTreeGenerator" class="generate-tree-btn">
+            🌳 Tree Generator
+          </button>
+        </PartitionBlock>
       </div>
 
       <!-- Confluence Settings (Collapsible) -->
-      <div class="subsection">
-        <CollapsibleHeader title="Confluence Settings" v-model="confluenceVisible" />
-        <div v-if="confluenceVisible" class="confluence-settings">
+
+        <PartitionBlock heading="Confluence Settings" :collapsible="true" v-model="confluenceVisible">
           <div class="setting-item inline-setting">
             <label for="create-confluence-edges">
               <input
@@ -88,8 +91,8 @@
               Delete duplicate node on confluence
             </label>
           </div>
-        </div>
-      </div>
+        </PartitionBlock>
+
     </div>
   </div>
 </template>
@@ -97,6 +100,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CollapsibleHeader from '../shared/CollapsibleHeader.vue';
+import PartitionBlock from '../shared/PartitionBlock.vue';
 import { useAlgPresetsStore } from '../../stores/algPresetsStore';
 import { useDisplaySettingsStore } from '../../stores/displaySettingsStore';
 import { useDragAndDrop } from '../../composables/useDragAndDrop';
@@ -223,8 +227,6 @@ function onInvertAlg(algEntry: { algorithm: string, name: string, color: string 
 
 .subsection {
   margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid #444;
 }
 
 .subsection h5 {
@@ -242,7 +244,6 @@ function onInvertAlg(algEntry: { algorithm: string, name: string, color: string 
 
 .generate-tree-btn {
   padding: 5px;
-  margin-top: 15px;
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -253,10 +254,6 @@ function onInvertAlg(algEntry: { algorithm: string, name: string, color: string 
 
 .generate-tree-btn:hover {
   background-color: #45a049;
-}
-
-.confluence-settings {
-  padding: 10px 0;
 }
 
 .setting-item {

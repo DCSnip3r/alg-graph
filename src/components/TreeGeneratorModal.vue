@@ -2,7 +2,7 @@
   <div v-if="isOpen" class="modal-overlay" @click.self="closeModal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Hierarchical Algorithm Tree Generator</h2>
+        <h2>Algorithm Tree Generator</h2>
         <button class="close-btn" @click="closeModal">×</button>
       </div>
       
@@ -24,7 +24,7 @@
           <p class="help-text">
             Enter algorithms for each level (comma-separated). 
             The generator will create all permutations, checking for confluence at each step.
-            Add a semicolon (;) after an algorithm to mark it as terminal (won't receive children from subsequent levels).
+            Add a semicolon (;) after an algorithm to disable future branching from that alg (e.g. R U R';, R' U' R, F U R'). 
           </p>
           
           <div v-for="(_level, index) in levels" :key="index" class="level-group">
@@ -43,7 +43,7 @@
               v-model="levels[index]"
               type="text"
               class="form-control"
-              placeholder="e.g., R U R' U R U2' R', R' U' R; (semicolon marks terminal)"
+              placeholder="e.g., R U R';, R' U' R, F U R'"
               @input="validateLevel(index)"
             />
             <div v-if="levelErrors[index]" class="error-message">
@@ -192,7 +192,7 @@ function validateLevel(index: number) {
       new Alg(cleanAlg);
     } catch (e) {
       // Show clean algorithm without semicolon in error message
-      levelErrors.value[index] = `Invalid algorithm: ${cleanAlg}`;
+      levelErrors.value[index] = `Invalid algorithm: ${cleanAlg}. You may be missing a comma after a semicolon (;,)`;
       return;
     }
   }

@@ -4,22 +4,36 @@
 
     <div v-if="isVisible" class="submenu-layout">
       <!-- 3D VIEW ROW (MOVED TO TOP) -->
-      <div class="action-row">
-        <div class="action-col">
-          <div class="row">
-            <button @click="emit('render-3d-request')" class="render-3d-button" aria-label="Render graph in 3D" title="Open 3D Force Graph Viewer">
-              🎨 Render in 3D
-            </button>
+      <PartitionBlock heading="3D View">
+        <div class="action-row">
+          <div class="action-col">
+            <div class="row">
+              <button @click="emit('render-3d-request')" class="render-3d-button" aria-label="Render graph in 3D" title="Open 3D Force Graph Viewer">
+                🎨 Render in 3D
+              </button>
+            </div>
+          </div>
+          <div class="desc-col">
+            <p class="help-inline">Opens an interactive 3D force-directed graph visualization of your current graph.</p>
           </div>
         </div>
-        <div class="desc-col">
-          <p class="help-inline"><strong>3D View:</strong> Opens an interactive 3D force-directed graph visualization of your current graph.</p>
-        </div>
-      </div>
+      </PartitionBlock>
 
       <!-- Display Toggles -->
-      <div class="partition-block">
-        <div class="block-heading">Display</div>
+      <PartitionBlock heading="Node & Label Style">
+        <div class="setting-item">
+          <div class="inline-setting">
+            <label for="twisty-node-size">Twisty Node Size: {{ displaySettingsStore.twistyNodeSize }}px</label>
+            <input
+              id="twisty-node-size"
+              type="range"
+              min="100"
+              max="450"
+              step="10"
+              v-model.number="displaySettingsStore.twistyNodeSize"
+            />
+          </div>
+        </div>
         <div class="setting-item inline-setting">
           <label for="colorized-edge-labels">
             <input 
@@ -37,44 +51,11 @@
             <option value="experimental-2D-LL">Experimental 2D LL</option>
           </select>
         </div>
-      </div>
-
-      <!-- Sizing -->
-      <div class="partition-block">
-        <div class="block-heading">Sizing</div>
-        <div class="setting-item">
-          <div class="inline-setting">
-            <label for="twisty-node-size">Twisty Node Size: {{ displaySettingsStore.twistyNodeSize }}px</label>
-            <input
-              id="twisty-node-size"
-              type="range"
-              min="100"
-              max="450"
-              step="10"
-              v-model.number="displaySettingsStore.twistyNodeSize"
-            />
-          </div>
-        </div>
-      </div>
+      </PartitionBlock>
 
       <!-- SNAP ROW -->
-      <div class="action-row">
-        <div class="action-col">
-          <div class="row grid-row">
-            <span class="row-label" title="Snap all node positions to the nearest grid multiple">Snap</span>
-            <label class="input-with-unit" title="Grid size (pixels)">
-              <input id="grid-size-input" type="number" v-model.number="gridSize" min="5" step="5" class="mini-input" aria-label="Grid size in pixels" @input="onGridSizeInput" />
-              <span class="unit">px</span>
-            </label>
-            <button @click="emit('snap-to-grid-request', gridSize)" class="snap-button" aria-label="Snap all nodes to grid" title="Snap nodes">Snap</button>
-          </div>
-        </div>
-        <div class="desc-col">
-          <p class="help-inline"><strong>Snap:</strong> Align every node to the nearest grid multiple using the size you set.</p>
-        </div>
-      </div>
-
-      <!-- SCALE ROW -->
+      <PartitionBlock heading="Layout Adjustments" :collapsible="true">
+      
       <div class="action-row">
         <div class="action-col">
           <div class="row scale-row">
@@ -90,8 +71,24 @@
           <p class="help-inline"><strong>Scale:</strong> Multiply all node coordinates around the origin to quickly tighten or expand spacing.</p>
         </div>
       </div>
+      
+        <div class="action-row">
+        <div class="action-col">
+          <div class="row grid-row">
+            <span class="row-label" title="Snap all node positions to the nearest grid multiple">Snap</span>
+            <label class="input-with-unit" title="Grid size (pixels)">
+              <input id="grid-size-input" type="number" v-model.number="gridSize" min="5" step="5" class="mini-input" aria-label="Grid size in pixels" @input="onGridSizeInput" />
+              <span class="unit">px</span>
+            </label>
+            <button @click="emit('snap-to-grid-request', gridSize)" class="snap-button" aria-label="Snap all nodes to grid" title="Snap nodes">Snap</button>
+          </div>
+        </div>
+        <div class="desc-col">
+          <p class="help-inline"><strong>Snap:</strong> Align every node to the nearest grid multiple using the size you set.</p>
+        </div>
+      </div>
 
-  <!-- AUTO ARRANGE ROW (all controls grouped on left) -->
+ <!-- AUTO ARRANGE ROW (all controls grouped on left) -->
   <div class="action-row auto-arrange-row">
         <div class="action-col">
           <div class="row auto-arrange-header">
@@ -133,6 +130,10 @@
           <p class="help-inline"><strong>Auto Arrange:</strong> Repositions nodes into hierarchical layers. <span class="warn">Warning:</span> Overwrites your manual layout—save first.</p>
         </div>
       </div>
+      
+      </PartitionBlock>      
+
+ 
     </div>
   </div>
 </template>
@@ -140,6 +141,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import CollapsibleHeader from '../shared/CollapsibleHeader.vue';
+import PartitionBlock from '../shared/PartitionBlock.vue';
 import { useDisplaySettingsStore } from '../../stores/displaySettingsStore';
 
 const emit = defineEmits(['custom-layout-request', 'snap-to-grid-request', 'scale-graph-request', 'render-3d-request']);
@@ -177,7 +179,7 @@ function applyCustomLayout() {
 
 <style scoped>
 .submenu-layout { display:flex; flex-direction:column; gap:10px; padding:4px 6px; }
-.action-row { display:grid; grid-template-columns: minmax(260px, 1fr) minmax(140px, 220px); align-items:center; gap:10px; background:#1f1f1f; padding:8px 10px; border-radius:6px; box-shadow:0 0 0 1px #2e2e2e inset; }
+.action-row { display:grid; grid-template-columns: minmax(260px, 1fr) minmax(140px, 220px); align-items:center; gap:10px; padding:8px 10px; }
 .action-row.auto-arrange-row { align-items:center; }
 .action-col { display:flex; flex-direction:column; gap:4px; }
 .desc-col { font-size:0.55rem; line-height:1.1; opacity:.85; display:flex; align-items:center; }
@@ -192,7 +194,7 @@ function applyCustomLayout() {
 .mini-input, .mini-select { font-size:0.65rem; padding:2px 4px; height:22px; }
 .snap-button { background:#17a2b8; color:#fff; border:none; padding:2px 8px; font-size:0.65rem; border-radius:4px; cursor:pointer; height:22px; }
 .snap-button:hover { background:#138496; }
-.render-3d-button { background:#28a745; color:#fff; border:none; padding:6px 16px; font-size:0.85rem; border-radius:4px; cursor:pointer; font-weight:600; transition:background-color .2s ease; width:100%; }
+.render-3d-button { background:#28a745; color:#fff; border:none; padding:6px 16px; font-size:0.75rem; border-radius:4px; cursor:pointer; font-weight:600; transition:background-color .2s ease; width:100%; }
 .render-3d-button:hover { background:#218838; }
 .scale-buttons { display:inline-flex; align-items:center; gap:4px; }
 .scale-button { background:#555; color:#fff; border:none; width:22px; height:22px; border-radius:4px; font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; line-height:1; }
@@ -208,13 +210,6 @@ function applyCustomLayout() {
 
 /* Slightly taller inputs for clarity */
 .auto-arrange-row .mini-select, .auto-arrange-row .mini-input { height:24px; }
-
-/* Partition blocks reused styling */
-.partition-block { background:#1f1f1f; padding:8px 10px 10px; border-radius:6px; box-shadow:0 0 0 1px #2e2e2e inset; margin:8px 4px; }
-.partition-block:first-of-type { margin-top:6px; }
-.block-heading { font-size:0.55rem; letter-spacing:.5px; text-transform:uppercase; opacity:.75; margin:0 0 6px; font-weight:600; }
-.partition-block .setting-item { margin:6px 0; padding-left:0; }
-.partition-block .inline-setting { gap:8px; }
 
 .setting-item {
   margin: 10px 0;
