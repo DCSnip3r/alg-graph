@@ -56,6 +56,27 @@
           </button>
         </div>
 
+        <!-- User-Defined Algorithms Quick Reference -->
+        <div v-if="algStore.presets.length > 0" class="user-algs-section">
+          <h3>Your Algorithms</h3>
+          <p class="help-text">
+            Click an algorithm to add it to the last level, or copy and paste manually.
+          </p>
+          <div class="alg-chips">
+            <button
+              v-for="preset in algStore.presets"
+              :key="preset.id"
+              class="alg-chip"
+              :style="{ borderColor: preset.color }"
+              @click="addAlgorithmToLevel(preset.algorithm)"
+              :title="`Click to add '${preset.algorithm}' to Level ${levels.length}`"
+            >
+              <span class="alg-chip-name" v-if="preset.name">{{ preset.name }}</span>
+              <span class="alg-chip-algorithm">{{ preset.algorithm }}</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Preview Section -->
         <div v-if="previewStats" class="preview-section">
           <div class="preview-items">
@@ -104,6 +125,7 @@
 import { ref, computed, watch } from 'vue';
 import type { Node } from '@vue-flow/core';
 import { Alg } from 'cubing/alg';
+import { useAlgPresetsStore } from '../stores/algPresetsStore';
 
 const props = defineProps<{
   isOpen: boolean;
@@ -114,6 +136,9 @@ const emit = defineEmits<{
   close: [];
   generate: [config: { rootNodeId: string; levels: string[][] }];
 }>();
+
+// Stores
+const algStore = useAlgPresetsStore();
 
 // State
 const selectedRootNodeId = ref('');
@@ -209,6 +234,24 @@ function closeModal() {
   
   emit('close');
   resetForm();
+}
+
+function addAlgorithmToLevel(algorithm: string) {
+  // Add to the last level (largest numbered level)
+  const lastLevelIndex = levels.value.length - 1;
+  const currentValue = levels.value[lastLevelIndex].trim();
+  
+  // Add comma if there's already content
+  if (currentValue.length > 0 && !currentValue.endsWith(',')) {
+    levels.value[lastLevelIndex] = currentValue + ', ' + algorithm;
+  } else if (currentValue.endsWith(',')) {
+    levels.value[lastLevelIndex] = currentValue + ' ' + algorithm;
+  } else {
+    levels.value[lastLevelIndex] = algorithm;
+  }
+  
+  // Validate the updated level
+  validateLevel(lastLevelIndex);
 }
 
 function resetForm() {
@@ -519,5 +562,63 @@ defineExpose({
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.user-algs-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 4px;
+}
+
+.user-algs-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: #4CAF50;
+}
+
+.alg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.alg-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 6px 10px;
+  background-color: #2c2c2c;
+  border: 2px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+  color: #f0f0f0;
+  text-align: left;
+}
+
+.alg-chip:hover {
+  background-color: #333;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.alg-chip:active {
+  transform: translateY(0);
+}
+
+.alg-chip-name {
+  font-weight: bold;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.alg-chip-algorithm {
+  font-family: monospace;
+  font-size: 0.9rem;
 }
 </style>
