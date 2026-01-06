@@ -24,6 +24,7 @@
           <p class="help-text">
             Enter algorithms for each level (comma-separated). 
             The generator will create all permutations, checking for confluence at each step.
+            Add a semicolon (;) after an algorithm to mark it as terminal (won't receive children from subsequent levels).
           </p>
           
           <div v-for="(_level, index) in levels" :key="index" class="level-group">
@@ -42,7 +43,7 @@
               v-model="levels[index]"
               type="text"
               class="form-control"
-              placeholder="e.g., R U R' U R U2' R', R' U' R U' R' U2 R"
+              placeholder="e.g., R U R' U R U2' R', R' U' R; (semicolon marks terminal)"
               @input="validateLevel(index)"
             />
             <div v-if="levelErrors[index]" class="error-message">
@@ -182,12 +183,15 @@ function validateLevel(index: number) {
 
   const algs = levelStr.split(',').map(s => s.trim()).filter(s => s.length > 0);
   
-  // Try to parse each algorithm
+  // Try to parse each algorithm (after removing terminal marker)
   for (const algStr of algs) {
+    // Remove terminal marker (;) if present before validation
+    const cleanAlg = algStr.endsWith(';') ? algStr.slice(0, -1).trim() : algStr;
     try {
-      new Alg(algStr);
+      new Alg(cleanAlg);
     } catch (e) {
-      levelErrors.value[index] = `Invalid algorithm: ${algStr}`;
+      // Show clean algorithm without semicolon in error message
+      levelErrors.value[index] = `Invalid algorithm: ${cleanAlg}`;
       return;
     }
   }

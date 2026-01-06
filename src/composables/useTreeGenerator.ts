@@ -64,7 +64,26 @@ export function useTreeGenerator() {
   }
 
   /**
+   * Parses an algorithm string and extracts the algorithm and terminal flag
+   * Terminal algorithms end with a semicolon (;) and won't receive children in subsequent levels
+   */
+  function parseAlgorithm(algString: string): { alg: string; isTerminal: boolean } {
+    const trimmed = algString.trim();
+    if (trimmed.endsWith(';')) {
+      return {
+        alg: trimmed.slice(0, -1).trim(), // Remove the semicolon
+        isTerminal: true,
+      };
+    }
+    return {
+      alg: trimmed,
+      isTerminal: false,
+    };
+  }
+
+  /**
    * Generates a single node and waits for confluence check
+   * Returns the node if it was created successfully, or null if it was deleted or failed
    */
   async function generateNode(
     config: TreeGeneratorConfig,
@@ -76,12 +95,15 @@ export function useTreeGenerator() {
   ): Promise<Node | null> {
     const { addNodes, addEdges, findNode, getNextNodeId, updateNodeData, checkAndRepositionNode, nodes } = config;
 
+    // Parse algorithm and check if it's terminal
+    const { alg: cleanAlg, isTerminal } = parseAlgorithm(algString);
+
     // Parse and validate algorithm
     let parsedAlg: Alg;
     try {
-      parsedAlg = new Alg(algString.trim());
+      parsedAlg = new Alg(cleanAlg);
     } catch (e) {
-      console.warn(`Invalid algorithm: ${algString}`, e);
+      console.warn(`Invalid algorithm: ${cleanAlg}`, e);
       return null;
     }
 
@@ -107,6 +129,7 @@ export function useTreeGenerator() {
         rawAlgorithm: algStr,
         targetHandleId: direction.targetHandle,
         collapsed: false,
+        isTerminal, // Mark if this node is terminal
       },
       style: {
         borderColor: '#ffffff',
@@ -159,7 +182,7 @@ export function useTreeGenerator() {
     }
 
     // Check for confluence with existing nodes
-    await checkAndRepositionNode(newNodeId, nodes.value, {
+    const confluenceResult = await checkAndRepositionNode(newNodeId, nodes.value, {
       parentId: parentNode.id,
       rawSegment: algStr,
       sourceHandle: direction.sourceHandle,
@@ -168,8 +191,14 @@ export function useTreeGenerator() {
     // Wait for confluence check to complete and potentially reposition
     await delay(100);
 
-    // Return the updated node
-    return findNode(newNodeId) || updatedNode;
+    // If node was deleted due to confluence, return null
+    if (confluenceResult && confluenceResult.nodeDeleted) {
+      console.log(`Node ${newNodeId} was deleted due to confluence with ${confluenceResult.confluentWithId}`);
+      return null;
+    }
+
+    // Return the updated node (or null if it was deleted)
+    return findNode(newNodeId) || null;
   }
 
   /**
@@ -221,7 +250,8 @@ export function useTreeGenerator() {
             algIndex
           );
 
-          if (newNode) {
+          // Only add non-terminal nodes to the next level for further expansion
+          if (newNode && !newNode.data.isTerminal) {
             nextLevelNodes.push(newNode);
           }
 

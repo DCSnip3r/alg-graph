@@ -35,6 +35,16 @@
             Auto-reposition node on confluent algorithm
           </label>
         </div>
+        <div class="setting-item inline-setting">
+          <label for="delete-duplicate-on-confluence">
+            <input
+              id="delete-duplicate-on-confluence"
+              type="checkbox"
+              v-model="displaySettingsStore.deleteDuplicateOnConfluence"
+            />
+            Delete duplicate node on confluence
+          </label>
+        </div>
       </div>
 
       <!-- Display Toggles -->
