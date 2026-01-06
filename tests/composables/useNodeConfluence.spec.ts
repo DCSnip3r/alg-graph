@@ -170,12 +170,12 @@ describe('useNodeConfluence', () => {
     displaySettings.createConfluenceEdges = true;
     displaySettings.matchIfAUF = true;
     
-    const newNode = { id: 'n-4', data: { alg: "U' R U R' U R U2' R'", rawAlgorithm: "U'" }, position: { x: 0, y: 0 } };
-    const existingNode = { id: 'n-existing2', data: { alg: "R U R' U R U2' R' U" }, position: { x: 300, y: 400 } };
+    const newNode = { id: 'n-4', data: { alg: 'U\' R U R\' U R U2\' R\'', rawAlgorithm: 'U\'' }, position: { x: 0, y: 0 } };
+    const existingNode = { id: 'n-existing2', data: { alg: 'R U R\' U R U2\' R\' U' }, position: { x: 300, y: 400 } };
     nodes.push(existingNode);
     nodes.push(newNode);
     
-    await checkAndRepositionNode('n-4', nodes, { parentId: 'n-1', rawSegment: "U'", sourceHandle: 'handle-r' });
+    await checkAndRepositionNode('n-4', nodes, { parentId: 'n-1', rawSegment: 'U\'', sourceHandle: 'handle-r' });
     
     // Should NOT reposition or create confluence edge
     expect(updateNodePosition).not.toHaveBeenCalled();

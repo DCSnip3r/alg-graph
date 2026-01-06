@@ -26,7 +26,7 @@ export function useNodeConfluence({ findNode, updateNodePosition, addEdges, edge
     try {
       const alg = new Alg(algString);
       const normalized = alg.toString().trim();
-      return normalized === 'U' || normalized === "U'" || normalized === 'U2';
+      return normalized === 'U' || normalized === 'U\'' || normalized === 'U2';
     } catch {
       return false;
     }
