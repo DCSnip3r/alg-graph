@@ -434,8 +434,17 @@ export function useTreeGenerator() {
       await delay(100);
     }
 
-    // Return the final U2 node for potential further branching
+    // Return all nodes (U, U', U2) that survived confluence for potential further branching
+    const finalUNode = findNode(uNodeId);
+    const finalUPrimeNode = findNode(uPrimeNodeId);
     const finalU2Node = findNode(u2NodeId);
+    
+    if (finalUNode && !finalUNode.data.isTerminal) {
+      resultNodes.push(finalUNode);
+    }
+    if (finalUPrimeNode && !finalUPrimeNode.data.isTerminal) {
+      resultNodes.push(finalUPrimeNode);
+    }
     if (finalU2Node && !finalU2Node.data.isTerminal) {
       resultNodes.push(finalU2Node);
     }

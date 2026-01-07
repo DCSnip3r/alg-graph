@@ -178,7 +178,7 @@ describe('useTreeGenerator', () => {
       const { generateTree } = useTreeGenerator();
       config.levels = [
         ['U_branch'],
-        ['R'], // Should branch from U2
+        ['R'], // Should branch from U, U', and U2
       ];
 
       await generateTree(config);
@@ -190,6 +190,38 @@ describe('useTreeGenerator', () => {
       // Check that there's an edge from U2 to another node with R
       const u2ToR = edges.find(e => e.source === u2Node?.id && e.label === 'R');
       expect(u2ToR).toBeDefined();
+    });
+
+    it('should allow branching from all U_branch nodes (U, U\', U2) in next level', async () => {
+      const { generateTree } = useTreeGenerator();
+      config.levels = [
+        ['U_branch'],
+        ['R'], // Should branch from U, U', and U2
+      ];
+
+      await generateTree(config);
+
+      // All three nodes should exist
+      const uNode = nodes.find(n => n.data.label === 'U');
+      const uPrimeNode = nodes.find(n => n.data.label === "U'");
+      const u2Node = nodes.find(n => n.data.label === 'U2');
+
+      expect(uNode).toBeDefined();
+      expect(uPrimeNode).toBeDefined();
+      expect(u2Node).toBeDefined();
+
+      // Check that R branches from all three nodes
+      const uToR = edges.find(e => e.source === uNode?.id && e.label === 'R');
+      const uPrimeToR = edges.find(e => e.source === uPrimeNode?.id && e.label === 'R');
+      const u2ToR = edges.find(e => e.source === u2Node?.id && e.label === 'R');
+
+      expect(uToR).toBeDefined();
+      expect(uPrimeToR).toBeDefined();
+      expect(u2ToR).toBeDefined();
+
+      // Should have 3 R nodes (one from each parent)
+      const rNodes = nodes.filter(n => n.data.label === 'R' && n.data.rawAlgorithm === 'R');
+      expect(rNodes.length).toBe(3);
     });
 
     it('should process U_branch alongside other algorithms in the same level', async () => {

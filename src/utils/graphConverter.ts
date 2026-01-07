@@ -41,7 +41,7 @@ export function convertToForceGraphData(
     const isCollapsed = node.data?.collapsed || false;
     return {
       id: node.id,
-      name: node.data?.label || node.id,
+      name: node.data?.alg || node.data?.label || node.id, // Use full algorithm path (alg) instead of just label
       alg: node.data?.alg || '',
       val: isCollapsed ? 3 : 10, // Smaller size for collapsed nodes
       collapsed: isCollapsed,
