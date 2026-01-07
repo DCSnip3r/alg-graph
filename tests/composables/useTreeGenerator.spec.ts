@@ -134,4 +134,119 @@ describe('useTreeGenerator', () => {
       expect(level2Edges[0].source).toBe('n-2'); // Child of the second node
     });
   });
+
+  describe('U_branch special pattern', () => {
+    it('should generate U, U\', and U2 cluster when U_branch is specified', async () => {
+      const { generateTree } = useTreeGenerator();
+      config.levels = [['U_branch']];
+
+      await generateTree(config);
+
+      // Should have created 3 nodes: U, U', and U2
+      expect(nodes.length).toBe(4); // Root + U + U' + U2
+
+      // Find the nodes
+      const uNode = nodes.find(n => n.data.label === 'U');
+      const uPrimeNode = nodes.find(n => n.data.label === "U'");
+      const u2Node = nodes.find(n => n.data.label === 'U2');
+
+      expect(uNode).toBeDefined();
+      expect(uPrimeNode).toBeDefined();
+      expect(u2Node).toBeDefined();
+
+      // Check edges - should have 4 edges total
+      expect(edges.length).toBe(4);
+      
+      // Root -> U
+      const rootToU = edges.find(e => e.source === 'n-0' && e.label === 'U');
+      expect(rootToU).toBeDefined();
+      
+      // Root -> U'
+      const rootToUPrime = edges.find(e => e.source === 'n-0' && e.label === "U'");
+      expect(rootToUPrime).toBeDefined();
+      
+      // U -> U2
+      const uToU2 = edges.find(e => e.source === uNode?.id && e.label === 'U');
+      expect(uToU2).toBeDefined();
+      
+      // U' -> U2
+      const uPrimeToU2 = edges.find(e => e.source === uPrimeNode?.id && e.label === "U'");
+      expect(uPrimeToU2).toBeDefined();
+    });
+
+    it('should allow further branching from U2 node', async () => {
+      const { generateTree } = useTreeGenerator();
+      config.levels = [
+        ['U_branch'],
+        ['R'], // Should branch from U, U', and U2
+      ];
+
+      await generateTree(config);
+
+      // Should have U2 node with a child
+      const u2Node = nodes.find(n => n.data.label === 'U2');
+      expect(u2Node).toBeDefined();
+
+      // Check that there's an edge from U2 to another node with R
+      const u2ToR = edges.find(e => e.source === u2Node?.id && e.label === 'R');
+      expect(u2ToR).toBeDefined();
+    });
+
+    it('should allow branching from all U_branch nodes (U, U\', U2) in next level', async () => {
+      const { generateTree } = useTreeGenerator();
+      config.levels = [
+        ['U_branch'],
+        ['R'], // Should branch from U, U', and U2
+      ];
+
+      await generateTree(config);
+
+      // All three nodes should exist
+      const uNode = nodes.find(n => n.data.label === 'U');
+      const uPrimeNode = nodes.find(n => n.data.label === "U'");
+      const u2Node = nodes.find(n => n.data.label === 'U2');
+
+      expect(uNode).toBeDefined();
+      expect(uPrimeNode).toBeDefined();
+      expect(u2Node).toBeDefined();
+
+      // Check that R branches from all three nodes
+      const uToR = edges.find(e => e.source === uNode?.id && e.label === 'R');
+      const uPrimeToR = edges.find(e => e.source === uPrimeNode?.id && e.label === 'R');
+      const u2ToR = edges.find(e => e.source === u2Node?.id && e.label === 'R');
+
+      expect(uToR).toBeDefined();
+      expect(uPrimeToR).toBeDefined();
+      expect(u2ToR).toBeDefined();
+
+      // Should have 3 R nodes (one from each parent) - but 2 will be deleted by confluence
+      // Check by rawAlgorithm since label now shows full path
+      const rNodes = nodes.filter(n => n.data.rawAlgorithm === 'R');
+      // Due to confluence, we may have fewer than 3, but at least 1
+      expect(rNodes.length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('should process U_branch alongside other algorithms in the same level', async () => {
+      const { generateTree } = useTreeGenerator();
+      config.levels = [['U_branch', 'R', 'L']]; // U_branch should be processed with R and L
+
+      await generateTree(config);
+
+      // U_branch cluster should exist
+      const uNode = nodes.find(n => n.data.label === 'U');
+      const uPrimeNode = nodes.find(n => n.data.label === "U'");
+      const u2Node = nodes.find(n => n.data.label === 'U2');
+
+      expect(uNode).toBeDefined();
+      expect(uPrimeNode).toBeDefined();
+      expect(u2Node).toBeDefined();
+
+      // R and L nodes should also exist
+      const rNode = nodes.find(n => n.data.label === 'R' && n.data.rawAlgorithm === 'R');
+      const lNode = nodes.find(n => n.data.label === 'L');
+
+      expect(rNode).toBeDefined();
+      expect(lNode).toBeDefined();
+    });
+  });
 });
