@@ -30,10 +30,11 @@
       :node-three-object="nodeThreeObject"
       :node-color="nodeColor"
       :link-label="(link: any) => link.label || ''"
-      :link-color="(link: any) => link.color || '#999999'"
+      :link-color="linkColor"
       :link-width="2"
       :link-directional-arrow-length="3.5"
       :link-directional-arrow-rel-pos="1"
+      :on-node-hover="handleNodeHover"
       :renderer-config="{ logarithmicDepthBuffer: true, antialias: true }"
     />
   </div>
@@ -65,6 +66,11 @@ const lastMouseX = ref(0);
 const lastMouseY = ref(0);
 let animationFrameId: number | null = null;
 
+// Track hovered node and path
+const hoveredNode = ref<any>(null);
+const pathNodeIds = ref<Set<string>>(new Set());
+const pathLinkIds = ref<Set<string>>(new Set());
+
 // Convert the graph data to force graph format
 const graphData = computed(() => {
   return convertToForceGraphData(
@@ -76,6 +82,65 @@ const graphData = computed(() => {
 // Navigate back to 2D editor
 const goBack = () => {
   router.push('/');
+};
+
+// Find path from node to root (solved state)
+const findPathToRoot = (nodeId: string) => {
+  const nodes = new Set<string>();
+  const links = new Set<string>();
+  const data = graphData.value;
+  
+  // Keep track of visited nodes to avoid cycles
+  const visited = new Set<string>();
+  const queue: string[] = [nodeId];
+  
+  nodes.add(nodeId);
+  
+  while (queue.length > 0) {
+    const currentNodeId = queue.shift()!;
+    
+    if (visited.has(currentNodeId)) continue;
+    visited.add(currentNodeId);
+    
+    // Find all incoming edges to this node
+    const incomingLinks = data.links.filter((link: any) => {
+      const targetId = typeof link.target === 'object' && link.target !== null && 'id' in link.target
+        ? (link.target as any).id 
+        : link.target;
+      return targetId === currentNodeId;
+    });
+    
+    // Add parent nodes and edges to the path
+    for (const link of incomingLinks) {
+      const sourceId = typeof link.source === 'object' && link.source !== null && 'id' in link.source 
+        ? (link.source as any).id 
+        : link.source;
+      const targetId = typeof link.target === 'object' && link.target !== null && 'id' in link.target
+        ? (link.target as any).id 
+        : link.target;
+      const linkId = `${sourceId}-${targetId}`;
+      
+      links.add(linkId);
+      nodes.add(String(sourceId));
+      queue.push(String(sourceId));
+    }
+  }
+  
+  return { nodes, links };
+};
+
+// Handle node hover events
+const handleNodeHover = (node: any) => {
+  hoveredNode.value = node;
+  
+  if (node) {
+    const path = findPathToRoot(node.id);
+    pathNodeIds.value = path.nodes;
+    pathLinkIds.value = path.links;
+  } else {
+    pathNodeIds.value = new Set();
+    pathLinkIds.value = new Set();
+  }
 };
 
 // Create custom 3D node objects using cubing.js
@@ -91,12 +156,52 @@ const nodeThreeObject = (node: any) => {
   return getTwisty3DNode(alg);
 };
 
-// Custom node color function for collapsed nodes
+// Custom node color function for collapsed nodes and path dimming
 const nodeColor = (node: any) => {
+  // If a node is being hovered and path highlighting is active
+  if (hoveredNode.value && pathNodeIds.value.size > 0) {
+    // Check if this node is in the highlighted path
+    if (pathNodeIds.value.has(node.id)) {
+      // Nodes in path keep their normal appearance
+      if (node.collapsed) {
+        // Find incoming links to this node
+        const incomingLinks = graphData.value.links.filter((link: any) => {
+          const targetId = typeof link.target === 'object' && link.target !== null && 'id' in link.target
+            ? (link.target as any).id 
+            : link.target;
+          return targetId === node.id;
+        });
+        
+        // If there's exactly one incoming link, use its color
+        if (incomingLinks.length === 1) {
+          return incomingLinks[0].color || 'rgba(255, 255, 255, 0.6)';
+        }
+        
+        // Otherwise, use white with opacity
+        return 'rgba(255, 255, 255, 0.6)';
+      }
+      return undefined;
+    } else {
+      // Dim nodes not in path
+      if (node.collapsed) {
+        return 'rgba(255, 255, 255, 0.15)'; // Very dim for collapsed nodes
+      }
+      // For non-collapsed nodes (3D cubes), we can't easily change color,
+      // but we can reduce opacity by returning a semi-transparent color
+      return 'rgba(200, 200, 200, 0.2)'; // Dim gray for non-path nodes
+    }
+  }
+  
+  // Default behavior when no hover
   // If node is collapsed, check for incoming edge colors
   if (node.collapsed) {
     // Find incoming links to this node
-    const incomingLinks = graphData.value.links.filter((link: any) => link.target === node.id || link.target.id === node.id);
+    const incomingLinks = graphData.value.links.filter((link: any) => {
+      const targetId = typeof link.target === 'object' && link.target !== null && 'id' in link.target
+        ? (link.target as any).id 
+        : link.target;
+      return targetId === node.id;
+    });
     
     // If there's exactly one incoming link, use its color
     if (incomingLinks.length === 1) {
@@ -109,6 +214,58 @@ const nodeColor = (node: any) => {
   
   // For non-collapsed nodes (3D cubes), return undefined to use default
   return undefined;
+};
+
+// Custom link color function for path highlighting
+const linkColor = (link: any) => {
+  const sourceId = typeof link.source === 'object' && link.source !== null && 'id' in link.source
+    ? (link.source as any).id 
+    : link.source;
+  const targetId = typeof link.target === 'object' && link.target !== null && 'id' in link.target
+    ? (link.target as any).id 
+    : link.target;
+  const linkId = `${sourceId}-${targetId}`;
+  
+  // Get the base color
+  const baseColor = link.color || '#999999';
+  
+  // If a node is being hovered and path highlighting is active
+  if (hoveredNode.value && pathLinkIds.value.size > 0) {
+    if (pathLinkIds.value.has(linkId)) {
+      // Highlight: full opacity for edges in path
+      // Convert color to rgba with full opacity
+      if (baseColor.startsWith('#')) {
+        // Convert hex to rgb
+        const r = parseInt(baseColor.slice(1, 3), 16);
+        const g = parseInt(baseColor.slice(3, 5), 16);
+        const b = parseInt(baseColor.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, 1.0)`;
+      } else if (baseColor.startsWith('rgba')) {
+        // Replace opacity with 1.0
+        return baseColor.replace(/[\d.]+\)$/, '1.0)');
+      } else if (baseColor.startsWith('rgb')) {
+        // Convert rgb to rgba with full opacity
+        return baseColor.replace('rgb', 'rgba').replace(')', ', 1.0)');
+      }
+      return baseColor;
+    } else {
+      // Dim: low opacity for edges not in path
+      if (baseColor.startsWith('#')) {
+        const r = parseInt(baseColor.slice(1, 3), 16);
+        const g = parseInt(baseColor.slice(3, 5), 16);
+        const b = parseInt(baseColor.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, 0.1)`;
+      } else if (baseColor.startsWith('rgba')) {
+        return baseColor.replace(/[\d.]+\)$/, '0.1)');
+      } else if (baseColor.startsWith('rgb')) {
+        return baseColor.replace('rgb', 'rgba').replace(')', ', 0.1)');
+      }
+      return `rgba(153, 153, 153, 0.1)`; // Default dim gray
+    }
+  }
+  
+  // Default: return the base color with some opacity
+  return baseColor;
 };
 
 // Apply rotation to all puzzle cubes (always locked mode)
