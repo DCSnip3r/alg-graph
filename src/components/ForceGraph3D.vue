@@ -105,11 +105,12 @@ const findPathToRoot = (nodeId: string) => {
   // Keep track of visited nodes to avoid cycles
   const visited = new Set<string>();
   const queue: string[] = [nodeId];
+  let queueIndex = 0; // Use index instead of shift() for O(1) dequeue
   
   nodes.add(nodeId);
   
-  while (queue.length > 0) {
-    const currentNodeId = queue.shift()!;
+  while (queueIndex < queue.length) {
+    const currentNodeId = queue[queueIndex++];
     
     if (visited.has(currentNodeId)) continue;
     visited.add(currentNodeId);
@@ -242,11 +243,25 @@ const linkColor = (link: any) => {
       // Highlight: full opacity for edges in path
       // Convert color to rgba with full opacity
       if (baseColor.startsWith('#')) {
-        // Convert hex to rgb
-        const r = parseInt(baseColor.slice(1, 3), 16);
-        const g = parseInt(baseColor.slice(3, 5), 16);
-        const b = parseInt(baseColor.slice(5, 7), 16);
-        return `rgba(${r}, ${g}, ${b}, 1.0)`;
+        // Validate and convert hex to rgb
+        if (baseColor.length === 7) {
+          const r = parseInt(baseColor.slice(1, 3), 16);
+          const g = parseInt(baseColor.slice(3, 5), 16);
+          const b = parseInt(baseColor.slice(5, 7), 16);
+          if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
+            return `rgba(${r}, ${g}, ${b}, 1.0)`;
+          }
+        } else if (baseColor.length === 4) {
+          // Handle short hex format like #fff
+          const r = parseInt(baseColor[1] + baseColor[1], 16);
+          const g = parseInt(baseColor[2] + baseColor[2], 16);
+          const b = parseInt(baseColor[3] + baseColor[3], 16);
+          if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
+            return `rgba(${r}, ${g}, ${b}, 1.0)`;
+          }
+        }
+        // Fallback if hex parsing fails
+        return baseColor;
       } else if (baseColor.startsWith('rgba')) {
         // Replace opacity with 1.0
         return baseColor.replace(/,\s*[\d.]+\)$/, ', 1.0)');
@@ -258,10 +273,25 @@ const linkColor = (link: any) => {
     } else {
       // Dim: low opacity for edges not in path
       if (baseColor.startsWith('#')) {
-        const r = parseInt(baseColor.slice(1, 3), 16);
-        const g = parseInt(baseColor.slice(3, 5), 16);
-        const b = parseInt(baseColor.slice(5, 7), 16);
-        return `rgba(${r}, ${g}, ${b}, 0.1)`;
+        // Validate and convert hex to rgb
+        if (baseColor.length === 7) {
+          const r = parseInt(baseColor.slice(1, 3), 16);
+          const g = parseInt(baseColor.slice(3, 5), 16);
+          const b = parseInt(baseColor.slice(5, 7), 16);
+          if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
+            return `rgba(${r}, ${g}, ${b}, 0.1)`;
+          }
+        } else if (baseColor.length === 4) {
+          // Handle short hex format like #fff
+          const r = parseInt(baseColor[1] + baseColor[1], 16);
+          const g = parseInt(baseColor[2] + baseColor[2], 16);
+          const b = parseInt(baseColor[3] + baseColor[3], 16);
+          if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
+            return `rgba(${r}, ${g}, ${b}, 0.1)`;
+          }
+        }
+        // Fallback if hex parsing fails
+        return `rgba(153, 153, 153, 0.1)`;  // Default dim gray
       } else if (baseColor.startsWith('rgba')) {
         return baseColor.replace(/,\s*[\d.]+\)$/, ', 0.1)');
       } else if (baseColor.startsWith('rgb')) {
