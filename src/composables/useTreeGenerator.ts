@@ -175,7 +175,7 @@ export function useTreeGenerator() {
     // Update node with combined algorithm
     updateNodeData(newNodeId, {
       alg: combinedAlg,
-      label: algStr, // Keep the label as the raw algorithm for clarity
+      label: combinedAlg, // Use the full accumulated algorithm path
     });
 
     // Wait for node data update to propagate
@@ -267,7 +267,7 @@ export function useTreeGenerator() {
     // Compute U's accumulated algorithm
     const parentAlg = parentNode.data.alg || '';
     const uCombinedAlg = new Alg(parentAlg).concat(new Alg('U')).experimentalSimplify({ cancel: true }).toString();
-    updateNodeData(uNodeId, { alg: uCombinedAlg });
+    updateNodeData(uNodeId, { alg: uCombinedAlg, label: uCombinedAlg });
     await delay(50);
 
     // Check confluence for U node
@@ -328,7 +328,7 @@ export function useTreeGenerator() {
 
     // Compute U' accumulated algorithm
     const uPrimeCombinedAlg = new Alg(parentAlg).concat(new Alg("U'")).experimentalSimplify({ cancel: true }).toString();
-    updateNodeData(uPrimeNodeId, { alg: uPrimeCombinedAlg });
+    updateNodeData(uPrimeNodeId, { alg: uPrimeCombinedAlg, label: uPrimeCombinedAlg });
     await delay(50);
 
     // Check confluence for U' node
@@ -395,7 +395,7 @@ export function useTreeGenerator() {
       // Compute U2's accumulated algorithm from U path
       const uAlg = currentUNode.data.alg || '';
       const u2CombinedAlg = new Alg(uAlg).concat(new Alg('U')).experimentalSimplify({ cancel: true }).toString();
-      updateNodeData(u2NodeId, { alg: u2CombinedAlg });
+      updateNodeData(u2NodeId, { alg: u2CombinedAlg, label: u2CombinedAlg });
       await delay(50);
 
       // Check confluence for U2 node
