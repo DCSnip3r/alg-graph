@@ -90,6 +90,18 @@ const findPathToRoot = (nodeId: string) => {
   const links = new Set<string>();
   const data = graphData.value;
   
+  // Preprocess links into a map for O(1) lookup by target
+  const linksByTarget = new Map<string, any[]>();
+  for (const link of data.links) {
+    const targetId = typeof link.target === 'object' && link.target !== null && 'id' in link.target
+      ? (link.target as any).id 
+      : link.target;
+    if (!linksByTarget.has(String(targetId))) {
+      linksByTarget.set(String(targetId), []);
+    }
+    linksByTarget.get(String(targetId))!.push(link);
+  }
+  
   // Keep track of visited nodes to avoid cycles
   const visited = new Set<string>();
   const queue: string[] = [nodeId];
@@ -102,13 +114,8 @@ const findPathToRoot = (nodeId: string) => {
     if (visited.has(currentNodeId)) continue;
     visited.add(currentNodeId);
     
-    // Find all incoming edges to this node
-    const incomingLinks = data.links.filter((link: any) => {
-      const targetId = typeof link.target === 'object' && link.target !== null && 'id' in link.target
-        ? (link.target as any).id 
-        : link.target;
-      return targetId === currentNodeId;
-    });
+    // Get incoming links from the preprocessed map
+    const incomingLinks = linksByTarget.get(currentNodeId) || [];
     
     // Add parent nodes and edges to the path
     for (const link of incomingLinks) {
@@ -242,7 +249,7 @@ const linkColor = (link: any) => {
         return `rgba(${r}, ${g}, ${b}, 1.0)`;
       } else if (baseColor.startsWith('rgba')) {
         // Replace opacity with 1.0
-        return baseColor.replace(/[\d.]+\)$/, '1.0)');
+        return baseColor.replace(/,\s*[\d.]+\)$/, ', 1.0)');
       } else if (baseColor.startsWith('rgb')) {
         // Convert rgb to rgba with full opacity
         return baseColor.replace('rgb', 'rgba').replace(')', ', 1.0)');
@@ -256,7 +263,7 @@ const linkColor = (link: any) => {
         const b = parseInt(baseColor.slice(5, 7), 16);
         return `rgba(${r}, ${g}, ${b}, 0.1)`;
       } else if (baseColor.startsWith('rgba')) {
-        return baseColor.replace(/[\d.]+\)$/, '0.1)');
+        return baseColor.replace(/,\s*[\d.]+\)$/, ', 0.1)');
       } else if (baseColor.startsWith('rgb')) {
         return baseColor.replace('rgb', 'rgba').replace(')', ', 0.1)');
       }
