@@ -6,6 +6,16 @@
       <button class="close-button" @click="goBack" title="Return to 2D Editor">
         ✕ Close 3D View
       </button>
+
+      <!-- Auto-rotate toggle button -->
+      <button
+        class="control-button"
+        :class="{ 'control-button--active': isAutoRotating }"
+        @click="toggleAutoRotation"
+        title="Toggle auto-rotation around vertical axis"
+      >
+        ⟳ Auto-Rotate
+      </button>
       
       <!-- Hint for shift+drag -->
       <div class="hint-text">
@@ -52,11 +62,15 @@ import { Euler, Quaternion } from 'three';
 // Rotation sensitivity for shift+drag
 const ROTATION_SENSITIVITY = 0.01;
 
+// Auto-rotation speed in radians per frame (≈1 full revolution every ~20 s at 60 fps)
+const AUTO_ROTATION_SPEED = 0.005;
+
 const router = useRouter();
 const graphDataStore = useGraphDataStore();
 const displaySettings = useDisplaySettingsStore();
 const graphRef = ref<any>(null);
 const isLoading = ref(true);
+const isAutoRotating = ref(false);
 
 // Track state for shift+drag rotation
 const isShiftPressed = ref(false);
@@ -76,6 +90,28 @@ const graphData = computed(() => {
 // Navigate back to 2D editor
 const goBack = () => {
   router.push('/');
+};
+
+// Toggle auto-rotation of the entire scene around the vertical axis
+const toggleAutoRotation = () => {
+  isAutoRotating.value = !isAutoRotating.value;
+};
+
+// Rotate the camera around the vertical (Y) axis by one step
+const stepAutoRotation = () => {
+  if (!graphRef.value) return;
+  const graph = graphRef.value;
+  const camera = graph.camera?.();
+  if (!camera) return;
+
+  const angle = AUTO_ROTATION_SPEED;
+  const cosA = Math.cos(angle);
+  const sinA = Math.sin(angle);
+  const x = camera.position.x;
+  const z = camera.position.z;
+  camera.position.x = x * cosA + z * sinA;
+  camera.position.z = z * cosA - x * sinA;
+  camera.lookAt(0, 0, 0);
 };
 
 // Create custom 3D node objects using cubing.js
@@ -209,6 +245,9 @@ onMounted(async () => {
   
   // Set up animation loop for continuous rotation updates (always active for billboard effect)
   const animationLoop = () => {
+    if (isAutoRotating.value) {
+      stepAutoRotation();
+    }
     applyRotationToCubes();
     animationFrameId = requestAnimationFrame(animationLoop);
   };
@@ -284,6 +323,15 @@ onBeforeUnmount(() => {
 
 .close-button:hover {
   background-color: #c82333;
+}
+
+.control-button--active {
+  background-color: #1a6e3c;
+  opacity: 1;
+}
+
+.control-button--active:hover {
+  background-color: #238551;
 }
 
 .close-button:active,
