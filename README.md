@@ -71,6 +71,8 @@ PLL identification compares cube states to 21 familiar reference algorithms
 up to pre/post AUF and whole-cube rotations, including a final rotation of
 the cube. “Solved” includes a state solved up to AUF. References are based on
 [this PLL collection](https://github.com/alonswartz/cube/tree/c6d9eee0e2af1a20a921b1697e686a60d964d79b/src/algs).
+Because all cube orientations are considered, the last layer can be any face;
+for example, a single F turn is “Solved” up to a rotated AUF.
 The explorer starts from a new solved node, adds to the current graph without
 deleting nodes, and limits generation to 200 nodes and 40 expanded moves per
 chunk. Larger interruption sets may require reducing the step count to one.

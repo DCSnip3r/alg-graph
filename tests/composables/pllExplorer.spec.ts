@@ -12,6 +12,7 @@ describe('PLL explorer', () => {
       expect(classify(`${alg} x y`), name).toBe(name);
     }
     expect(classify('')).toBe('Solved');
+    expect(classify('F')).toBe('Solved');
     expect(classify(`U ${PLL_ALGORITHMS.T} U'`)).toBe('T');
     expect(classify("R U R' U R U2 R'")).toBeNull();
   });
