@@ -33,21 +33,23 @@ export function useColorUtils() {
   const colorizeLabel = (label: string) => {
     const algStore = useAlgPresetsStore();
     const presetsToHighlight = algStore.getSortedPresetsForHighlighting;
-
-    let colorizedLabel = label;
-
-    presetsToHighlight.forEach(presetEntry => {
-      const trimmedPresetAlg = presetEntry.algorithm.trim();
-      const escapedPresetAlg = trimmedPresetAlg.replace(/[']/g, "\\'");
-      const regex = new RegExp(escapedPresetAlg + '(?=\\s|$)', 'g');
-
-      colorizedLabel = colorizedLabel.replace(regex, (match) => {
-        const textColor = getTextColorForBackground(presetEntry.color);
-        return `<span class="highlight" style="background-color: ${presetEntry.color}; color: ${textColor};">${match}</span>`;
-      });
-    });
-
-    return colorizedLabel;
+    const escapeHtml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    if (!presetsToHighlight.length) return escapeHtml(label);
+    const entries = presetsToHighlight.map(preset => ({
+      algorithm: preset.algorithm.trim(),
+      color: /^#[0-9a-f]{6}$/i.test(preset.color) ? preset.color : '#ffffff',
+    }));
+    const pattern = entries.map(entry => entry.algorithm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    const regex = new RegExp(`(?:${pattern})(?=\\s|$)`, 'g');
+    let result = '';
+    let last = 0;
+    for (const match of label.matchAll(regex)) {
+      const entry = entries.find(item => item.algorithm === match[0])!;
+      result += escapeHtml(label.slice(last, match.index));
+      result += `<span class="highlight" style="background-color: ${entry.color}; color: ${getTextColorForBackground(entry.color)};">${escapeHtml(match[0])}</span>`;
+      last = match.index! + match[0].length;
+    }
+    return result + escapeHtml(label.slice(last));
   };
 
   // Rotate color hue by a given degree (0-360)
@@ -130,6 +132,5 @@ export function useColorUtils() {
 
   return { getTextColorForBackground, getBackgroundColorForAlgorithm, colorizeLabel, mirrorColor, invertColor, maxRGBColor, randomPureRGB };
 }
-
 
 

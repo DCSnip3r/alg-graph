@@ -45,6 +45,9 @@
           <button @click="openTreeGenerator" class="generate-tree-btn">
             🌳 Tree Generator
           </button>
+          <button @click="emit('open-chunk-explorer')" class="generate-tree-btn">
+            Chunk Explorer
+          </button>
         </PartitionBlock>
       </div>
 
@@ -117,6 +120,7 @@ const { mirrorAlg, invertAlg } = useAlg();
 
 const emit = defineEmits<{
   'open-tree-generator': [];
+  'open-chunk-explorer': [];
 }>();
 
 function openTreeGenerator() {

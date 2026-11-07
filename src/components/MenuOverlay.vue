@@ -6,7 +6,7 @@
     </div>
     <div v-show="isVisible" class="menu-content-wrapper">
       <hr class="submenu-divider" />
-      <AlgorithmsSubmenu @open-tree-generator="emit('open-tree-generator')" />
+      <AlgorithmsSubmenu @open-tree-generator="emit('open-tree-generator')" @open-chunk-explorer="emit('open-chunk-explorer')" />
       <hr class="submenu-divider" />
       <GraphSavingSubmenu 
         :saveStatus="props.saveStatus" 
@@ -36,7 +36,7 @@ const props = defineProps<{
   saveStatus: { message: string, type: 'success' | 'error' } | null;
 }>();
 
-const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-graph-from-file-request', 'auto-layout-request', 'custom-layout-request', 'snap-to-grid-request', 'scale-graph-request', 'render-3d-request', 'open-tree-generator']);
+const emit = defineEmits(['save-graph-request', 'load-graph-request', 'load-graph-from-file-request', 'auto-layout-request', 'custom-layout-request', 'snap-to-grid-request', 'scale-graph-request', 'render-3d-request', 'open-tree-generator', 'open-chunk-explorer']);
 
 const { isVisible, toggleVisibility } = useCollapsible(true);
 </script>

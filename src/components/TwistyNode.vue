@@ -101,6 +101,13 @@ const getHandleStyle = (handleId: string) => {
         </button>
       </div>
       <div 
+        v-if="!isCollapsed && props.data.exploration && props.data.exploration.algorithm === props.data.alg"
+        class="exploration-label"
+      >
+        <strong>{{ props.data.exploration.pll || 'Not a PLL' }}</strong>
+        <div>{{ props.data.exploration.description }}</div>
+      </div>
+      <div
         v-if="!isCollapsed" 
         class="node-alg-label" 
         :style="{ fontSize: labelFontSize, maxWidth: (baseSize) + 'px' }" 
@@ -125,6 +132,12 @@ const getHandleStyle = (handleId: string) => {
 </template>
 
 <style scoped>
+.exploration-label {
+  color: #b7e9bc;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
 .vue-flow__node-default {
   padding: 5px;
   border: 8px solid transparent; /* Keep the same border as the maximized version */

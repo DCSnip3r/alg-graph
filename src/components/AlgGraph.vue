@@ -12,6 +12,8 @@ import SpecialEdge from './SpecialEdge.vue';
 import ConfluenceEdge from './ConfluenceEdge.vue';
 import MenuOverlay from './MenuOverlay.vue';
 import TreeGeneratorModal from './TreeGeneratorModal.vue';
+import ChunkExplorerModal from './ChunkExplorerModal.vue';
+import type { ArrangementNode } from '../utils/pllExplorer';
 import { Alg } from 'cubing/alg'; // Import the Alg class
 
 import { useNodeConfluence } from '../composables/useNodeConfluence';
@@ -89,6 +91,7 @@ function handleRender3D() {
 // Tree Generator
 const { generateTree } = useTreeGenerator();
 const isTreeGeneratorOpen = ref(false);
+const isChunkExplorerOpen = ref(false);
 const treeGeneratorModalRef = ref<{ setProgress: (message: string) => void; finishGeneration: () => void } | null>(null);
 
 function openTreeGenerator() {
@@ -97,6 +100,57 @@ function openTreeGenerator() {
 
 function closeTreeGenerator() {
   isTreeGeneratorOpen.value = false;
+}
+
+function handleChunkGeneration(arrangements: ArrangementNode[]) {
+  const ids = arrangements.map(() => getNextNodeId());
+  const byDepth = new Map<number, number[]>();
+  arrangements.forEach((item, index) => {
+    const row = byDepth.get(item.depth) || [];
+    row.push(index);
+    byDepth.set(item.depth, row);
+  });
+  const width = Math.max(...[...byDepth.values()].map(row => row.length));
+  const offsetX = Math.max(0, ...nodes.value.map(node => node.position.x + 600)) + (width - 1) * 225;
+  const graphNodes = arrangements.map((item, index) => {
+    const row = byDepth.get(item.depth)!;
+    return {
+      id: ids[index], type: 'twisty',
+      position: { x: offsetX + (row.indexOf(index) - (row.length - 1) / 2) * 450, y: item.depth * 600 },
+      data: {
+        label: item.algorithm || 'Solved', alg: item.algorithm, rawAlgorithm: item.segment.algorithm,
+        targetHandleId: 'handle-t', collapsed: false,
+        exploration: { description: item.segment.description, pll: item.pll, algorithm: item.algorithm },
+      },
+    };
+  });
+  const graphEdges = arrangements.flatMap((item, index) => item.parent === null ? [] : [{
+    id: `e${ids[item.parent]}-${ids[index]}`,
+    source: ids[item.parent], target: ids[index],
+    sourceHandle: 'handle-b', targetHandle: 'handle-t', type: 'special',
+    label: item.segment.algorithm, data: { algorithm: item.segment.algorithm }, animated: true,
+  }]);
+  addNodes(graphNodes);
+  addEdges(graphEdges);
+  setTimeout(() => fitView({ padding: 0.2 }), 200);
+}
+
+function handleExplorationEdgeUpdate(update: { edgeId: string; newAlgorithm: string }) {
+  const edge = edges.value.find(item => item.id === update.edgeId);
+  if (edge) {
+    const pending = [edge.target];
+    const visited = new Set<string>();
+    while (pending.length) {
+      const id = pending.pop()!;
+      if (visited.has(id)) continue;
+      visited.add(id);
+      if (findNode(id)?.data.exploration) updateNodeData(id, { exploration: null });
+      for (const child of edges.value) {
+        if (child.source === id && child.type !== 'confluence') pending.push(child.target);
+      }
+    }
+  }
+  handleEdgeAlgorithmUpdate(update);
 }
 
 async function handleTreeGeneration(config: { rootNodeId: string; levels: string[][] }) {
@@ -273,6 +327,7 @@ onMounted(() => {
       @scale-graph-request="handleScaleGraph"
       @render-3d-request="handleRender3D"
       @open-tree-generator="openTreeGenerator"
+      @open-chunk-explorer="isChunkExplorerOpen = true"
     />
     <TreeGeneratorModal
       ref="treeGeneratorModalRef"
@@ -280,6 +335,11 @@ onMounted(() => {
       :available-nodes="nodes"
       @close="closeTreeGenerator"
       @generate="handleTreeGeneration"
+    />
+    <ChunkExplorerModal
+      :is-open="isChunkExplorerOpen"
+      @close="isChunkExplorerOpen = false"
+      @generate="handleChunkGeneration"
     />
     <VueFlow 
       :nodes="nodes" 
@@ -300,7 +360,7 @@ onMounted(() => {
       <template #edge-special="specialEdgeProps">
         <SpecialEdge 
           v-bind="specialEdgeProps" 
-          @update:algorithm="handleEdgeAlgorithmUpdate"
+          @update:algorithm="handleExplorationEdgeUpdate"
         />
       </template>
       <template #edge-confluence="confluenceEdgeProps">

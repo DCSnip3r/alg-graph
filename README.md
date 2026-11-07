@@ -49,6 +49,33 @@ pnpm run preview
    - Dashed informational confluence edges (toggleable).
    - Node badges summarizing inbound confluent variants.
 - Preset graphs (e.g., Sune chain) for inspiration.
+- Chunk Explorer: arrange named sequences, their inverses, and optional interrupted sequences; identify PLLs on the resulting graph.
+
+### Chunk Explorer
+
+Open **Algorithms → Autogenerate → Chunk Explorer**. Edit the chunks or add
+one of your saved algorithms. The default two chunks demonstrate both orders
+of the T/Y relationship. Each step branches over every chunk and its inverse;
+repeats are allowed. Each path is kept separately even when cube states match.
+Edge labels show the applied moves, and nodes show the chunk used, the
+cancelled accumulated algorithm, and the PLL name or “Not a PLL”.
+
+Optionally include interruptions: at each boundary between expanded moves of
+an outer chunk, insert one complete chunk or inverse. An interrupted chunk is
+one step, with its outer name, split pieces, and inserted sequence shown on the
+node. This does not search nested interruptions or automatically extract
+chunks from algorithms. Mirroring is not generated automatically; the
+existing algorithm mirror button can create a preset to add.
+
+PLL identification compares cube states to 21 familiar reference algorithms
+up to pre/post AUF and whole-cube rotations, including a final rotation of
+the cube. “Solved” includes a state solved up to AUF. References are based on
+[this PLL collection](https://github.com/alonswartz/cube/tree/c6d9eee0e2af1a20a921b1697e686a60d964d79b/src/algs).
+The explorer starts from a new solved node, adds to the current graph without
+deleting nodes, and limits generation to 200 nodes and 40 expanded moves per
+chunk. Larger interruption sets may require reducing the step count to one.
+Labels describe the generated path and are hidden if that node's algorithm
+is subsequently changed.
 
 ## Tech Stack
 - Vue 3 + TypeScript + Vite

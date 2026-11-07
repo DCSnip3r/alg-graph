@@ -11,6 +11,14 @@ export interface Arrangement {
   algorithm: string;
 }
 
+export interface ArrangementNode {
+  parent: number | null;
+  depth: number;
+  segment: Arrangement;
+  algorithm: string;
+  pll: string | null;
+}
+
 // Familiar representatives; see https://github.com/alonswartz/cube/tree/c6d9eee0e2af1a20a921b1697e686a60d964d79b/src/algs
 export const PLL_ALGORITHMS: Record<string, string> = {
   Aa: "x L2 D2 L' U' L D2 L' U L'",
@@ -42,7 +50,11 @@ const MAX_NODES = 200;
 export function chunkVariants(chunks: Chunk[], interrupted: boolean): Arrangement[] {
   const variants = chunks.flatMap(({ name, algorithm }) => {
     const alg = new Alg(algorithm);
-    if (!name.trim() || ![...alg.experimentalLeafMoves()].length) {
+    let moveCount = 0;
+    for (const _move of alg.experimentalLeafMoves()) {
+      if (++moveCount > 40) throw new Error('Each chunk is limited to 40 moves.');
+    }
+    if (!name.trim() || !moveCount) {
       throw new Error('Each chunk needs a name and a non-empty algorithm.');
     }
     return [
@@ -59,7 +71,7 @@ export function chunkVariants(chunks: Chunk[], interrupted: boolean): Arrangemen
     for (let split = 1; split < moves.length; split++) {
       for (const inner of variants) {
         result.push({
-          description: `${outer.description} [after move ${split}: ${inner.description}]`,
+          description: `${outer.description} [${moves.slice(0, split).join(' ')} | ${inner.description}: ${inner.algorithm} | ${moves.slice(split).join(' ')}]`,
           algorithm: [...moves.slice(0, split), inner.algorithm, ...moves.slice(split)].join(' '),
         });
         if (result.length > MAX_NODES) throw new Error('Too many chunk variants; use fewer or shorter chunks.');
@@ -75,6 +87,30 @@ export function arrangementCount(branches: number, depth: number): number {
   for (let i = 1; i <= depth; i++) total += branches ** i;
   if (total > MAX_NODES) throw new Error(`This exploration exceeds ${MAX_NODES} nodes; reduce chunks, interruptions, or depth.`);
   return total;
+}
+
+export function generateArrangements(
+  variants: Arrangement[],
+  depth: number,
+  classify: (algorithm: string) => string | null,
+): ArrangementNode[] {
+  if (!variants.length) throw new Error('Add at least one chunk.');
+  arrangementCount(variants.length, depth);
+  const result: ArrangementNode[] = [{
+    parent: null, depth: 0, segment: { description: 'Solved', algorithm: '' }, algorithm: '', pll: 'Solved',
+  }];
+  let level = [0];
+  for (let d = 1; d <= depth; d++) {
+    const next: number[] = [];
+    for (const parent of level) for (const segment of variants) {
+      const algorithm = new Alg(result[parent].algorithm).concat(new Alg(segment.algorithm))
+        .experimentalSimplify({ cancel: true }).toString();
+      next.push(result.length);
+      result.push({ parent, depth: d, segment, algorithm, pll: classify(algorithm) });
+    }
+    level = next;
+  }
+  return result;
 }
 
 type CubePattern = ReturnType<Awaited<ReturnType<typeof cube3x3x3.kpuzzle>>['defaultPattern']>;
